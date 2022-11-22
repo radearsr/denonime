@@ -1,0 +1,25 @@
+.poster_content_item {
+  border-radius: 0.6rem;
+  overflow: hidden;
+  display: flex;
+}
+
+.img_poster {
+  width: 100%;
+  height: 18vmax;
+  /* max-height: 22vmax; */
+}
+
+
+.anime_title {
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-align: left;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: max-content;
+  max-height: 2.2rem;
+  overflow: hidden;
+}
