@@ -7,6 +7,7 @@ const SliderContent = ({ title, animes }) => {
   const SwipperBreakpoints = {
     1400: {
       slidesPerView: 7,
+      spaceBetween: 23,
     },
     1200: {
       slidesPerView: 6,

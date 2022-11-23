@@ -23,6 +23,7 @@ const index = () => {
       .then((response) => response.json())
       .then((result) => setAnimesLastest(result.data.animes));
   }, []);
+
   return (
     <Layout>
       <Carousel />

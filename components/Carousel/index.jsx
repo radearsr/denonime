@@ -15,7 +15,7 @@ const Carousel = () => {
           </div>
         </div>
       </div>
-      <div className="carousel-item active">
+      <div className="carousel-item">
         <div className="row slide-item p-3 justify-content-between g-0">
           <div className="bg-poster" style={{ backgroundImage: "url('https://185.224.82.193/img/26138.jpg')" }}>{" "}</div>
           <div className="col-3 poster">
