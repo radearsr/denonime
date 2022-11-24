@@ -37,6 +37,7 @@ const SliderContent = ({ title, animes }) => {
                   linkEps={anime.title}
                   poster={anime.poster}
                   title={anime.title}
+                  key={anime.id}
                 />
               </SwiperSlide>
             ))}

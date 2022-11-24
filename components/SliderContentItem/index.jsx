@@ -18,6 +18,9 @@ const SliderContentItem = ({
         height="100"
         quality="80"
       />
+      <span>
+        <i className="bi bi-play-fill icon-play">{" "}</i>
+      </span>
     </div>
     <p className={styles.anime_title}>{title}</p>
   </Link>

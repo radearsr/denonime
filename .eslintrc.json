@@ -19,6 +19,7 @@
     ],
     "rules": {
         "quotes": ["error", "double", { "allowTemplateLiterals": true }],
+        "global-require": "off",
         "linebreak-style": "off",
         "react/function-component-definition": [2, {
             "namedComponents": "arrow-function",

@@ -9,3 +9,8 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.content_link_more:hover {
+  color: var(--orange);
+  transition: .3s;
+}

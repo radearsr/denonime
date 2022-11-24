@@ -1,0 +1,19 @@
+.carousel_poster {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 18vmax;
+}
+
+.btn_watch {
+ display: block; 
+ width: 6rem;
+ padding: 0.5rem 1.5rem;
+ background-color: var(--orange);
+ color: var(--space);
+ font-size: 1rem;
+ border-radius: .5rem;
+  margin-top: .5rem;
+  text-align: center;
+}
+
