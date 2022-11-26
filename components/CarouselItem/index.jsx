@@ -12,7 +12,7 @@ const CarouselItem = ({
   <div className={`carousel-item ${isActive}`}>
     <div className="row slide-item p-3 justify-content-between g-0">
       <div className="bg-poster" style={{ backgroundImage: `url('${poster}')` }}>{" "}</div>
-      <div className="col-3 poster">
+      <div className="col-3 col-lg-9 poster">
         <Image
           src={poster}
           alt={title}

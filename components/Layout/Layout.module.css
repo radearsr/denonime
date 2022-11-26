@@ -1,0 +1,36 @@
+.search_group {
+  border-radius: 1.4rem;
+}
+
+.input_search {
+  display: inline-block;
+  border: none;
+  outline: none;
+  width: 100%;
+  border-radius: 1.4rem 0 0 1.4rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  height: 100%;
+  border: 1px solid rgb(238, 238, 238);
+  background-color: var(--space);
+  color: var(--black);
+  caret-color: var(--black);
+}
+
+.btn_action {
+  display: inline-block;
+  width: 100%;
+  border-radius: 0 1.4rem 1.4rem 0;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgb(238, 238, 238);
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.visible_mob_nav {
+  height: 3.7rem;
+  width: 100%;
+}
+
+

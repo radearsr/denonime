@@ -16,7 +16,7 @@ const SliderContentItem = ({
         className={styles.img_poster}
         width="100"
         height="100"
-        quality="80"
+        quality="100"
       />
       <span>
         <i className="bi bi-play-fill icon-play">{" "}</i>

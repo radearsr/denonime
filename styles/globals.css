@@ -80,24 +80,21 @@ nav.navbar {
   display: block;
 }
 
-.active,
-.icon-name.active {
+.nav-mob-item.active > .icon-label,
+.nav-mob-item.active > i {
   color: var(--orange);
   font-weight: bold;
 }
 
-.no-act {
+.nav-mob-item > i, 
+.nav-mob-item .icon-label{
   color: var(--black);
+  font-weight: bold;
 }
 
 .icon-label{
   margin: 0;
   font-size: 0.8rem;
-}
-
-.visible-mob-nav {
-  height: 3.7rem;
-  width: 100%;
 }
 
 @media (min-width: 992px) {
