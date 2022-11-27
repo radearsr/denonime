@@ -10,16 +10,17 @@ const CarouselItem = ({
   isActive,
 }) => (
   <div className={`carousel-item ${isActive}`}>
-    <div className="row slide-item p-3 justify-content-between g-0">
+    <div className="row slide-item p-3 justify-content-evenly g-0">
       <div className="bg-poster" style={{ backgroundImage: `url('${poster}')` }}>{" "}</div>
       <div className="col-3 col-lg-9 poster">
         <Image
           src={poster}
           alt={title}
-          width="10"
-          height="10"
+          width="100"
+          height="100"
           className={style.carousel_poster}
-          quality="100"
+          objectFit="cover"
+          priority
         />
       </div>
       <div className="col-8 col-lg-9 details">

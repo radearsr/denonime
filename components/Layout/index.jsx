@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   const router = useRouter();
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm bg-transparent">
+      <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent">
         <div className="container">
           <Link className="navbar-brand" href="/">DenoNime</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
                 <Link className={`${router.pathname === "/about" ? "active" : ""} nav-link`} aria-current="page" href="/about">About</Link>
               </li>
             </ul>
-            <form className="col-md-4">
+            <form className="col-md-5">
               <div className="row g-0">
                 <div className="col-9 col-md-10">
                   <input

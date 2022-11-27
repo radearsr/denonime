@@ -56,6 +56,13 @@ nav.navbar {
   display: none;
 }
 
+.navbar.bg-transparent input, 
+.navbar.bg-transparent button{
+  background-color: transparent !important;
+  color: var(--space);
+  caret-color: var(--space);
+}
+
 .navbar-brand {
   font-size: 1.5rem;
   letter-spacing: 0.2rem;

@@ -11,6 +11,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "i3.wp.com",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.myanimelist.net",
+      },
     ],
   },
 };
