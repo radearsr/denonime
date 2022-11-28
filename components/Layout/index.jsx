@@ -1,18 +1,31 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Layout.module.css";
 
 const Layout = ({ children }) => {
+  const [navbarClass, setNavbarClass] = useState("bg-transparent");
   const router = useRouter();
+
+  const handleNavbar = (e) => {
+    const window = e.currentTarget;
+    if (window.scrollY > 50) {
+      setNavbarClass("bg-orange");
+    } else {
+      setNavbarClass("bg-transparent");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", (e) => handleNavbar(e));
+  });
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent">
+      <nav className={`navbar navbar-expand-lg navbar-dark fixed-top ${navbarClass}`}>
         <div className="container">
           <Link className="navbar-brand" href="/">DenoNime</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon">{" "}</span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="collapse navbar-collapse">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className={`${router.pathname === "/" ? "active" : ""} nav-link`} aria-current="page" href="/">Home</Link>

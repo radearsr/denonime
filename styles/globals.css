@@ -63,9 +63,21 @@ nav.navbar {
   caret-color: var(--space);
 }
 
+.navbar.bg-transparent button:hover {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.navbar.bg-orange button{
+  background-color: rgba(255, 139, 50, 0.4);
+  transition: .3s;
+}
+
+.navbar.bg-orange button:hover {
+  background-color: rgb(255, 140, 50);
+}
+
 .navbar-brand {
   font-size: 1.5rem;
-  letter-spacing: 0.2rem;
   font-weight: bold;
 }
 

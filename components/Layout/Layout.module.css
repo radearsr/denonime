@@ -28,8 +28,13 @@
   height: 100%;
 }
 
+.btn_action:hover {
+  opacity: 1;
+}
+
 .btn_action > i {
   font-size: 1.2rem;
+  color: var(--space);
 }
 
 .visible_mob_nav {
