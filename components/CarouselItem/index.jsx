@@ -19,7 +19,6 @@ const CarouselItem = ({
           width="100"
           height="100"
           className={style.carousel_poster}
-          objectFit="cover"
           priority
         />
       </div>

@@ -6,12 +6,12 @@
 }
 
 .btn_watch {
- display: block; 
- width: 8rem;
- padding: .6rem 1.5rem;
  background-color: var(--orange);
  color: var(--space);
- font-size: 1.1rem;
+ display: block; 
+ width: 6rem;
+ padding: .4rem .8rem;
+ font-size: .9rem;
  border-radius: 1.4rem;
  margin-top: .5rem;
  text-align: center;
@@ -25,5 +25,13 @@
   border: 2px solid var(--space);
   color: var(--space);
   text-decoration: underline;
+}
+
+
+@media (min-width: 769px) {
+  .btn_watch {
+    width: 8rem;
+    padding: .6rem 1.5rem;
+  }
 }
 

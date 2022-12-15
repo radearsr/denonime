@@ -10,6 +10,7 @@ const Carousel = ({ animes }) => (
           poster={anime.poster}
           urlStreaming="/"
           isActive={idx === 0 ? "active" : ""}
+          key={idx}
         />
       ))}
     </div>

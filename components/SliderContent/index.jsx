@@ -1,9 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
-import SliderContentItem from "../SliderContentItem";
+import AnimeComp from "../AnimeComp";
 import syles from "./sliderContent.module.css";
 
-const SliderContent = ({ title, animes }) => {
+const SliderContent = ({
+  title,
+  animes,
+  category,
+  keyprop,
+}) => {
   const SwipperBreakpoints = {
     1400: {
       slidesPerView: 7,
@@ -22,17 +27,17 @@ const SliderContent = ({ title, animes }) => {
     },
   };
   return (
-    <div className="my-2">
+    <div className="my-2" key={keyprop}>
       <div className="container">
         <header className="d-flex justify-content-between align-items-center">
           <h2 className={syles.content_title}>{title}</h2>
-          <Link href="/" className={syles.content_link_more}>Lebih Banyak</Link>
+          <Link href={`/showmore/${category}`} key={keyprop + 1} className={syles.content_link_more}>Lebih Banyak</Link>
         </header>
         <main>
           <Swiper slidesPerView={3} spaceBetween={10} breakpoints={SwipperBreakpoints}>
             {animes.map((anime) => (
               <SwiperSlide>
-                <SliderContentItem
+                <AnimeComp
                   idAnime={anime.id}
                   linkEps={anime.title}
                   poster={anime.poster}

@@ -1,46 +1,33 @@
-import { useEffect, useState } from "react";
+import Head from "next/head";
 import Layout from "../components/Layout";
 import Carousel from "../components/Carousel";
 import SliderContent from "../components/SliderContent";
 
-const index = () => {
-  const [animesCarousel, setAnimesCarousel] = useState([]);
-  const [animesLastest, setAnimesLastest] = useState([]);
-  const [animeMovie, setAnimeMovie] = useState([]);
-  const [animeSeries, setAnimeSeries] = useState([]);
+export async function getServerSideProps() {
+  const res = await fetch("http://47.254.251.95:5000/api/animes?type=series&limit=10");
+  const resCarousel = await fetch("http://47.254.251.95/api/animes/5/carousel");
+  const result = await res.json();
+  const resultCarousel = await resCarousel.json();
+  return {
+    props: {
+      animes: result.data.animes,
+      carousel: resultCarousel.data.animes,
+    },
+  };
+}
 
-  useEffect(() => {
-    fetch("http://47.254.251.95:5000/api/animes?type=series&limit=10")
-      .then((response) => response.json())
-      .then((result) => setAnimeSeries(result.data.animes));
-  }, []);
-  useEffect(() => {
-    fetch("http://47.254.251.95:5000/api/animes?type=movie&limit=10")
-      .then((response) => response.json())
-      .then((result) => setAnimeMovie(result.data.animes));
-  }, []);
-  useEffect(() => {
-    fetch("http://47.254.251.95:5000/api/animes?type=series&limit=10")
-      .then((response) => response.json())
-      .then((result) => setAnimesLastest(result.data.animes));
-  }, []);
-  useEffect(() => {
-    fetch("http://47.254.251.95:5000/api/animes/5/carousel")
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-        setAnimesCarousel(result.data.animes);
-      });
-  }, []);
-
-  return (
+const index = ({ animes, carousel }) => (
+  <>
+    <Head>
+      <title>Home | DenoNime - Streaming Anime 360p 720p </title>
+      <meta property="og:title" content="My page title" key="title" />
+    </Head>
     <Layout>
-      <Carousel animes={animesCarousel} />
-      <SliderContent title="Terbaru" animes={animesLastest} key="lastest" />
-      <SliderContent title="Movie" animes={animeMovie} key="movie" />
-      <SliderContent title="Series" animes={animeSeries} key="series" />
+      <Carousel animes={carousel} key="1" />
+      <SliderContent title="Lastest" animes={animes} category="series" />
+      <SliderContent title="Lastest" animes={animes} category="movie" />
     </Layout>
-  );
-};
+  </>
+);
 
 export default index;

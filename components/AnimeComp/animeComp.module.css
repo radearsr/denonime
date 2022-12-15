@@ -1,0 +1,84 @@
+.poster_content_item {
+  border-radius: 0.6rem;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+
+.img_poster {
+  display: block;
+  width: 100%;
+  height: 160px;
+}
+
+.img_poster ~ span {
+  display: block;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(6, 17, 60, 0.6);
+  background: linear-gradient(to top, rgba(6, 17, 60, 0.9), transparent);
+  position: absolute;
+  transition: .4s;
+}
+
+.img_poster ~ span > i {
+  font-size: 2.8rem;
+  position: absolute;
+  top: 36%;
+  right: 36%;
+  color: var(--orange);
+}
+
+.anime_comp_wrapper:hover .anime_title {
+  color: var(--orange);
+}
+.anime_comp_wrapper:hover .img_poster ~ span{
+  opacity: 1;
+}
+
+.anime_title {
+  font-weight: 520;
+  color: var(--black);
+  font-size: 14px;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: max-content;
+  max-height: 3rem;
+  overflow: hidden;
+  transition: .2s;
+}
+
+
+
+@media (min-width: 576px) {
+  .img_poster {
+    height: 210px;
+  }
+  .anime_title {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .img_poster {
+    height: 200px;
+  }
+  .anime_title {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 992px) {
+  .img_poster {
+    height: 230px;
+  }
+  .anime_title {
+    font-size: 18px;
+    max-height: 3.2rem;
+  }
+}
