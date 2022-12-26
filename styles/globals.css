@@ -46,9 +46,9 @@ a {
 .text {
   overflow: hidden;
   text-align: left;
-  word-break: break-all;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  min-height: max-content;
 }
 
 /* Desktop Navigation */
@@ -194,9 +194,66 @@ nav.navbar.showmore-nav {
   width: 100%;
 }
 
+/* Anime Card Comp */
+.anime-card {
+  background-color: var(--grey);
+  padding: 0;
+  overflow: hidden;
+  gap: .5rem;
+}
+.anime-card.col-12 {
+  height: 7.6rem;
+  width: 95%;
+}
+.wrapper-card-thumb {
+  width: 25%;
+  display: flex;
+  align-items: stretch;
+}
+.anime-card-poster {
+  padding: 0 !important;
+}
+.img-poster {
+  object-fit: cover;
+}
+.card-about {
+  padding: .2rem;
+  width: 70%;
+}
+
+.card-about-title {
+  font-weight: 550;
+  color: var(--black);
+  font-size: 17px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: max-content;
+  max-height: 3rem;
+  overflow: hidden;
+}
+
+.card-about-text {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--black);
+  -webkit-line-clamp: 2;
+  max-height: 3rem;
+}
+
+.card-about > .badge.rounded-pill {
+  font-size: 10px !important;
+}
+
 @media (min-width: 576px) {
   .showmore.col-sm-3 {
     width: 24%;
+  }
+  .wrapper-card-thumb {
+    width: 20%;
+  }
+  .card-about {
+    width: 75%;
   }
 }
 
@@ -209,11 +266,22 @@ nav.navbar.showmore-nav {
   .slide-item .details .title-detail {
     font-size: 1.5rem;
   }
-
+  
   .slide-item .details .description-detail {
     font-size: 0.8rem;
     height: 5rem;
     -webkit-line-clamp: 4;
+  }
+  
+  .anime-card.col-md-6 {
+    height: 8.5rem;
+    width: 48%;
+  }
+  .wrapper-card-thumb {
+    width: 25%;
+  }
+  .card-about {
+    width: 70%;
   }
 }
 
@@ -247,10 +315,18 @@ nav.navbar.showmore-nav {
     height: 6rem;
     -webkit-line-clamp: 4;
   }
+  .wrapper-card-thumb {
+    width: 30%;
+  }
 }
 
 @media (min-width: 1200px) {
   .showmore.col-xl-1 {
     width: 14%;
+  }
+
+  .anime-card.col-lg-4 {
+    width: 32.5%;
+    height: 11rem;
   }
 }

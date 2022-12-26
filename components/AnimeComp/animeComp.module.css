@@ -53,8 +53,6 @@
   transition: .2s;
 }
 
-
-
 @media (min-width: 576px) {
   .img_poster {
     height: 210px;

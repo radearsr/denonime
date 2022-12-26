@@ -1,0 +1,10 @@
+Fitur Dasar:
+  ✔ Membuat komponen untuk halaman search @done(22-12-27 05:08)
+  ☐ Membuat komponen untuk halaman history
+  ☐ Membuat komponen untuk halaman streaming
+  ☐ Membuat komponen untuk halaman about
+  ☐ Membuat komponen search reusable
+
+Fitur Lanjutan:
+  ☐ Membuat animasi navbar hanya berjalan saat dihalaman home
+  ☐ Membuat Loading dengan progress bar

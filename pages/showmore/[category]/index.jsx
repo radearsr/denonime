@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import SliderContentItem from "../../../components/AnimeComp";
+import AnimeComp from "../../../components/AnimeComp";
 
 export async function getServerSideProps(context) {
   const type = context.params.category;
@@ -37,7 +37,7 @@ const ShowMore = ({ animes }) => (
       <div className="row justify-content-start">
         {animes.map((anime) => (
           <div className="showmore col-3 col-sm-3 col-md-3 col-lg-2 col-xl-1 mb-4">
-            <SliderContentItem
+            <AnimeComp
               idAnime={anime.id}
               linkEps={anime.title}
               poster={anime.poster}
