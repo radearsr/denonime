@@ -85,6 +85,10 @@ nav.navbar {
   background-color: var(--orange);
 }
 
+.bg-space {
+  background-color: var(--space);
+}
+
 /* Mobile Navigation */
 .fixed-bottom.mobile-nav{
   background-color: var(--space) !important;
@@ -200,10 +204,14 @@ nav.navbar.showmore-nav {
   padding: 0;
   overflow: hidden;
   gap: .5rem;
+  position: relative;
 }
 .anime-card.col-12 {
   height: 7.6rem;
   width: 95%;
+}
+.anime-card > .link {
+  width: 100%;
 }
 .wrapper-card-thumb {
   width: 25%;
@@ -243,6 +251,41 @@ nav.navbar.showmore-nav {
 
 .card-about > .badge.rounded-pill {
   font-size: 10px !important;
+}
+
+/* Anime History Comp */
+.delete-history {
+  font-size: 1.5rem;
+  color: var(--black);
+  align-self: flex-end;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: none;
+  background-color: var(--grey) !important;
+}
+
+.delete-history:hover {
+  color: rgb(5, 13, 48);
+  background-color: rgb(141, 141, 141) !important;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+.modal-text-detail {
+  font-size: 16px;
+}
+
+.btn.accept {
+  background-color: var(--orange);
+  color: var(--space);
+}
+
+.btn.cancel {
+  background-color: var(--grey);
+  color: var(--black);
 }
 
 @media (min-width: 576px) {

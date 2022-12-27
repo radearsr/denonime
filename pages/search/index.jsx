@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Layout from "../../components/Layout";
-import AnimeCardComp from "../../components/AnimeCardComp";
+import AnimeCardComp from "../../components/AnimeSearchComp";
 
 export async function getServerSideProps(context) {
   const keyword = context.query.query;

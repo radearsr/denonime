@@ -1,10 +1,13 @@
 Fitur Dasar:
   ✔ Membuat komponen untuk halaman search @done(22-12-27 05:08)
-  ☐ Membuat komponen untuk halaman history
+  ✔ Membuat komponen untuk halaman history @done(22-12-27 08:06)
   ☐ Membuat komponen untuk halaman streaming
   ☐ Membuat komponen untuk halaman about
-  ☐ Membuat komponen search reusable
-
+  
 Fitur Lanjutan:
+  ☐ tambah animasi untuk tombol kembali, halaman lebih banyak, dan streaming
+  ☐ Custom modal pop up saat delete history
   ☐ Membuat animasi navbar hanya berjalan saat dihalaman home
+  ☐ Membuat komponen search reusable
+  ☐ Menambahkan animasi hover saat hover card history dan search
   ☐ Membuat Loading dengan progress bar
