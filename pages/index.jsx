@@ -16,7 +16,7 @@ export async function getServerSideProps() {
   };
 }
 
-const index = ({ animes, carousel }) => (
+const Home = ({ animes, carousel }) => (
   <>
     <Head>
       <title>Home | DenoNime - Streaming Anime 360p 720p </title>
@@ -30,4 +30,4 @@ const index = ({ animes, carousel }) => (
   </>
 );
 
-export default index;
+export default Home;

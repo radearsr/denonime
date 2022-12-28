@@ -288,6 +288,77 @@ nav.navbar.showmore-nav {
   color: var(--black);
 }
 
+/* Streaming Page */
+.streaming-container {
+  padding: 0 !important;
+}
+
+.video-wrapper{
+  position: sticky;
+  top: 0;
+}
+
+.eps-section {
+  padding: 0 .5rem;
+}
+
+.title-episode-list {
+  display: none;
+}
+
+.episode-list {
+  padding-top: .5rem;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+  margin: 0 auto;
+}
+
+.button-group {
+  margin-top: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.episode-item {
+  display: inline-block;
+  margin-right: 1rem;
+  width: 3rem;
+  color: var(--black);
+}
+
+.episode-item .number {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--black);
+  border-radius: .4rem;
+}
+
+.episode-item .number,
+.episode-item .label,
+.episode-item .label-number {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.episode-item .group-label {
+  display: none;
+}
+
+.episode-item.active .number{
+  background-color: var(--black);
+  color: var(--space);
+}
+
+.episode-item.active .group-label {
+  background-color: var(--orange);
+  color: var(--space);
+}
+
 @media (min-width: 576px) {
   .showmore.col-sm-3 {
     width: 24%;
@@ -361,6 +432,59 @@ nav.navbar.showmore-nav {
   .wrapper-card-thumb {
     width: 30%;
   }
+
+  /* Streaming */
+  .episode-list {
+    max-height: 33vw;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
+  .title-episode-list {
+    display: block;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    background-color: var(--black);
+    color: var(--space);
+    padding: .5rem 0;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+
+  .button-group {
+    max-width: 75%;
+  }
+
+  .episode-item, .episode-item .group-label {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .episode-item {
+    margin-bottom: 1rem;
+    border: none;
+    height: 3rem;
+  }
+
+  .episode-item .group-label {
+    height: 100%;
+    justify-content: center;
+    gap: 1rem;
+    border-radius: 0 0.8rem 0.8rem 0;
+    border: 2px solid var(--orange);
+  }
+
+  .episode-item .number {
+    height: 100%;
+    border-radius: .8rem 0 0 .8rem;
+  }
+
+  .episode-item .group-label,
+  .episode-item .number {
+    padding: 1.5rem;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -372,4 +496,6 @@ nav.navbar.showmore-nav {
     width: 32.5%;
     height: 11rem;
   }
+
+  
 }
