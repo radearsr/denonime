@@ -1,28 +1,12 @@
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Layout.module.css";
 
-const Layout = ({ children }) => {
-  const [navbarClass, setNavbarClass] = useState("bg-transparent");
+const Layout = ({ children, addonClass = "" }) => {
   const router = useRouter();
-
-  const handleNavbar = (e) => {
-    const window = e.currentTarget;
-    if (window.scrollY > 50) {
-      setNavbarClass("bg-orange");
-    } else {
-      setNavbarClass("bg-transparent");
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", (e) => handleNavbar(e));
-  });
-
   return (
     <>
-      <nav className={`navbar navbar-expand-lg navbar-dark fixed-top ${navbarClass}`}>
+      <nav className={`navbar navbar-expand-lg navbar-dark ${addonClass}`}>
         <div className="container">
           <Link className="navbar-brand" href="/">DenoNime</Link>
           <div className="collapse navbar-collapse">

@@ -18,7 +18,7 @@ const History = ({ animes }) => (
     <Head>
       <title>History | DenoNime</title>
     </Head>
-    <Layout>
+    <Layout addonClass="bg-orange sticky-top mb-3">
       <div className="container-lg">
         <div className="row justify-content-between">
           {animes.map((anime) => (

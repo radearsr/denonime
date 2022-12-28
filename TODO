@@ -5,7 +5,7 @@ Fitur Dasar:
   ✔ Membuat komponen untuk halaman about (mode bar bar) @done(22-12-28 17:58)
   
 Fitur Lanjutan:
-  ☐ Membuat animasi navbar hanya berjalan saat dihalaman home
+  ✔ Membuat animasi navbar hanya berjalan saat dihalaman home @done(22-12-28 20:15)
   ☐ tambah animasi untuk tombol kembali, halaman lebih banyak, dan streaming
   ☐ Custom modal pop up saat delete history
   ☐ Membuat komponen search reusable

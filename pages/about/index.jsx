@@ -1,7 +1,7 @@
 import Layout from "../../components/Layout";
 
 const About = () => (
-  <Layout>
+  <Layout addonClass="bg-orange sticky-top mb-3">
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-12 col-lg-8">

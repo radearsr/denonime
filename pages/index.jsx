@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import Carousel from "../components/Carousel";
@@ -16,18 +17,35 @@ export async function getServerSideProps() {
   };
 }
 
-const Home = ({ animes, carousel }) => (
-  <>
-    <Head>
-      <title>Home | DenoNime - Streaming Anime 360p 720p </title>
-      <meta property="og:title" content="My page title" key="title" />
-    </Head>
-    <Layout>
-      <Carousel animes={carousel} key="1" />
-      <SliderContent title="Lastest" animes={animes} category="series" />
-      <SliderContent title="Lastest" animes={animes} category="movie" />
-    </Layout>
-  </>
-);
+const Home = ({ animes, carousel }) => {
+  const [navbarClass, setNavbarClass] = useState("bg-transparent");
+
+  const handleNavbar = (e) => {
+    const window = e.currentTarget;
+    if (window.scrollY > 50) {
+      setNavbarClass("bg-orange");
+    } else {
+      setNavbarClass("bg-transparent");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", (e) => handleNavbar(e));
+  });
+
+  return (
+    <>
+      <Head>
+        <title>Home | DenoNime - Streaming Anime 360p 720p </title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
+      <Layout addonClass={`fixed-top ${navbarClass}`}>
+        <Carousel animes={carousel} key="1" />
+        <SliderContent title="Lastest" animes={animes} category="series" />
+        <SliderContent title="Lastest" animes={animes} category="movie" />
+      </Layout>
+    </>
+  );
+};
 
 export default Home;

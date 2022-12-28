@@ -24,7 +24,7 @@ const index = ({ animes }) => {
       <Head>
         <title>{`Search | DenoNime | ${query}`}</title>
       </Head>
-      <Layout>
+      <Layout addonClass="bg-orange sticky-top mb-3">
         <div className="container-lg">
           <div className="row justify-content-between">
             {animes.map((anime) => (
