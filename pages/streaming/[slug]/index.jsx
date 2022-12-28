@@ -27,16 +27,14 @@ const Streaming = ({ animes }) => {
       <Head>
         <title>{animes.title}</title>
       </Head>
-      <nav className="navbar bg-lighter showmore-nav shadow-sm mb-3">
+      <nav className="navbar bg-lighter showmore-nav shadow-sm sticky-top">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-2">
-              <Link href="/">
+            <div className="col">
+              <Link href="/" className="showmore-back d-flex rounded p-1">
                 <i className="bi bi-arrow-left showmore-back">{" "}</i>
+                <p className="showmore-title fw-bold ms-3">{animes.title}</p>
               </Link>
-            </div>
-            <div className="col ms-4">
-              <p className="showmore-title fw-bold">{animes.title}</p>
             </div>
           </div>
         </div>

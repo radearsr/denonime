@@ -6,9 +6,10 @@ Fitur Dasar:
   
 Fitur Lanjutan:
   ✔ Membuat animasi navbar hanya berjalan saat dihalaman home @done(22-12-28 20:15)
-  ☐ tambah animasi untuk tombol kembali, halaman lebih banyak, dan streaming
+  ✔ tambah animasi untuk tombol kembali, halaman lebih banyak, dan streaming @done(22-12-28 20:48)
   ☐ Custom modal pop up saat delete history
-  ☐ Membuat komponen search reusable
+  ☐ Membuat komponen search dan history reusable
+  ☐ Membuat Navbar showmore dan streaming reusable
   ☐ Menambahkan animasi hover saat hover card history dan search
   ☐ Custom style react player
   ☐ Membuat Loading dengan progress bar

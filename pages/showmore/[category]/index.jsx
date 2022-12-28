@@ -19,21 +19,19 @@ const ShowMore = ({ animes }) => (
     <Head>
       <title>Show More</title>
     </Head>
-    <nav className="navbar bg-lighter showmore-nav shadow-sm fixed-top">
+    <nav className="navbar bg-lighter showmore-nav shadow-sm sticky-top">
       <div className="container">
         <div className="row align-items-center">
-          <div className="col-2">
-            <Link href="/">
+          <div className="col">
+            <Link href="/" className="showmore-back d-flex rounded p-1">
               <i className="bi bi-arrow-left showmore-back">{" "}</i>
+              <p className="showmore-title fw-bold ms-3">Anime Lastest</p>
             </Link>
-          </div>
-          <div className="col ms-4">
-            <p className="showmore-title fw-bold">Anime Lastest</p>
           </div>
         </div>
       </div>
     </nav>
-    <div className="container-md pt-5 mt-4">
+    <div className="container-md mt-4">
       <div className="row justify-content-start">
         {animes.map((anime) => (
           <div className="showmore col-3 col-sm-3 col-md-3 col-lg-2 col-xl-1 mb-4">

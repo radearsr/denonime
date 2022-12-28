@@ -5,6 +5,7 @@
   --orange: rgb(255, 140, 50);
   --grey: rgb(221, 221, 221);
   --space: rgb(238, 238, 238);
+  --orange-hover: rgb(207, 109, 33);
 }
 
 body {
@@ -181,21 +182,17 @@ nav.navbar.showmore-nav {
   background-color: var(--orange);
 }
 
-.showmore.col-3 {
-  width: 33.2%;
+.showmore-back {
+  font-size: 20px;
+  transition: .3s all;
 }
 
-.showmore-back {
-  font-size: 1.6rem;
+.showmore-back:hover {
+  background-color: var(--orange-hover);
 }
 
 .showmore-back, .showmore-title {
   color: var(--space);
-}
-
-.showmore-title {
-  font-size: 1.2rem;
-  width: 100%;
 }
 
 /* Anime Card Comp */

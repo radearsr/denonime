@@ -21,8 +21,7 @@
 }
 
 .btn_watch:hover {
-  background-color: transparent;
-  border: 2px solid var(--space);
+  background-color: var(--orange-hover);
   color: var(--space);
   text-decoration: underline;
 }
