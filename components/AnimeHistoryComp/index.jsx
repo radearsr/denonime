@@ -38,12 +38,15 @@ const AnimeSearchComp = ({
         </Button>
       </div>
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Body className="bg-space rounded">
+        <Modal.Body className="bg-space rounded py-4">
           <h4 className="text-center modal-title">Yakin ?</h4>
-          <p className="modal-text-detail my-3 text-center">{`Apakah anda yakin ingin menghapus history anime "${title}" ini?`}</p>
+          <p className="modal-text-detail my-3 text-center">{`Apakah anda yakin ingin menghapus history "${title}"?`}</p>
           <div className="d-flex justify-content-center">
-            <button className="btn accept w-50 rounded-pill mx-2">Ya</button>
-            <button className="btn cancel w-50 rounded-pill mx-2">Tidak</button>
+            <button className="btn accept w-50 rounded-pill mx-2 p-2">Ya</button>
+            <button className="btn cancel w-50 rounded-pill mx-2 p-2" onClick={handleClose}>Tidak</button>
+          </div>
+          <div className="box-icon px-2 py-0">
+            <i className="bi bi-exclamation-triangle-fill">{" "}</i>
           </div>
         </Modal.Body>
       </Modal>

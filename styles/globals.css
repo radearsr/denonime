@@ -6,6 +6,7 @@
   --grey: rgb(221, 221, 221);
   --space: rgb(238, 238, 238);
   --orange-hover: rgb(207, 109, 33);
+  --grey-hover: rgb(177, 177, 177);
 }
 
 body {
@@ -267,12 +268,22 @@ nav.navbar.showmore-nav {
   background-color: rgb(141, 141, 141) !important;
 }
 
+.modal-body {
+  position: relative;
+}
+
 .modal-title {
   font-size: 22px;
   font-weight: bold;
 }
+
 .modal-text-detail {
   font-size: 16px;
+}
+
+.btn {
+  transition: .4s;
+  border: none;
 }
 
 .btn.accept {
@@ -280,9 +291,34 @@ nav.navbar.showmore-nav {
   color: var(--space);
 }
 
+.btn.accept:hover, .btn.accept:active {
+  background-color: var(--orange-hover);
+  color: var(--space);
+}
+
 .btn.cancel {
   background-color: var(--grey);
   color: var(--black);
+}
+
+.btn.cancel:hover, .btn.cancel:active {
+  background-color: var(--grey-hover);
+  color: var(--black);
+}
+
+.box-icon {
+  background-color: var(--orange);
+  width: max-content;
+  position: absolute;
+  top: -2.3rem;
+  left: 45%;
+  border-radius: .5rem;
+  border-bottom-left-radius: 0;
+}
+
+.box-icon i{
+  font-size: 2.5rem;
+  color: var(--grey);
 }
 
 /* Streaming Page */
