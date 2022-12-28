@@ -359,6 +359,17 @@ nav.navbar.showmore-nav {
   color: var(--space);
 }
 
+/* About */
+.about-title {
+  font-size: 38px;
+  font-weight: 500;
+}
+
+.about-title-underline {
+  height: 8px;
+  background-color: var(--orange);
+}
+
 @media (min-width: 576px) {
   .showmore.col-sm-3 {
     width: 24%;

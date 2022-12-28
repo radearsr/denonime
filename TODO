@@ -2,13 +2,15 @@ Fitur Dasar:
   ✔ Membuat komponen untuk halaman search @done(22-12-27 05:08)
   ✔ Membuat komponen untuk halaman history @done(22-12-27 08:06)
   ✔ Membuat komponen untuk halaman streaming (mode bar bar) @done(22-12-28 08:02)
-  ☐ Membuat komponen untuk halaman about
+  ✔ Membuat komponen untuk halaman about (mode bar bar) @done(22-12-28 17:58)
   
 Fitur Lanjutan:
+  ☐ Membuat animasi navbar hanya berjalan saat dihalaman home
   ☐ tambah animasi untuk tombol kembali, halaman lebih banyak, dan streaming
   ☐ Custom modal pop up saat delete history
-  ☐ Membuat animasi navbar hanya berjalan saat dihalaman home
   ☐ Membuat komponen search reusable
   ☐ Menambahkan animasi hover saat hover card history dan search
   ☐ Custom style react player
   ☐ Membuat Loading dengan progress bar
+  ☐ Custom error page
+  
