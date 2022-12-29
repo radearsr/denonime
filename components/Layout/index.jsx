@@ -21,7 +21,7 @@ const Layout = ({ children, addonClass = "" }) => {
                 <Link className={`${router.pathname === "/about" ? "active" : ""} nav-link`} aria-current="page" href="/about">About</Link>
               </li>
             </ul>
-            <form className="col-md-5">
+            <form className="col-md-5" action="/search">
               <div className="row g-0">
                 <div className="col-9 col-md-10">
                   <input

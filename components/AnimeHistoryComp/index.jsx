@@ -26,6 +26,9 @@ const AnimeSearchComp = ({
               quality="100"
               className="img-fluid rounded-start-2"
             />
+            <span>
+              <i className="bi bi-play-fill icon-play">{" "}</i>
+            </span>
           </div>
           <div className="card-about align-self-center">
             <h1 className="card-about-title text">{title}</h1>

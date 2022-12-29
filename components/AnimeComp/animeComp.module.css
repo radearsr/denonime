@@ -12,7 +12,9 @@
 }
 
 .img_poster ~ span {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: 0;
   top: 0;
   bottom: 0;
@@ -26,9 +28,6 @@
 
 .img_poster ~ span > i {
   font-size: 2.8rem;
-  position: absolute;
-  top: 36%;
-  right: 36%;
   color: var(--orange);
 }
 

@@ -202,8 +202,47 @@ nav.navbar.showmore-nav {
   padding: 0;
   overflow: hidden;
   gap: .5rem;
+  transition: .3s;
   position: relative;
 }
+
+.wrapper-card-thumb {
+  position: relative;
+}
+
+.wrapper-card-thumb span {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(6, 17, 60, 0.6);
+  background: linear-gradient(to top, rgba(6, 17, 60, 0.9), transparent);
+  transition: .2s;
+}
+
+.wrapper-card-thumb span i {
+  font-size: 2.5rem;
+  color: var(--orange);
+}
+
+.anime-card:hover {
+  transform: scale(1.1);
+  z-index: 99;
+}
+
+.anime-card:hover .card-about-title {
+  color: var(--orange);
+}
+
+.anime-card:hover .wrapper-card-thumb span {
+  opacity: 1;
+}
+
 .anime-card.col-12 {
   height: 7.6rem;
   width: 95%;
@@ -237,6 +276,7 @@ nav.navbar.showmore-nav {
   min-height: max-content;
   max-height: 3rem;
   overflow: hidden;
+  transition: .2s;
 }
 
 .card-about-text {
