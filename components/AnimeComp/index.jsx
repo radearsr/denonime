@@ -7,7 +7,7 @@ const SliderContentItem = ({
   poster,
   title,
 }) => (
-  <Link href={`streaming/${idAnime}`} className={styles.anime_comp_wrapper}>
+  <Link href={`streaming/${idAnime}`} className={styles.anime_comp_wrapper} key={`1-${title}-${idAnime}`}>
     <div className={styles.poster_content_item}>
       <Image
         src={poster}

@@ -7,7 +7,6 @@ const SliderContent = ({
   title,
   animes,
   category,
-  keyprop,
 }) => {
   const SwipperBreakpoints = {
     1400: {
@@ -27,16 +26,16 @@ const SliderContent = ({
     },
   };
   return (
-    <div className="my-2" key={keyprop}>
+    <div className="my-2">
       <div className="container">
         <header className="d-flex justify-content-between align-items-center">
           <h2 className={syles.content_title}>{title}</h2>
-          <Link href={`/showmore/${category}`} key={keyprop + 1} className={syles.content_link_more}>Lebih Banyak</Link>
+          <Link href={`/showmore/${category}`} className={syles.content_link_more}>Lebih Banyak</Link>
         </header>
         <main>
           <Swiper slidesPerView={3} spaceBetween={10} breakpoints={SwipperBreakpoints}>
             {animes.map((anime) => (
-              <SwiperSlide>
+              <SwiperSlide key={`slide-${category}-${anime.id}`}>
                 <AnimeComp
                   idAnime={anime.id}
                   linkEps={anime.title}
