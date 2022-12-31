@@ -7,6 +7,7 @@
   --space: rgb(238, 238, 238);
   --orange-hover: rgb(207, 109, 33);
   --grey-hover: rgb(177, 177, 177);
+  --space-hover: rgb(253, 253, 253);
 }
 
 body {
@@ -23,26 +24,30 @@ a {
   text-decoration: none;
 }
 
-@media (min-width: 992px) {
-  /* Scroll */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: var(--space);
-    border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 139, 50, 0.5);
-    border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--orange);
-  }
+/* Scroll */
+::-webkit-scrollbar {
+  width: 10px;
 }
+
+::-webkit-scrollbar-track {
+  background: var(--space);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 139, 50, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange);
+}
+
+::selection {
+  color: var(--space);
+  background-color: var(--black);
+}
+
 
 /* Text Properties */
 .text {
@@ -443,6 +448,47 @@ nav.navbar.showmore-nav {
   background-color: var(--orange);
 }
 
+/* Error Page */
+
+.wrapper-error {
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.img-error {
+  display: block;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.error-code {
+  font-size: 6rem;
+  color: var(--orange);
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+.error-title {
+  font-size: 1.5rem;
+  color: var(--black);
+  margin: 0;
+}
+
+.error-description {
+  color: rgb(196, 196, 196);
+  font-size: .6rem;
+}
+
+.btn-error {
+  background-color: var(--orange);
+  color: var(--space);
+}
+
+.btn-error:hover {
+  background-color: var(--orange-hover);
+  color: var(--space-hover);
+}
+
 @media (min-width: 576px) {
   .showmore.col-sm-3 {
     width: 24%;
@@ -480,6 +526,22 @@ nav.navbar.showmore-nav {
   }
   .card-about {
     width: 70%;
+  }
+
+  .img-error {
+    width: 300px;
+  }
+
+  .error-code {
+    font-size: 8rem;
+  }
+  
+  .error-title {
+    font-size: 1.8rem;
+  }
+  
+  .error-description {
+    font-size: 0.8rem;
   }
 }
 
@@ -568,6 +630,22 @@ nav.navbar.showmore-nav {
   .episode-item .group-label,
   .episode-item .number {
     padding: 1.5rem;
+  }
+
+  .img-error {
+    width: 500px;
+  }
+
+  .error-code {
+    font-size: 10rem;
+  }
+  
+  .error-title {
+    font-size: 2.5rem;
+  }
+  
+  .error-description {
+    font-size: 1.2rem;
   }
 }
 

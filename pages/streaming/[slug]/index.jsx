@@ -7,7 +7,11 @@ export async function getServerSideProps() {
   // const { slug } = context.params;
   const response = await fetch("http://47.254.251.95:5000/api/animes/57-1/details");
   const resultJson = await response.json();
-
+  if (resultJson.status === "error") {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       animes: resultJson.data.details,
