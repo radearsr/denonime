@@ -437,6 +437,35 @@ nav.navbar.showmore-nav {
   color: var(--space);
 }
 
+.title-sinopsis {
+  font-size: 32px;
+}
+
+.text-sinopsis {
+  font-size: 1.15rem;
+  color: var(--black);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  min-height: max-content;
+  max-height: 4.9rem;
+  overflow: hidden;
+  transition: .5s;
+}
+
+.text-sinopsis.more {
+  -webkit-line-clamp: 100;
+  max-height: max-content;
+}
+
+.toggle-text {
+  cursor: pointer;
+  border: none;
+  padding: .5rem 0;
+  text-decoration: underline;
+}
+
+
 /* About */
 .about-title {
   font-size: 38px;

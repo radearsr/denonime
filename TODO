@@ -10,9 +10,9 @@ Fitur Lanjutan:
   ✔ Custom modal pop up saat delete history dan menambah icon alert @done(22-12-29 05:51)
   ✔ Menambahkan animasi hover saat hover card history dan search @done(22-12-29 07:01)
   ✔ Create error page 404 not found @done(22-12-31 07:56)
+  ✔ Membuat readmore pada streaming page @done(23-01-03 20:51)
   ☐ Custom style react player
-  ☐ Membuat Loading dengan progress bar
-  ☐ Membuat readmore pada streaming page
+  ☐ Membuat Custom Loading dengan progress bar
 
 Restructure Code: 
   ☐ Membuat komponen search dan history reusable

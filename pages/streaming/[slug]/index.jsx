@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import Head from "next/head";
 import Link from "next/link";
 import ReactPlayer from "react-player";
@@ -21,11 +22,25 @@ export async function getServerSideProps() {
 
 const Streaming = ({ animes }) => {
   const [hasWindow, setHasWindow] = useState(false);
+  const [seeMore, setSeeMore] = useState("");
+  const textReadmore = useRef();
+
+  const handleReadMore = () => {
+    if (textReadmore.current.textContent === "Baca selengkapnya") {
+      setSeeMore("more");
+      textReadmore.current.textContent = "Baca lebih sedikit";
+    } else {
+      setSeeMore("");
+      textReadmore.current.textContent = "Baca selengkapnya";
+    }
+  };
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHasWindow(true);
     }
   });
+
   return (
     <>
       <Head>
@@ -140,7 +155,15 @@ const Streaming = ({ animes }) => {
             </div>
           </div>
         </div>
-        <p>{animes.descriptions}</p>
+        <Container className="py-4">
+          <h3 className="fw-bold title-sinopsis mb-2">Sinopsis</h3>
+          <Row>
+            <Col xs={12} lg={10} xl={8}>
+              <p className={`text-sinopsis ${seeMore}`}>{animes.descriptions}</p>
+              <button className="toggle-text fw-bold" onClick={handleReadMore} ref={textReadmore}>Baca selengkapnya</button>
+            </Col>
+          </Row>
+        </Container>
       </div>
     </>
   );
