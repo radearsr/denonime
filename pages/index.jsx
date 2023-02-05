@@ -4,18 +4,18 @@ import Layout from "../components/Layout";
 import Carousel from "../components/Carousel";
 import SliderContent from "../components/SliderContent";
 
-export async function getServerSideProps() {
-  const res = await fetch("http://47.254.251.95:5000/api/animes?type=series&limit=10");
-  const resCarousel = await fetch("http://47.254.251.95/api/animes/5/carousel");
+export const getServerSideProps = async () => {
+  const res = await fetch("https://denonime-api.vercel.app/api/v1/animes?type=series&currentpage=1&pagesize=10");
+  const resCarousel = await fetch("https://denonime-api.vercel.app/api/v1/animes?type=series&currentpage=1&pagesize=10");
   const result = await res.json();
   const resultCarousel = await resCarousel.json();
   return {
     props: {
-      animes: result.data.animes,
-      carousel: resultCarousel.data.animes,
+      animes: result.data,
+      carousel: resultCarousel.data,
     },
   };
-}
+};
 
 const Home = ({ animes, carousel }) => {
   const [navbarClass, setNavbarClass] = useState("bg-transparent");
@@ -36,7 +36,7 @@ const Home = ({ animes, carousel }) => {
   return (
     <>
       <Head>
-        <title>Home | DenoNime - Streaming Anime 360p 720p </title>
+        <title>Home | DenoNime - Streaming Anime 360p 480p 720p </title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
       <Layout addonClass={`fixed-top ${navbarClass}`}>

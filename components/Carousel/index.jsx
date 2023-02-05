@@ -6,11 +6,11 @@ const Carousel = ({ animes }) => (
       {animes.map((anime, idx) => (
         <CarouselItem
           title={anime.title}
-          description={anime.descriptions}
+          description={anime.description}
           poster={anime.poster}
           urlStreaming="/"
           isActive={idx === 0 ? "active" : ""}
-          key={idx}
+          key={`carouselItem-${anime.id}`}
         />
       ))}
     </div>
