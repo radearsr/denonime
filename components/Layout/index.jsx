@@ -33,7 +33,7 @@ const Layout = ({ children, addonClass = "" }) => {
                   />
                 </div>
                 <div className="col-3 col-md-2">
-                  <button type="submit" className={styles.btn_action}>
+                  <button type="submit" className={styles.btn_action} title="search">
                     <i className="bi bi-search">{" "}</i>
                   </button>
                 </div>

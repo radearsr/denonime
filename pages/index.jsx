@@ -5,8 +5,8 @@ import Carousel from "../components/Carousel";
 import SliderContent from "../components/SliderContent";
 
 export const getServerSideProps = async () => {
-  const res = await fetch("https://denonime-api.vercel.app/api/v1/animes?type=series&currentpage=1&pagesize=10");
-  const resCarousel = await fetch("https://denonime-api.vercel.app/api/v1/animes?type=series&currentpage=1&pagesize=10");
+  const res = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=1&pagesize=10");
+  const resCarousel = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=1&pagesize=10");
   const result = await res.json();
   const resultCarousel = await resCarousel.json();
   return {
