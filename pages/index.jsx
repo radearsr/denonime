@@ -36,8 +36,13 @@ const Home = ({ animes, carousel }) => {
   return (
     <>
       <Head>
-        <title>Home | DenoNime - Streaming Anime 360p 720p </title>
-        <meta property="og:title" content="My page title" key="title" />
+        <title>DenoNime - Streaming Anime 360p 480p 720p </title>
+        <meta name="description" content="Denonime Adalah Tempat Nonton Streaming Anime Subtitle Indonesia Terlengkap Dan Terupdate Kualitas 360p 480p 720p" />
+        <meta name="keywords" content="denonime, denonime.deyapro.com, deyapro, deyapro.com" />
+        <meta property="og:title" content="Denon ime" key="title" />
+        <meta property="og:url" content="https://denonime.deyapro.com" />
+        <meta property="og:site_name" content="DenoNime" />
+        <meta property="og:description" content="Denonime Adalah Tempat Nonton Streaming Anime Subtitle Indonesia Terlengkap Dan Terupdate Kualitas 360p 480p 720p" />
       </Head>
       <Layout addonClass={`fixed-top ${navbarClass}`}>
         <Carousel animes={carousel} key="home-1" />
