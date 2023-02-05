@@ -519,9 +519,9 @@ nav.navbar.showmore-nav {
 }
 
 @media (min-width: 576px) {
-  .showmore.col-sm-3 {
+  /* .showmore.col-sm-3 {
     width: 24%;
-  }
+  } */
   .wrapper-card-thumb {
     width: 20%;
   }
@@ -575,9 +575,9 @@ nav.navbar.showmore-nav {
 }
 
 @media (min-width: 992px) {
-  .showmore.col-lg-2 {
+  /* .showmore.col-lg-2 {
     width: 20%;
-  }
+  } */
   nav.navbar {
     display: flex;
     transition: 0.3s ease-in-out;
@@ -679,9 +679,9 @@ nav.navbar.showmore-nav {
 }
 
 @media (min-width: 1200px) {
-  .showmore.col-xl-1 {
+  /* .showmore.col-xl-1 {
     width: 14%;
-  }
+  } */
 
   .anime-card.col-lg-4 {
     width: 32.5%;

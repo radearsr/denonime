@@ -34,7 +34,7 @@ const ShowMore = ({ animes }) => (
     <div className="container-md mt-4">
       <div className="row justify-content-start">
         {animes.map((anime) => (
-          <div className="showmore col-3 col-sm-3 col-md-3 col-lg-2 col-xl-1 mb-4">
+          <div className="showmore col-4 col-md-3 col-lg-2">
             <AnimeComp
               idAnime={anime.id}
               linkEps={anime.title}
