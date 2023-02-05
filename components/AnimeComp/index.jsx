@@ -3,11 +3,11 @@ import Image from "next/image";
 import styles from "./animeComp.module.css";
 
 const SliderContentItem = ({
-  idAnime,
+  slug,
   poster,
   title,
 }) => (
-  <Link href={`streaming/${idAnime}`} className={styles.anime_comp_wrapper} key={`1-${title}-${idAnime}`}>
+  <Link href={`streaming/${slug}`} className={styles.anime_comp_wrapper}>
     <div className={styles.poster_content_item}>
       <Image
         src={poster}
@@ -21,7 +21,7 @@ const SliderContentItem = ({
         <i className="bi bi-play-fill icon-play">{" "}</i>
       </span>
     </div>
-    <p className={styles.anime_title}>{title}</p>
+    <p className={styles.anime_title} title={title}>{title}</p>
   </Link>
 );
 

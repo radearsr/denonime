@@ -25,6 +25,15 @@ const SliderContent = ({
       spaceBetween: 15,
     },
   };
+
+  const slugPrefixGenerator = (slug, type) => {
+    const resultEpisode = 1;
+    if (type === "series") {
+      return `${slug}-episode-${resultEpisode}`;
+    }
+    return `${slug}-episode-${resultEpisode}`;
+  };
+
   return (
     <div className="my-2">
       <div className="container">
@@ -37,8 +46,7 @@ const SliderContent = ({
             {animes.map((anime) => (
               <SwiperSlide key={`slide-${category}-${anime.id}`}>
                 <AnimeComp
-                  idAnime={anime.id}
-                  linkEps={anime.title}
+                  slug={slugPrefixGenerator(anime.slug, anime.type)}
                   poster={anime.poster}
                   title={anime.title}
                   key={anime.id}

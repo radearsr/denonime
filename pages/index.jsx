@@ -5,19 +5,24 @@ import Carousel from "../components/Carousel";
 import SliderContent from "../components/SliderContent";
 
 export const getServerSideProps = async () => {
-  const res = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=1&pagesize=10");
-  const resCarousel = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=1&pagesize=10");
-  const result = await res.json();
-  const resultCarousel = await resCarousel.json();
+  const dataAnimeSeries = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=1&pagesize=10");
+  const dataAnimeMovie = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=2&pagesize=10");
+  const dataCarousel = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=1&pagesize=10");
+
+  const resultSeries = await dataAnimeSeries.json();
+  const resultMovies = await dataAnimeMovie.json();
+  const resultCarousel = await dataCarousel.json();
+
   return {
     props: {
-      animes: result.data,
+      series: resultSeries.data,
+      movies: resultMovies.data,
       carousel: resultCarousel.data,
     },
   };
 };
 
-const Home = ({ animes, carousel }) => {
+const Home = ({ series, movies, carousel }) => {
   const [navbarClass, setNavbarClass] = useState("bg-transparent");
 
   const handleNavbar = (e) => {
@@ -46,8 +51,8 @@ const Home = ({ animes, carousel }) => {
       </Head>
       <Layout addonClass={`fixed-top ${navbarClass}`}>
         <Carousel animes={carousel} key="home-1" />
-        <SliderContent title="Series" animes={animes} category="series" key="home-2" />
-        <SliderContent title="Movie" animes={animes} category="movie" key="home-3" />
+        <SliderContent title="Series" animes={series} category="series" key="home-2" />
+        <SliderContent title="Movie" animes={movies} category="movie" key="home-3" />
       </Layout>
     </>
   );

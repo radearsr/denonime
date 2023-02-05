@@ -3,12 +3,12 @@ import Layout from "../../components/Layout";
 import AnimeHistoryComp from "../../components/AnimeHistoryComp";
 
 export async function getServerSideProps() {
-  const response = await fetch(`http://47.254.251.95:5000/api/animes/search?q=a&page=1&perpage=30`);
+  const response = await fetch(`https://api.deyapro.com/api/v1/animes?type=series&currentpage=2&pagesize=10`);
   const resultJson = await response.json();
 
   return {
     props: {
-      animes: resultJson.data.animes,
+      animes: resultJson.data,
     },
   };
 }

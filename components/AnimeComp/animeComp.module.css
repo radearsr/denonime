@@ -31,6 +31,10 @@
   color: var(--orange);
 }
 
+.anime_comp_wrapper {
+  text-decoration: none;
+}
+
 .anime_comp_wrapper:hover .anime_title {
   color: var(--orange);
 }

@@ -4,18 +4,19 @@ import Head from "next/head";
 import Link from "next/link";
 import ReactPlayer from "react-player";
 
-export async function getServerSideProps() {
-  // const { slug } = context.params;
-  const response = await fetch("http://47.254.251.95:5000/api/animes/57-1/details");
+export async function getServerSideProps(context) {
+  const { slug } = context.params;
+  console.log(slug);
+  const response = await fetch(`https://api.deyapro.com/api/v1/episodes/${slug}`);
   const resultJson = await response.json();
-  if (resultJson.status === "error") {
+  if (resultJson.status === "error" || resultJson.status === "fail") {
     return {
       notFound: true,
     };
   }
   return {
     props: {
-      animes: resultJson.data.details,
+      animes: resultJson.data,
     },
   };
 }
@@ -62,7 +63,7 @@ const Streaming = ({ animes }) => {
         <div className="row g-0 justify-content-between mb-4">
           <div className="col-12 col-lg-9 g-0">
             <div className="video-wrapper">
-              { hasWindow && <ReactPlayer width="100%" height="100%" url={animes.videos[0].gdrive} controls /> }
+              { hasWindow && <ReactPlayer width="100%" height="100%" url={animes.episodes[0].source360p} controls /> }
             </div>
           </div>
           <div className="col-12 col-lg-3 eps-section">
@@ -159,7 +160,7 @@ const Streaming = ({ animes }) => {
           <h3 className="fw-bold title-sinopsis mb-2">Sinopsis</h3>
           <Row>
             <Col xs={12} lg={10} xl={8}>
-              <p className={`text-sinopsis ${seeMore}`}>{animes.descriptions}</p>
+              <p className={`text-sinopsis ${seeMore}`}>{animes.description}</p>
               <button className="toggle-text fw-bold" onClick={handleReadMore} ref={textReadmore}>Baca selengkapnya</button>
             </Col>
           </Row>
