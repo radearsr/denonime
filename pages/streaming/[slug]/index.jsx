@@ -4,9 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import ReactPlayer from "react-player";
 
-export async function getServerSideProps(context) {
+export const getServerSideProps = async (context) => {
   const { slug } = context.params;
-  console.log(slug);
   const response = await fetch(`https://api.deyapro.com/api/v1/episodes/${slug}`);
   const resultJson = await response.json();
   if (resultJson.status === "error" || resultJson.status === "fail") {
@@ -17,14 +16,20 @@ export async function getServerSideProps(context) {
   return {
     props: {
       animes: resultJson.data,
+      slug,
     },
   };
-}
+};
 
-const Streaming = ({ animes }) => {
+const Streaming = ({ animes, slug }) => {
   const [hasWindow, setHasWindow] = useState(false);
   const [seeMore, setSeeMore] = useState("");
   const textReadmore = useRef();
+
+  const titleEpisode = (fullText) => {
+    const [, episode] = fullText.split("-episode-");
+    return episode;
+  };
 
   const handleReadMore = () => {
     if (textReadmore.current.textContent === "Baca selengkapnya") {
@@ -45,7 +50,7 @@ const Streaming = ({ animes }) => {
   return (
     <>
       <Head>
-        <title>{animes.title}</title>
+        <title>{`Streaming | ${animes.title} Episode ${titleEpisode(slug)}`}</title>
       </Head>
       <nav className="navbar bg-lighter showmore-nav shadow-sm sticky-top">
         <div className="container">

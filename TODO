@@ -11,11 +11,14 @@ Fitur Lanjutan:
   ✔ Menambahkan animasi hover saat hover card history dan search @done(22-12-29 07:01)
   ✔ Create error page 404 not found @done(22-12-31 07:56)
   ✔ Membuat readmore pada streaming page @done(23-01-03 20:51)
+  ✔ Membuat Loading dengan NprogressBar @done(23-02-07 06:30)
+  ✔ Memperbaiki judul pada halaman streaming @done(23-02-07 06:30)
+  ✔ Memperbaiki Endpoint pada halaman search @done(23-02-07 06:32)
   ☐ Custom style react player
-  ☐ Membuat Custom Loading dengan progress bar
+  ✘ Membuat Custom Loading dengan progress bar @cancelled(23-02-07 05:50)
   ☐ 
 
-Restructure Code: 
+Restructure Code:
   ☐ Membuat komponen search dan history reusable
   ☐ Membuat Navbar showmore dan streaming reusable
   ☐ Membuat code menjadi comp react bootstrap

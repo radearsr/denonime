@@ -5,12 +5,11 @@ import AnimeCardComp from "../../components/AnimeSearchComp";
 
 export async function getServerSideProps(context) {
   const keyword = context.query.query;
-  const response = await fetch(`http://47.254.251.95:5000/api/animes/search?q=${keyword}&page=1&perpage=30`);
+  const response = await fetch(`https://api.deyapro.com/api/v1/animes/search?querySearch=${keyword}&currentPage=1&pageSize=10`);
   const resultJson = await response.json();
-
   return {
     props: {
-      animes: resultJson.data.animes,
+      animes: resultJson.data.data,
     },
   };
 }
@@ -32,8 +31,8 @@ const index = ({ animes }) => {
                 key={`anime-search-${anime.id}`}
                 poster={anime.poster}
                 title={anime.title}
-                genres={anime.genre}
-                episodes={anime.episode}
+                genres={anime.anime_genres.join(", ")}
+                episodes={anime.episodes}
                 lengthData={animes.length}
               />
             ))}
