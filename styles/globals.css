@@ -188,9 +188,10 @@ nav.navbar.showmore-nav {
   background-color: var(--orange);
 }
 
-.showmore-back {
+.showmore-nav .showmore-back {
   font-size: 20px;
   transition: .3s all;
+  text-decoration: none;
 }
 
 .showmore-back:hover {
@@ -204,7 +205,6 @@ nav.navbar.showmore-nav {
 /* Anime Card Comp */
 .anime-card {
   background-color: var(--grey);
-  padding: 0;
   overflow: hidden;
   gap: .5rem;
   transition: .3s;
@@ -297,7 +297,7 @@ nav.navbar.showmore-nav {
 }
 
 /* Anime History Comp */
-.delete-history {
+.anime-card .delete-history {
   font-size: 1.5rem;
   color: var(--black);
   align-self: flex-end;
@@ -308,7 +308,7 @@ nav.navbar.showmore-nav {
   background-color: var(--grey) !important;
 }
 
-.delete-history:hover {
+.anime-card .delete-history:hover {
   color: rgb(5, 13, 48);
   background-color: rgb(141, 141, 141) !important;
 }
@@ -404,6 +404,7 @@ nav.navbar.showmore-nav {
   margin-right: 1rem;
   width: 3rem;
   color: var(--black);
+  text-decoration: none;
 }
 
 .episode-item .number {

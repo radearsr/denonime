@@ -15,7 +15,7 @@ const AnimeSearchComp = ({
   const handleShow = () => setShow(true);
   return (
     <>
-      <div className={`col-12 col-md-6 col-lg-4 mb-3 anime-card rounded-2 d-flex ${lengthData > 1 ? "mx-auto" : ""}`}>
+      <div className={`col-12 col-md-6 col-lg-4 mb-3 anime-card p-0 rounded-2 d-flex ${lengthData > 1 ? "mx-auto" : ""}`}>
         <Link className="d-flex link" href="/search?query=">
           <div className="wrapper-card-thumb">
             <Image

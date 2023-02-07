@@ -8,7 +8,7 @@ const AnimeSearchComp = ({
   episodes,
   lengthData,
 }) => (
-  <Link className={`col-12 col-md-6 col-lg-4 mb-3 anime-card rounded-2 d-flex ${lengthData > 1 ? "mx-auto" : ""}`} href="/streaming/54">
+  <Link className={`col-12 col-md-6 col-lg-4 mb-3 anime-card p-0 rounded-2 d-flex ${lengthData > 1 ? "mx-auto" : ""}`} href="/streaming/54">
     <div className="wrapper-card-thumb">
       <Image
         src={poster}

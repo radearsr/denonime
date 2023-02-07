@@ -26,6 +26,8 @@ Restructure Code:
 Case State Management:
   ☐ Detect halaman sebelum streaming
 
-Fix UI
-Halaman home, view more
+Memperbaiki UI:
+  ✔ Css tidak apply dihistory @done(23-02-07 07:07)
+  ✔ Css tidak apply disearch @done(23-02-07 07:07)
+  ✔ Css tidak apply distreaming @done(23-02-07 07:11)
 
