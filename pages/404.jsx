@@ -17,7 +17,7 @@ const NotFoundError = () => (
         <Col xs={12} md={7} className="text-center">
           <h1 className="fw-bold error-code">404</h1>
           <h2 className="fw-bold error-title my-1">Page Not Found</h2>
-          <p className="error-description">Maaf, halaman yang Anda cari tidak dapat ditemukan</p>
+          <p className="error-description m-0">Maaf, halaman yang Anda cari tidak dapat ditemukan</p>
           <p className="error-description mb-3">Mohon kembali ke halaman beranda</p>
           <Link href="/" className="btn btn-error rounded-pill px-4 py-2 fw-bold">Beranda</Link>
         </Col>

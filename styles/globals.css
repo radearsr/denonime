@@ -474,7 +474,8 @@ nav.navbar.showmore-nav {
 /* Error Page */
 
 .wrapper-error {
-  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
   font-family: "Poppins", sans-serif;
 }
 
@@ -502,12 +503,12 @@ nav.navbar.showmore-nav {
   font-size: .6rem;
 }
 
-.btn-error {
+a.btn.btn-error {
   background-color: var(--orange);
   color: var(--space);
 }
 
-.btn-error:hover {
+a.btn.btn-error:hover {
   background-color: var(--orange-hover);
   color: var(--space-hover);
 }

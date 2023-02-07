@@ -16,7 +16,9 @@ Fitur Lanjutan:
   ✔ Memperbaiki Endpoint pada halaman search @done(23-02-07 06:32)
   ☐ Custom style react player
   ✘ Membuat Custom Loading dengan progress bar @cancelled(23-02-07 05:50)
-  ☐ 
+  ☐ Membuat hover button episode
+  ☐ Membuat endpoint tercentralisasi
+  ☐ Memperbaiki 
 
 Restructure Code:
   ☐ Membuat komponen search dan history reusable
@@ -30,4 +32,7 @@ Memperbaiki UI:
   ✔ Css tidak apply dihistory @done(23-02-07 07:07)
   ✔ Css tidak apply disearch @done(23-02-07 07:07)
   ✔ Css tidak apply distreaming @done(23-02-07 07:11)
+  ☐ css disearch page masih belum sesuai
+  ☐ css di404 masih belum sesuai
+
 
