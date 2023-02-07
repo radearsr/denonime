@@ -18,6 +18,7 @@
  font-weight: bold;
  border: 2px solid transparent;
  transition: .3s;
+ text-decoration: none;
 }
 
 .btn_watch:hover {

@@ -56,7 +56,7 @@ const Streaming = ({ animes, slug }) => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col">
-              <Link href="/" className="showmore-back d-flex rounded p-1">
+              <Link href="/" className="showmore-back d-flex rounded p-1 text-decoration-none">
                 <i className="bi bi-arrow-left showmore-back">{" "}</i>
                 <p className="showmore-title fw-bold ms-3">{animes.title}</p>
               </Link>
@@ -74,84 +74,84 @@ const Streaming = ({ animes, slug }) => {
           <div className="col-12 col-lg-3 eps-section">
             <h3 className="title-episode-list">Daftar Episode</h3>
             <div className="episode-list">
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>
                   <span className="label-number">1</span>
                 </div>
               </Link>
-              <Link className="episode-item" href="/">
+              <Link className="episode-item text-decoration-none" href="/">
                 <span className="number">1</span>
                 <div className="group-label">
                   <p className="label">Episode</p>

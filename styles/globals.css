@@ -20,10 +20,6 @@ p {
   margin: 0;
 }
 
-a {
-  text-decoration: none;
-}
-
 /* Scroll */
 ::-webkit-scrollbar {
   width: 10px;
@@ -252,9 +248,7 @@ nav.navbar.showmore-nav {
   height: 7.6rem;
   width: 95%;
 }
-.anime-card > .link {
-  width: 100%;
-}
+
 .wrapper-card-thumb {
   width: 25%;
   display: flex;
@@ -404,7 +398,6 @@ nav.navbar.showmore-nav {
   margin-right: 1rem;
   width: 3rem;
   color: var(--black);
-  text-decoration: none;
 }
 
 .episode-item .number {

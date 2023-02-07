@@ -16,7 +16,7 @@ const AnimeSearchComp = ({
   return (
     <>
       <div className={`col-12 col-md-6 col-lg-4 mb-3 anime-card p-0 rounded-2 d-flex ${lengthData > 1 ? "mx-auto" : ""}`}>
-        <Link className="d-flex link" href="/search?query=">
+        <Link className="d-flex w-100 text-decoration-none" href="/search?query=">
           <div className="wrapper-card-thumb">
             <Image
               src={poster}
@@ -32,8 +32,8 @@ const AnimeSearchComp = ({
           </div>
           <div className="card-about align-self-center">
             <h1 className="card-about-title text">{title}</h1>
-            <p className="card-about-text text">01 / 12 episode</p>
-            <p className="card-about-text text">10:00 / 24:00</p>
+            <p className="card-about-text text m-0">01 / 12 episode</p>
+            <p className="card-about-text text m-0">10:00 / 24:00</p>
           </div>
         </Link>
         <Button className="delete-history" onClick={handleShow}>
