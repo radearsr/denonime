@@ -24,8 +24,8 @@ const index = ({ animes }) => {
         <title>{`Search | DenoNime | ${query}`}</title>
       </Head>
       <Layout addonClass="bg-orange sticky-top mb-3">
-        <div className="container-lg">
-          <div className="row justify-content-between">
+        <div className="container-xxl">
+          <div className="row">
             {animes.map((anime) => (
               <AnimeCardComp
                 key={`anime-search-${anime.id}`}

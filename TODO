@@ -18,8 +18,10 @@ Fitur Lanjutan:
   ✘ Membuat Custom Loading dengan progress bar @cancelled(23-02-07 05:50)
   ☐ Membuat hover button episode
   ☐ Membuat endpoint tercentralisasi
-  ☐ Memperbaiki 
-
+  ✔ Memperbaiki size pada show more @done(23-02-08 08:03)
+  ✘ Mencoba memperbaiki page search @cancelled(23-02-08 08:03)
+  ☐ Rencana ubah tampilan search, menjadi seperti showmore
+  
 Restructure Code:
   ☐ Membuat komponen search dan history reusable
   ☐ Membuat Navbar showmore dan streaming reusable
@@ -33,6 +35,6 @@ Memperbaiki UI:
   ✔ Css tidak apply disearch @done(23-02-07 07:07)
   ✔ Css tidak apply distreaming @done(23-02-07 07:11)
   ☐ css disearch page masih belum sesuai
-  ☐ css di404 masih belum sesuai
+  ✔ css di404 masih belum sesuai @done(23-02-08 06:01)
 
 

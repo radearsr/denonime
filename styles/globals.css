@@ -202,7 +202,6 @@ nav.navbar.showmore-nav {
 .anime-card {
   background-color: var(--grey);
   overflow: hidden;
-  gap: .5rem;
   transition: .3s;
   position: relative;
 }
@@ -242,11 +241,6 @@ nav.navbar.showmore-nav {
 
 .anime-card:hover .wrapper-card-thumb span {
   opacity: 1;
-}
-
-.anime-card.col-12 {
-  height: 7.6rem;
-  width: 95%;
 }
 
 .wrapper-card-thumb {
@@ -514,9 +508,6 @@ a.btn.btn-error:hover {
 }
 
 @media (min-width: 576px) {
-  /* .showmore.col-sm-3 {
-    width: 24%;
-  } */
   .wrapper-card-thumb {
     width: 20%;
   }
@@ -541,10 +532,6 @@ a.btn.btn-error:hover {
     -webkit-line-clamp: 4;
   }
   
-  .anime-card.col-md-6 {
-    height: 8.5rem;
-    width: 48%;
-  }
   .wrapper-card-thumb {
     width: 25%;
   }
@@ -570,9 +557,6 @@ a.btn.btn-error:hover {
 }
 
 @media (min-width: 992px) {
-  /* .showmore.col-lg-2 {
-    width: 20%;
-  } */
   nav.navbar {
     display: flex;
     transition: 0.3s ease-in-out;
@@ -671,17 +655,4 @@ a.btn.btn-error:hover {
   .error-description {
     font-size: 1.2rem;
   }
-}
-
-@media (min-width: 1200px) {
-  /* .showmore.col-xl-1 {
-    width: 14%;
-  } */
-
-  .anime-card.col-lg-4 {
-    width: 32.5%;
-    height: 11rem;
-  }
-
-  
 }

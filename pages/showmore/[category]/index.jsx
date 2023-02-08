@@ -4,12 +4,12 @@ import AnimeComp from "../../../components/AnimeComp";
 
 export async function getServerSideProps(context) {
   const type = context.params.category;
-  const response = await fetch(`http://47.254.251.95:5000/api/animes?type=${type}&limit=20`);
+  const response = await fetch(`https://api.deyapro.com/api/v1/animes?type=${type}&currentpage=1&pagesize=54`);
   const resultJson = await response.json();
 
   return {
     props: {
-      animes: resultJson.data.animes,
+      animes: resultJson.data,
     },
   };
 }
@@ -32,9 +32,9 @@ const ShowMore = ({ animes }) => (
       </div>
     </nav>
     <div className="container-md mt-4">
-      <div className="row justify-content-start">
+      <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
         {animes.map((anime) => (
-          <div className="showmore col-4 col-md-3 col-lg-2">
+          <div className="showmore col-4 col-md-3 col-lg-3 col-xl-2">
             <AnimeComp
               idAnime={anime.id}
               linkEps={anime.title}

@@ -56,18 +56,9 @@
   transition: .2s;
 }
 
-@media (min-width: 576px) {
-  .img_poster {
-    height: 210px;
-  }
-  .anime_title {
-    font-size: 15px;
-  }
-}
-
 @media (min-width: 768px) {
   .img_poster {
-    height: 200px;
+    height: 12rem;
   }
   .anime_title {
     font-size: 16px;
@@ -76,10 +67,20 @@
 
 @media (min-width: 992px) {
   .img_poster {
-    height: 230px;
+    height: 16rem;
   }
   .anime_title {
     font-size: 18px;
     max-height: 3.2rem;
   }
+}
+
+@media (min-width: 1200px) {
+  .anime_title {
+    font-size: 1.2rem;
+    max-height: 3.2rem;
+  }
+}
+
+@media (min-width: 1200px) {
 }
