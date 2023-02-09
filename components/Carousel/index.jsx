@@ -6,7 +6,9 @@ const Carousel = ({ animes }) => (
       {animes.map((anime, idx) => (
         <CarouselItem
           title={anime.title}
-          description={anime.description}
+          rate="8"
+          genres={anime.anime_genres.join(", ")}
+          releaseDate={anime.releaseDate}
           poster={anime.poster}
           urlStreaming="/"
           isActive={idx === 0 ? "active" : ""}

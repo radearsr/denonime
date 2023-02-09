@@ -4,7 +4,9 @@ import style from "./carouselItem.module.css";
 
 const CarouselItem = ({
   title,
-  description,
+  rate,
+  genres,
+  releaseDate,
   poster,
   urlStreaming,
   isActive,
@@ -24,7 +26,18 @@ const CarouselItem = ({
       </div>
       <div className="col-8 col-lg-9 details">
         <h1 className="title-detail text">{title}</h1>
-        <p className="description-detail text">{description}</p>
+        <p className="text-detail fw-bold text">
+          Rating :
+          <span className="fw-normal">{` ${rate} / 10`}</span>
+        </p>
+        <p className="text-detail fw-bold">
+          Genre :
+          <span className="fw-normal">{` ${genres}`}</span>
+        </p>
+        <p className="text-detail fw-bold">
+          Release :
+          <span className="fw-normal">{` ${releaseDate}`}</span>
+        </p>
         <Link href={urlStreaming} className={style.btn_watch}>Watch</Link>
       </div>
     </div>
