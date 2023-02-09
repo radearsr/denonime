@@ -17,9 +17,10 @@ const SliderContentItem = ({
         height="100"
         quality="100"
       />
-      <span>
+      <span className={styles.hov_effect}>
         <i className="bi bi-play-fill icon-play">{" "}</i>
       </span>
+      <span className={styles.anime_eps}>Movie</span>
     </div>
     <p className={styles.anime_title} title={title}>{title}</p>
   </Link>

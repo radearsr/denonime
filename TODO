@@ -20,7 +20,8 @@ Fitur Lanjutan:
   ☐ Membuat endpoint tercentralisasi
   ✔ Memperbaiki size pada show more @done(23-02-08 08:03)
   ✘ Mencoba memperbaiki page search @cancelled(23-02-08 08:03)
-  ☐ Rencana ubah tampilan search, menjadi seperti showmore
+  ✔ Rencana ubah tampilan search, menjadi seperti showmore @done(23-02-09 07:38)
+  ✔ Menambah animasi pada animecomp dan menambahkan label episode @done(23-02-09 08:00)
   
 Restructure Code:
   ☐ Membuat komponen search dan history reusable

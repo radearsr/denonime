@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Layout from "../../components/Layout";
-import AnimeCardComp from "../../components/AnimeSearchComp";
+import AnimeComp from "../../components/AnimeComp";
 
 export async function getServerSideProps(context) {
   const keyword = context.query.query;
-  const response = await fetch(`https://api.deyapro.com/api/v1/animes/search?querySearch=${keyword}&currentPage=1&pageSize=10`);
+  const response = await fetch(`https://api.deyapro.com/api/v1/animes/search?querySearch=${keyword}&currentPage=1&pageSize=100`);
   const resultJson = await response.json();
   return {
     props: {
@@ -21,20 +21,21 @@ const index = ({ animes }) => {
   return (
     <>
       <Head>
-        <title>{`Search | DenoNime | ${query}`}</title>
+        <title>{`Denonime - Search ${query}`}</title>
       </Head>
       <Layout addonClass="bg-orange sticky-top mb-3">
-        <div className="container-xxl">
-          <div className="row">
+        <div className="container-md mt-4">
+          <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
             {animes.map((anime) => (
-              <AnimeCardComp
-                key={`anime-search-${anime.id}`}
-                poster={anime.poster}
-                title={anime.title}
-                genres={anime.anime_genres.join(", ")}
-                episodes={anime.episodes}
-                lengthData={animes.length}
-              />
+              <div className="col-4 col-md-3 col-lg-3 col-xl-2">
+                <AnimeComp
+                  idAnime={anime.id}
+                  linkEps={anime.title}
+                  poster={anime.poster}
+                  title={anime.title}
+                  key={anime.id}
+                />
+              </div>
             ))}
           </div>
         </div>

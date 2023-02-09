@@ -9,9 +9,24 @@
   display: block;
   width: 100%;
   height: 160px;
+  overflow: hidden;
+  transition: .3s;
 }
 
-.img_poster ~ span {
+.anime_eps {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 50%;
+  border-top-right-radius: 0.6rem;
+  background-color: var(--orange);
+  color: var(--space);
+}
+
+.img_poster ~ .hov_effect {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +41,7 @@
   transition: .4s;
 }
 
-.img_poster ~ span > i {
+.img_poster ~ .hov_effect > i {
   font-size: 2.8rem;
   color: var(--orange);
 }
@@ -38,14 +53,17 @@
 .anime_comp_wrapper:hover .anime_title {
   color: var(--orange);
 }
-.anime_comp_wrapper:hover .img_poster ~ span{
+.anime_comp_wrapper:hover .hov_effect{
   opacity: 1;
+}
+.anime_comp_wrapper:hover .img_poster {
+  transform: scale(1.1);
 }
 
 .anime_title {
   font-weight: 520;
   color: var(--black);
-  font-size: 14px;
+  font-size: .9rem;
   text-align: left;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -61,7 +79,10 @@
     height: 12rem;
   }
   .anime_title {
-    font-size: 16px;
+    font-size: 1rem;
+  }
+  .anime_eps {
+    font-size: .85rem;
   }
 }
 
@@ -82,5 +103,9 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
+  .anime_title {
+    font-size: 1.2rem;
+    max-height: 3.4rem;
+  }
 }
