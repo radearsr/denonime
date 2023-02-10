@@ -201,10 +201,17 @@ nav.navbar.showmore-nav {
   overflow: hidden;
   transition: .3s;
   position: relative;
+  width: 100%;
+  height: 9rem;
 }
 
 .wrapper-card-thumb {
   position: relative;
+  overflow: hidden;
+}
+
+.wrapper-card-thumb > .img-fluid {
+  transition: .3s;
 }
 
 .wrapper-card-thumb span {
@@ -227,11 +234,6 @@ nav.navbar.showmore-nav {
   color: var(--orange);
 }
 
-.anime-card:hover {
-  transform: scale(1.1);
-  z-index: 99;
-}
-
 .anime-card:hover .card-about-title {
   color: var(--orange);
 }
@@ -240,11 +242,16 @@ nav.navbar.showmore-nav {
   opacity: 1;
 }
 
+.anime-card:hover .wrapper-card-thumb > .img-fluid {
+  transform: scale(1.1);
+}
+
 .wrapper-card-thumb {
-  width: 25%;
+  width: 28%;
   display: flex;
   align-items: stretch;
 }
+
 .anime-card-poster {
   padding: 0 !important;
 }
@@ -259,7 +266,7 @@ nav.navbar.showmore-nav {
 .card-about-title {
   font-weight: 550;
   color: var(--black);
-  font-size: 17px;
+  font-size: 1.1rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -271,10 +278,8 @@ nav.navbar.showmore-nav {
 
 .card-about-text {
   font-weight: 400;
-  font-size: 12px;
+  font-size: .8rem;
   color: var(--black);
-  -webkit-line-clamp: 2;
-  max-height: 3rem;
 }
 
 .card-about > .badge.rounded-pill {
@@ -505,9 +510,8 @@ a.btn.btn-error:hover {
 }
 
 @media (min-width: 576px) {
-  .wrapper-card-thumb {
-    width: 20%;
-  }
+
+
   .card-about {
     width: 75%;
   }
@@ -527,10 +531,15 @@ a.btn.btn-error:hover {
   .slide-item .details .text-detail {
     font-size: 0.9rem;
   }
-  
-  .wrapper-card-thumb {
-    width: 25%;
+
+  .card-about-title {
+    font-size: 1.2rem;
   }
+
+  .card-about-text {
+    font-size: .9rem;
+  }
+
   .card-about {
     width: 70%;
   }
@@ -579,6 +588,17 @@ a.btn.btn-error:hover {
   }
   .wrapper-card-thumb {
     width: 30%;
+  }
+
+  .anime-card {
+    height: 11rem;
+  }
+
+  .card-about-title {
+    font-size: 1.3rem;
+  }
+  .card-about-text {
+    font-size: 1rem;
   }
 
   /* Streaming */

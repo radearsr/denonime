@@ -7,7 +7,6 @@ import Modal from "react-bootstrap/Modal";
 const AnimeSearchComp = ({
   poster,
   title,
-  lengthData,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -15,30 +14,32 @@ const AnimeSearchComp = ({
   const handleShow = () => setShow(true);
   return (
     <>
-      <div className={`col-12 col-md-6 col-lg-4 mb-3 anime-card p-0 rounded-2 d-flex ${lengthData > 1 ? "mx-auto" : ""}`}>
-        <Link className="d-flex w-100 text-decoration-none" href="/search?query=">
-          <div className="wrapper-card-thumb">
-            <Image
-              src={poster}
-              alt={title}
-              width="200"
-              height="200"
-              quality="100"
-              className="img-fluid rounded-start-2"
-            />
-            <span>
-              <i className="bi bi-play-fill icon-play">{" "}</i>
-            </span>
-          </div>
-          <div className="card-about align-self-center">
-            <h1 className="card-about-title text">{title}</h1>
-            <p className="card-about-text text m-0">01 / 12 episode</p>
-            <p className="card-about-text text m-0">10:00 / 24:00</p>
-          </div>
-        </Link>
-        <Button className="delete-history" onClick={handleShow}>
-          <i className="bi bi-trash">{" "}</i>
-        </Button>
+      <div className="col-12 col-md-6 col-xl-4 mb-3">
+        <div className="anime-card rounded-2 d-flex ">
+          <Link className="d-flex w-100 text-decoration-none" href="/search?query=">
+            <div className="wrapper-card-thumb">
+              <Image
+                src={poster}
+                alt={title}
+                width="200"
+                height="200"
+                quality="100"
+                className="img-fluid rounded-start-2"
+              />
+              <span>
+                <i className="bi bi-play-fill icon-play">{" "}</i>
+              </span>
+            </div>
+            <div className="card-about align-self-center">
+              <h1 className="card-about-title text">{title}</h1>
+              <p className="card-about-text m-0">01 / 12 Episode</p>
+              <p className="card-about-text m-0">10:00 / 24:00</p>
+            </div>
+          </Link>
+          <Button className="delete-history" onClick={handleShow}>
+            <i className="bi bi-trash">{" "}</i>
+          </Button>
+        </div>
       </div>
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Body className="bg-space rounded py-4">

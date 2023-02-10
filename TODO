@@ -23,6 +23,7 @@ Fitur Lanjutan:
   ✔ Rencana ubah tampilan search, menjadi seperti showmore @done(23-02-09 07:38)
   ✔ Menambah animasi pada animecomp dan menambahkan label episode @done(23-02-09 08:00)
   ✔ Mengubah tampilan carousel, menjadi menampilkan rating, genre, dan release date @done(23-02-10 06:49)
+  ✔ Memperbaiki tampilan history menjadi lebih rapi dan memperbesar font size @done(23-02-10 07:42)
   
 Restructure Code:
   ☐ Membuat komponen search dan history reusable
