@@ -26,15 +26,15 @@ const CarouselItem = ({
       </div>
       <div className="col-8 col-lg-9 details">
         <h1 className="title-detail text">{title}</h1>
-        <p className="text-detail fw-bold text">
+        <p className="text-detail fw-bold text m-0">
           Rating :
           <span className="fw-normal">{` ${rate} / 10`}</span>
         </p>
-        <p className="text-detail fw-bold">
+        <p className="text-detail fw-bold m-0">
           Genre :
           <span className="fw-normal">{` ${genres}`}</span>
         </p>
-        <p className="text-detail fw-bold">
+        <p className="text-detail fw-bold m-0">
           Release :
           <span className="fw-normal">{` ${releaseDate}`}</span>
         </p>
