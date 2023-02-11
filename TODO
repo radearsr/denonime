@@ -24,6 +24,11 @@ Fitur Lanjutan:
   ✔ Menambah animasi pada animecomp dan menambahkan label episode @done(23-02-09 08:00)
   ✔ Mengubah tampilan carousel, menjadi menampilkan rating, genre, dan release date @done(23-02-10 06:49)
   ✔ Memperbaiki tampilan history menjadi lebih rapi dan memperbesar font size @done(23-02-10 07:42)
+  ✔ Membuat infinty scroll in search page @done(23-02-11 22:19)
+  ☐ Memperhalus animasi saat scroll akan meload data
+  ☐ Membuat lazy loading
+  ☐ Membuat title anime tampil pada bawah streaming page
+  ☐ Membuat detail anime pada bawah title anime streaming page
   
 Restructure Code:
   ☐ Membuat komponen search dan history reusable

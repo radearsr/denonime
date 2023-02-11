@@ -510,8 +510,6 @@ a.btn.btn-error:hover {
 }
 
 @media (min-width: 576px) {
-
-
   .card-about {
     width: 75%;
   }
@@ -596,9 +594,6 @@ a.btn.btn-error:hover {
 
   .card-about-title {
     font-size: 1.3rem;
-  }
-  .card-about-text {
-    font-size: 1rem;
   }
 
   /* Streaming */
