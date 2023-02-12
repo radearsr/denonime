@@ -72,13 +72,11 @@ const index = ({ firstAnimes, pages, keyword }) => {
         <div className="container-md mt-4">
           <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
             {animes.map((anime) => (
-              <div className="col-4 col-md-3 col-lg-3 col-xl-2">
+              <div className="col-4 col-md-3 col-lg-3 col-xl-2" key={`search-${anime.animeId}`}>
                 <AnimeComp
-                  idAnime={anime.id}
                   linkEps={anime.title}
                   poster={anime.poster}
                   title={anime.title}
-                  key={anime.id}
                 />
               </div>
             ))}

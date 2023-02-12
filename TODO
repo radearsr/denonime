@@ -25,6 +25,9 @@ Fitur Lanjutan:
   ✔ Mengubah tampilan carousel, menjadi menampilkan rating, genre, dan release date @done(23-02-10 06:49)
   ✔ Memperbaiki tampilan history menjadi lebih rapi dan memperbesar font size @done(23-02-10 07:42)
   ✔ Membuat infinty scroll in search page @done(23-02-11 22:19)
+  ✔ Membuat infite scroll in show more page @done(23-02-12 08:08)
+  ✔ Mempebaiki error key element in home, search, and showmore page @done(23-02-12 08:09)
+  ☐ Memperbaiki bug fetch data berkali kali karena event scroll
   ☐ Memperhalus animasi saat scroll akan meload data
   ☐ Membuat lazy loading
   ☐ Membuat title anime tampil pada bawah streaming page

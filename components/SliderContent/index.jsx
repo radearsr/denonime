@@ -44,12 +44,11 @@ const SliderContent = ({
         <main>
           <Swiper slidesPerView={3} spaceBetween={10} breakpoints={SwipperBreakpoints}>
             {animes.map((anime) => (
-              <SwiperSlide key={`slide-${category}-${anime.id}`}>
+              <SwiperSlide key={`slide-${category}-${anime.animeId}`}>
                 <AnimeComp
                   slug={slugPrefixGenerator(anime.slug, anime.type)}
                   poster={anime.poster}
                   title={anime.title}
-                  key={anime.id}
                 />
               </SwiperSlide>
             ))}
