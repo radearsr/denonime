@@ -5,15 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "185.224.82.193",
-      },
-      {
-        protocol: "https",
-        hostname: "i3.wp.com",
-      },
-      {
-        protocol: "https",
-        hostname: "cdn.myanimelist.net",
+        hostname: "assets.deyapro.com",
       },
     ],
   },

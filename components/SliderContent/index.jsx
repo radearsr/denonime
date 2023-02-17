@@ -10,7 +10,7 @@ const SliderContent = ({
 }) => {
   const SwipperBreakpoints = {
     1400: {
-      slidesPerView: 7,
+      slidesPerView: 8,
       spaceBetween: 23,
     },
     1200: {
@@ -49,6 +49,7 @@ const SliderContent = ({
                   slug={slugPrefixGenerator(anime.slug, anime.type)}
                   poster={anime.poster}
                   title={anime.title}
+                  totalEps={anime.episodes}
                 />
               </SwiperSlide>
             ))}

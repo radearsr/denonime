@@ -6,8 +6,8 @@ import SliderContent from "../components/SliderContent";
 
 export const getServerSideProps = async () => {
   const dataAnimeSeries = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=1&pagesize=10");
-  const dataAnimeMovie = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=2&pagesize=10");
-  const dataCarousel = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentpage=1&pagesize=10");
+  const dataAnimeMovie = await fetch("https://api.deyapro.com/api/v1/animes?type=movie&currentpage=1&pagesize=10");
+  const dataCarousel = await fetch("https://api.deyapro.com/api/v1/animes?type=movie&currentpage=1&pagesize=10");
 
   const resultSeries = await dataAnimeSeries.json();
   const resultMovies = await dataAnimeMovie.json();

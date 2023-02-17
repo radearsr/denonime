@@ -77,6 +77,7 @@ const index = ({ firstAnimes, pages, keyword }) => {
                   linkEps={anime.title}
                   poster={anime.poster}
                   title={anime.title}
+                  totalEps={anime.episodes}
                 />
               </div>
             ))}
