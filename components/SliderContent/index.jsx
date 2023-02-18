@@ -29,9 +29,9 @@ const SliderContent = ({
   const slugPrefixGenerator = (slug, type) => {
     const resultEpisode = 1;
     if (type === "series") {
-      return `${slug}-episode-${resultEpisode}`;
+      return `${slug}-episode-${resultEpisode.length > 1 ? resultEpisode : `0${resultEpisode}`}`;
     }
-    return `${slug}-episode-${resultEpisode}`;
+    return `${slug}-episode-${resultEpisode.length > 1 ? resultEpisode : `0${resultEpisode}`}`;
   };
 
   return (

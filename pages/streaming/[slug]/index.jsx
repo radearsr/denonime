@@ -13,15 +13,27 @@ export const getServerSideProps = async (context) => {
       notFound: true,
     };
   }
+  const responseReqPlayer = await fetch(`https://addon.deyapro.com/api/player`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      link: resultJson.data.episodes[0].source360p,
+      strategy: "otakudesu",
+    }),
+  });
+  const resultJsonPlayer = await responseReqPlayer.json();
   return {
     props: {
       animes: resultJson.data,
       slug,
+      player: resultJsonPlayer.data,
     },
   };
 };
 
-const Streaming = ({ animes, slug }) => {
+const Streaming = ({ animes, slug, player }) => {
   const [hasWindow, setHasWindow] = useState(false);
   const [seeMore, setSeeMore] = useState("");
   const textReadmore = useRef();
@@ -68,7 +80,7 @@ const Streaming = ({ animes, slug }) => {
         <div className="row g-0 justify-content-between mb-4">
           <div className="col-12 col-lg-9 g-0">
             <div className="video-wrapper">
-              { hasWindow && <ReactPlayer width="100%" height="100%" url={animes.episodes[0].source360p} controls /> }
+              { hasWindow && <ReactPlayer width="100%" height="100%" url={player} controls /> }
             </div>
           </div>
           <div className="col-12 col-lg-3 eps-section">
