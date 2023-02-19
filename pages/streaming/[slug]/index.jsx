@@ -9,6 +9,7 @@ import TitleEpisodeList from "../../../components/streaming/TitleEpisodeList";
 
 export const getServerSideProps = async (context) => {
   const { slug } = context.params;
+  console.log(context.req.headers);
   const response = await fetch(`https://api.deyapro.com/api/v1/episodes/${slug}`);
   const resultJson = await response.json();
   if (resultJson.status === "error" || resultJson.status === "fail") {
@@ -20,6 +21,8 @@ export const getServerSideProps = async (context) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "sec-ch-ua": `${context.req.headers["sec-ch-ua"]}`,
+      "user-agent": `${context.req.headers["user-agent"]}`,
     },
     body: JSON.stringify({
       link: resultJson.data.episodes[0].source360p,
