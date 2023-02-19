@@ -3,6 +3,9 @@ import { Container, Row, Col } from "react-bootstrap";
 import Head from "next/head";
 import Link from "next/link";
 import ReactPlayer from "react-player";
+import EpisodeList from "../../../components/streaming/EpisodeList";
+import EpisodeItem from "../../../components/streaming/EpisodeItem";
+import TitleEpisodeList from "../../../components/streaming/TitleEpisodeList";
 
 export const getServerSideProps = async (context) => {
   const { slug } = context.params;
@@ -40,7 +43,7 @@ const Streaming = ({ animes, slug, player }) => {
 
   const titleEpisode = (fullText) => {
     const [, episode] = fullText.split("-episode-");
-    return episode;
+    return parseFloat(episode);
   };
 
   const handleReadMore = () => {
@@ -77,102 +80,27 @@ const Streaming = ({ animes, slug, player }) => {
         </div>
       </nav>
       <div className="container streaming-container">
-        <div className="row g-0 justify-content-between mb-4">
-          <div className="col-12 col-lg-9 g-0">
+        <Row className="g-0 justify-content-between mb-4">
+          <Col xs={12} lg={9}>
             <div className="video-wrapper">
               { hasWindow && <ReactPlayer width="100%" height="100%" url={player} controls /> }
             </div>
-          </div>
-          <div className="col-12 col-lg-3 eps-section">
-            <h3 className="title-episode-list">Daftar Episode</h3>
-            <div className="episode-list">
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-              <Link className="episode-item text-decoration-none" href="/">
-                <span className="number">1</span>
-                <div className="group-label">
-                  <p className="label">Episode</p>
-                  <span className="label-number">1</span>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
+          </Col>
+          <Col xs={12} lg={3} className="g-0">
+            <TitleEpisodeList text="Daftar Episode" />
+            <EpisodeList>
+              {Array.from(Array(10)).map((arr, idx) => (
+                <EpisodeItem
+                  number={idx + 1}
+                  label={idx % 2 === 0 ? "Episode" : "OVA"}
+                  labelNumber={idx + 1}
+                  isActive={titleEpisode(slug) === idx + 1 ? 1 : 0}
+                  fullSlug="episode-01"
+                />
+              ))}
+            </EpisodeList>
+          </Col>
+        </Row>
         <Container className="py-4">
           <h3 className="fw-bold title-sinopsis mb-2">Sinopsis</h3>
           <Row>

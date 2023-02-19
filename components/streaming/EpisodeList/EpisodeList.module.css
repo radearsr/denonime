@@ -1,0 +1,18 @@
+.episode_list {
+  padding-top: .5rem;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+  margin: 0 auto;
+}
+
+
+@media (min-width: 992px) {
+  .episode_list {
+    max-height: 33vw;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+}
+
