@@ -22,6 +22,8 @@ export const getServerSideProps = async (context) => {
     headers: {
       "Content-Type": "application/json",
       "sec-ch-ua": `${context.req.headers["sec-ch-ua"]}`,
+      "sec-ch-ua-mobile": `${context.req.headers["sec-ch-ua-mobile"]}`,
+      "sec-ch-ua-platform": `${context.req.headers["sec-ch-ua-platform"]}`,
       "user-agent": `${context.req.headers["user-agent"]}`,
     },
     body: JSON.stringify({
