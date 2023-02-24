@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Head from "next/head";
 import Link from "next/link";
-import AnimeComp from "../../../components/AnimeComp";
+import AnimeComp from "../../../components/SharedComp/AnimeComp";
 
 export async function getServerSideProps(context) {
   const type = context.params.category;
