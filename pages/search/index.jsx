@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Spinner from "react-bootstrap/Spinner";
 import Layout from "../../components/Layout";
-import AnimeComp from "../../components/AnimeComp";
+import AnimeComp from "../../components/SharedComp/AnimeComp";
 
 export async function getServerSideProps(context) {
   const keyword = context.query.query;

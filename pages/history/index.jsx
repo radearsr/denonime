@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Layout from "../../components/Layout";
-import AnimeHistoryComp from "../../components/AnimeHistoryComp";
+import AnimeHistoryComp from "../../components/SharedComp/AnimeHistoryComp";
 
 export async function getServerSideProps() {
   const response = await fetch(`https://api.deyapro.com/api/v1/animes?type=series&currentpage=2&pagesize=10`);
