@@ -9,7 +9,6 @@ import TitleEpisodeList from "../../../components/streaming/TitleEpisodeList";
 
 export const getServerSideProps = async (context) => {
   const { slug } = context.params;
-  console.log(context.req.headers);
   const response = await fetch(`https://api.deyapro.com/api/v1/episodes/${slug}`);
   const resultJson = await response.json();
   if (resultJson.status === "error" || resultJson.status === "fail") {
