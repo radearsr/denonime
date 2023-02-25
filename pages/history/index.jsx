@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../../components/Layout";
+import Layout from "../../components/SharedComp/Layout";
 import AnimeHistoryComp from "../../components/SharedComp/AnimeHistoryComp";
 
 export async function getServerSideProps() {

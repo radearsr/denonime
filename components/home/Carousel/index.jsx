@@ -12,7 +12,7 @@ const Carousel = ({ animes }) => (
           poster={anime.poster}
           urlStreaming="/"
           isActive={idx === 0 ? "active" : ""}
-          key={`carouselItem-${anime.animeId}`}
+          key={`carouselItem-${anime.id}`}
         />
       ))}
     </div>

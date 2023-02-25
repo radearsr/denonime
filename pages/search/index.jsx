@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Spinner from "react-bootstrap/Spinner";
-import Layout from "../../components/Layout";
+import Layout from "../../components/SharedComp/Layout";
 import AnimeComp from "../../components/SharedComp/AnimeComp";
 
 export async function getServerSideProps(context) {
@@ -11,8 +11,8 @@ export async function getServerSideProps(context) {
   const resultJson = await response.json();
   return {
     props: {
-      firstAnimes: resultJson.data.data,
-      pages: resultJson.data.pages,
+      firstAnimes: resultJson.data,
+      pages: resultJson.pages,
       keyword,
     },
   };
@@ -29,9 +29,7 @@ const index = ({ firstAnimes, pages, keyword }) => {
   const callAnime = async (currentPage, keywordSearch) => {
     const response = await fetch(`https://api.deyapro.com/api/v1/animes/search?querySearch=${keywordSearch}&currentPage=${currentPage}&pageSize=100`);
     const resultJson = await response.json();
-    console.log(resultJson);
-    setAnimes((prev) => [...prev, ...resultJson.data.data]);
-    console.log(animes);
+    setAnimes((prev) => [...prev, ...resultJson.data]);
     setIsLoading(false);
   };
 
@@ -72,18 +70,20 @@ const index = ({ firstAnimes, pages, keyword }) => {
         <div className="container-md mt-4">
           <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
             {animes.map((anime) => (
-              <div className="col-4 col-md-3 col-lg-3 col-xl-2" key={`search-${anime.animeId}`}>
+              <div className="col-4 col-md-3 col-lg-3 col-xl-2" key={`search-${anime.id}`}>
                 <AnimeComp
-                  linkEps={anime.title}
+                  slug={anime.slug}
+                  status={anime.status}
                   poster={anime.poster}
                   title={anime.title}
                   totalEps={anime.episodes}
+                  type={anime.type}
                 />
               </div>
             ))}
             {
               isLoading ? (
-                <div className="w-100 text-center">
+                <div className="w-100 text-center h-25">
                   <Spinner animation="border" variant="secondary" />
                 </div>
               ) : ("")

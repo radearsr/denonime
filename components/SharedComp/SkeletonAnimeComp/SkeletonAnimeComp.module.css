@@ -1,0 +1,31 @@
+.skeleton_item {
+  display: block;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  transition: .3s;
+  border-radius: .5rem;
+  animation: skeleton-loading .5s linear infinite alternate;
+  opacity: .7;
+}
+
+@media (min-width: 768px) {
+  .skeleton_item {
+    height: 12rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .skeleton_item {
+    height: 16rem;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(0, 0%, 77%);
+  }
+  100% {
+    background-color: hsl(0, 0%, 70%);
+  }
+}
