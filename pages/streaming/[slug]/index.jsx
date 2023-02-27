@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Head from "next/head";
 import Link from "next/link";
 import ReactPlayer from "react-player";
+import VideoPlayer from "../../../components/streaming/VideoPlayer";
 import EpisodeList from "../../../components/streaming/EpisodeList";
 import EpisodeItem from "../../../components/streaming/EpisodeItem";
 import TitleEpisodeList from "../../../components/streaming/TitleEpisodeList";
@@ -67,7 +68,7 @@ const Streaming = ({ animes, slug, player }) => {
   return (
     <>
       <Head>
-        <title>{`Streaming | ${animes.title} Episode ${titleEpisode(slug)}`}</title>
+        <title>{`${animes.title} Episode ${titleEpisode(slug)}`}</title>
       </Head>
       <nav className="navbar bg-lighter showmore-nav shadow-sm sticky-top">
         <div className="container">
@@ -75,17 +76,17 @@ const Streaming = ({ animes, slug, player }) => {
             <div className="col">
               <Link href="/" className="showmore-back d-flex rounded p-1 text-decoration-none">
                 <i className="bi bi-arrow-left showmore-back">{" "}</i>
-                <p className="showmore-title fw-bold ms-3">{animes.title}</p>
+                <p className="showmore-title fw-bold ms-3">Streaming</p>
               </Link>
             </div>
           </div>
         </div>
       </nav>
-      <div className="container streaming-container">
+      <div className="container streaming-container mt-2">
         <Row className="g-0 justify-content-between mb-4">
           <Col xs={12} lg={9}>
             <div className="video-wrapper">
-              { hasWindow && <ReactPlayer width="100%" height="100%" url={player} controls /> }
+              { hasWindow && <VideoPlayer srcVideo={player} autoPlay /> }
             </div>
           </Col>
           <Col xs={12} lg={3} className="g-0">

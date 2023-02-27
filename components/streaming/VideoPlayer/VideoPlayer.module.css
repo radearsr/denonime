@@ -1,0 +1,75 @@
+.player {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+  font-size: 0;
+}
+
+.player__video {
+  width: 100%;
+}
+
+.video__header {
+  position: absolute;
+  font-size: 1.2rem;
+  padding: .5rem;
+  background: rgba(141, 141, 141, 0.4);
+  width: 100%;
+}
+
+.player__control {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transition: all 0.3s;
+  flex-wrap: wrap;
+  background: rgba(141, 141, 141, 0.4);
+  color: rgb(238, 238, 238);
+}
+
+.progress {
+  display: flex;
+  flex-basis: 98%;
+  height: .3rem;
+  border-radius: .2rem;
+  position: relative;
+  background: rgba(224, 224, 224, 0.5);
+  margin: 0 auto;
+}
+
+.control__left {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.control__right {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.control__right {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.duration {
+  font-size: .9rem;
+  display: inline-block;
+}
+
+.progress__filled {
+  width: 50%;
+  background-color: rgb(255, 140, 50);
+}
+
+.player:hover .player__control {
+  /* transform: translateY(0); */
+  /* bottom: 5px; */
+}
