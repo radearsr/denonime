@@ -12,7 +12,7 @@
  width: 6rem;
  padding: .4rem .8rem;
  font-size: .9rem;
- border-radius: 1.4rem;
+ border-radius: 1.2rem;
  margin-top: .5rem;
  text-align: center;
  font-weight: bold;
@@ -32,6 +32,21 @@
   .btn_watch {
     width: 8rem;
     padding: .6rem 1.5rem;
+    border-radius: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .btn_watch {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .btn_watch {
+    font-size: 1.3rem;
+    width: 9rem;
+    border-radius: 3rem;
   }
 }
 

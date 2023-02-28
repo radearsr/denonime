@@ -10,8 +10,9 @@ import TitleEpisodeList from "../../../components/streaming/TitleEpisodeList";
 
 export const getServerSideProps = async (context) => {
   const { slug } = context.params;
-  const response = await fetch(`https://api.deyapro.com/api/v1/episodes/${slug}`);
+  const response = await fetch(`http://localhost:5000/api/v1/episodes/${slug}`);
   const resultJson = await response.json();
+  const resultEpisodes = resultJson.data.episodes;
   if (resultJson.status === "error" || resultJson.status === "fail") {
     return {
       notFound: true,
@@ -34,12 +35,18 @@ export const getServerSideProps = async (context) => {
     props: {
       animes: resultJson.data,
       slug,
+      episodes: resultEpisodes,
       player: resultJsonPlayer.data,
     },
   };
 };
 
-const Streaming = ({ animes, slug, player }) => {
+const Streaming = ({
+  animes,
+  slug,
+  episodes,
+  player,
+}) => {
   const [hasWindow, setHasWindow] = useState(false);
   const [seeMore, setSeeMore] = useState("");
   const textReadmore = useRef();
@@ -47,6 +54,14 @@ const Streaming = ({ animes, slug, player }) => {
   const titleEpisode = (fullText) => {
     const [, episode] = fullText.split("-episode-");
     return parseFloat(episode);
+  };
+
+  const slugGenerator = (genSlug, genType, genEpisode) => {
+    const episode = `${genEpisode.length >= 2 ? genEpisode : `0${genEpisode}`}`;
+    if (genType === "Series") {
+      return `${slug}-episode-${episode}`;
+    }
+    return genSlug;
   };
 
   const handleReadMore = () => {
@@ -92,13 +107,13 @@ const Streaming = ({ animes, slug, player }) => {
           <Col xs={12} lg={3} className="g-0">
             <TitleEpisodeList text="Daftar Episode" />
             <EpisodeList>
-              {Array.from(Array(10)).map((arr, idx) => (
+              {episodes.map((episode, idx) => (
                 <EpisodeItem
                   number={idx + 1}
-                  label={idx % 2 === 0 ? "Episode" : "OVA"}
-                  labelNumber={idx + 1}
-                  isActive={titleEpisode(slug) === idx + 1 ? 1 : 0}
-                  fullSlug="episode-01"
+                  label={episode.numEpisode === 0 ? "OVA" : "Episode"}
+                  labelNumber={episode.numEpisode}
+                  isActive={titleEpisode(slug) === episode.numEpisode ? 1 : 0}
+                  fullSlug={slugGenerator(slug, animes.type, episode.numEpisode)}
                 />
               ))}
             </EpisodeList>

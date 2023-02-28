@@ -534,11 +534,11 @@ a.btn.btn-error:hover {
   }
 
   .slide-item .details .title-detail {
-    font-size: 1.9rem;
+    font-size: 2.5rem;
   }
 
   .slide-item .details .text-detail {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   .wrapper-card-thumb {
     width: 30%;
@@ -586,12 +586,12 @@ a.btn.btn-error:hover {
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1400px) {
   .slide-item .details .title-detail {
-    font-size: 2.4rem;
+    font-size: 3rem;
   }
 
   .slide-item .details .text-detail {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
