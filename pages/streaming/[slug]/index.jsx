@@ -12,8 +12,15 @@ export const getServerSideProps = async (context) => {
   const { slug } = context.params;
   const response = await fetch(`http://localhost:5000/api/v1/episodes/${slug}`);
   const resultJson = await response.json();
-  const resultEpisodes = resultJson.data.episodes;
   if (resultJson.status === "error" || resultJson.status === "fail") {
+    return {
+      notFound: true,
+    };
+  }
+  const responseEpisode = await fetch(`http://localhost:5000/api/v1/episodes/${resultJson.data.id}/animes?sortBy=asc`);
+  const resultEpisodes = await responseEpisode.json();
+
+  if (resultEpisodes.status === "error" || resultEpisodes.status === "fail") {
     return {
       notFound: true,
     };
@@ -35,7 +42,7 @@ export const getServerSideProps = async (context) => {
     props: {
       animes: resultJson.data,
       slug,
-      episodes: resultEpisodes,
+      episodes: resultEpisodes.data,
       player: resultJsonPlayer.data,
     },
   };
@@ -57,9 +64,11 @@ const Streaming = ({
   };
 
   const slugGenerator = (genSlug, genType, genEpisode) => {
-    const episode = `${genEpisode.length >= 2 ? genEpisode : `0${genEpisode}`}`;
+    console.log(genSlug);
+    const episode = `${genEpisode >= 10 ? genEpisode : `0${genEpisode}`}`;
     if (genType === "Series") {
-      return `${slug}-episode-${episode}`;
+      console.log(`${genSlug}-episode-${episode}`);
+      return `${genSlug}-episode-${episode}`;
     }
     return genSlug;
   };
@@ -113,7 +122,7 @@ const Streaming = ({
                   label={episode.numEpisode === 0 ? "OVA" : "Episode"}
                   labelNumber={episode.numEpisode}
                   isActive={titleEpisode(slug) === episode.numEpisode ? 1 : 0}
-                  fullSlug={slugGenerator(slug, animes.type, episode.numEpisode)}
+                  fullSlug={slugGenerator(animes.slug, animes.type, episode.numEpisode)}
                 />
               ))}
             </EpisodeList>
