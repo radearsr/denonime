@@ -1,4 +1,4 @@
-import SkeletonAnimeComp from "../../SharedComp/SkeletonAnimeComp";
+import SkeletonAnimeComp from "../../shared/SkeletonAnimeComp";
 
 const SkeletonLatestContent = ({ count }) => (
   <div className="container-md mt-4">

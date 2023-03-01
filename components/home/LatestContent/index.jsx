@@ -1,4 +1,4 @@
-import AnimeComp from "../../SharedComp/AnimeComp";
+import AnimeComp from "../../shared/AnimeComp";
 
 const LatestContent = ({ animes }) => (
   <div className="container-md mt-4">

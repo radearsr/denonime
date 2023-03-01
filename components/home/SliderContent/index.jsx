@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
-import AnimeComp from "../../SharedComp/AnimeComp";
+import AnimeComp from "../../shared/AnimeComp";
 import syles from "./sliderContent.module.css";
 
 const SliderContent = ({

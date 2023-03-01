@@ -9,6 +9,10 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    endpointDev: "http://127.0.0.1:5000",
+    endpointDep: "api.deyapro.com",
+  },
 };
 
 module.exports = nextConfig;

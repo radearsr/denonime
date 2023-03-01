@@ -1,33 +1,62 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import Head from "next/head";
-import Layout from "../components/SharedComp/Layout";
+import Layout from "../components/shared/Layout";
 import Carousel from "../components/home/Carousel";
 import SliderContent from "../components/home/SliderContent";
 import SkeletonLatestContent from "../components/home/SkeletonLatestContent";
 import LatestContent from "../components/home/LatestContent";
 
 export const getStaticProps = async () => {
-  const dataAnimePopuler = await fetch("https://api.deyapro.com/api/v1/animes/list/finished?currentPage=1&pageSize=10");
-  const dataCarousel = await fetch("https://api.deyapro.com/api/v1/animes?type=movie&currentPage=1&pageSize=10");
-  const dataAnimeSeries = await fetch("https://api.deyapro.com/api/v1/animes?type=series&currentPage=1&pageSize=10");
-  const dataAnimeMovie = await fetch("https://api.deyapro.com/api/v1/animes?type=movie&currentPage=1&pageSize=10");
+  try {
+    const endpoint = process.env.NODE_ENV === "development" ? process.env.endpointDev : process.env.endpointDep;
+    const { data: animeCarousel } = await axios.get(`${endpoint}/api/v1/animes`, {
+      params: {
+        type: "movie",
+        currentPage: 1,
+        pageSize: 10,
+      },
+    });
 
-  const resultCarousel = await dataCarousel.json();
-  const resultSeries = await dataAnimeSeries.json();
-  const resultMovies = await dataAnimeMovie.json();
-  const resultPopuler = await dataAnimePopuler.json();
+    const { data: animePopuler } = await axios.get(`${endpoint}/api/v1/animes/list/finished`, {
+      params: {
+        currentPage: 1,
+        pageSize: 10,
+      },
+    });
 
-  return {
-    props: {
-      carousel: resultCarousel.data,
-      series: resultSeries.data,
-      movies: resultMovies.data,
-      populer: resultPopuler.data,
-    },
-  };
+    const { data: animeSeries } = await axios.get(`${endpoint}/api/v1/animes`, {
+      params: {
+        type: "series",
+        currentPage: 1,
+        pageSize: 10,
+      },
+    });
+
+    const { data: animeMovie } = await axios.get(`${endpoint}/api/v1/animes`, {
+      params: {
+        type: "movie",
+        currentPage: 1,
+        pageSize: 10,
+      },
+    });
+
+    return {
+      props: {
+        endpoint,
+        carousel: animeCarousel.data,
+        populer: animePopuler.data,
+        series: animeSeries.data,
+        movies: animeMovie.data,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 };
 
 const Home = ({
+  endpoint,
   populer,
   series,
   movies,
@@ -47,10 +76,18 @@ const Home = ({
   };
 
   const getOngoingAnimes = async () => {
-    const responseAnimes = await fetch("https://api.deyapro.com/api/v1/animes/list/latest?take=12");
-    const resultsJson = await responseAnimes.json();
-    setOngoing(resultsJson.data);
-    setIsLoading(false);
+    try {
+      const { data: animeOngoing } = await axios.get(`${endpoint}/api/v1/animes/list/latest`, {
+        params: {
+          take: 12,
+        },
+      });
+      setOngoing(animeOngoing.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log("Gagal Menampilakan data anime ongoing");
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {

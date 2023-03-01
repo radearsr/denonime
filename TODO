@@ -14,10 +14,9 @@ Fitur Lanjutan:
   ✔ Membuat Loading dengan NprogressBar @done(23-02-07 06:30)
   ✔ Memperbaiki judul pada halaman streaming @done(23-02-07 06:30)
   ✔ Memperbaiki Endpoint pada halaman search @done(23-02-07 06:32)
-  ☐ Custom style react player
+  ✔ Custom style react player (onprogress) @done(23-03-01 08:14)
   ✘ Membuat Custom Loading dengan progress bar @cancelled(23-02-07 05:50)
-  ☐ Membuat hover button episode
-  ☐ Membuat endpoint tercentralisasi
+  ✔ Membuat hover button episode @done(23-03-01 05:31)
   ✔ Memperbaiki size pada show more @done(23-02-08 08:03)
   ✘ Mencoba memperbaiki page search @cancelled(23-02-08 08:03)
   ✔ Rencana ubah tampilan search, menjadi seperti showmore @done(23-02-09 07:38)
@@ -27,6 +26,7 @@ Fitur Lanjutan:
   ✔ Membuat infinty scroll in search page @done(23-02-11 22:19)
   ✔ Membuat infite scroll in show more page @done(23-02-12 08:08)
   ✔ Mempebaiki error key element in home, search, and showmore page @done(23-02-12 08:09)
+  ✔ Membuat endpoint terpisah dev dan deploy dengan env @done(23-03-01 08:14)
   ☐ Memperbaiki bug fetch data berkali kali karena event scroll
   ☐ Memperhalus animasi saat scroll akan meload data
   ☐ Membuat lazy loading
@@ -47,5 +47,7 @@ Memperbaiki UI:
   ✔ Css tidak apply distreaming @done(23-02-07 07:11)
   ☐ css disearch page masih belum sesuai
   ✔ css di404 masih belum sesuai @done(23-02-08 06:01)
+  ☐ Membuat search bar di mobile version
+
 
 
