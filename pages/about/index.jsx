@@ -1,4 +1,4 @@
-import Layout from "../../components/SharedComp/Layout";
+import Layout from "../../components/shared/Layout";
 
 const About = () => (
   <Layout addonClass="bg-orange sticky-top mb-3">

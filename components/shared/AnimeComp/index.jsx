@@ -7,6 +7,7 @@ const SliderContentItem = ({
   poster,
   title,
   type,
+  status,
   totalEps,
 }) => {
   const slugGenerator = (genSlug, genType) => {
@@ -31,7 +32,7 @@ const SliderContentItem = ({
         <span className={styles.hov_effect}>
           <i className="bi bi-play-fill icon-play">{" "}</i>
         </span>
-        <span className={styles.anime_eps}>
+        <span className={status === "Completed" ? styles.anime_eps_muted : styles.anime_eps}>
           { type === "Movie" ? "Movie" : `Eps ${totalEps}` }
         </span>
       </div>

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Spinner from "react-bootstrap/Spinner";
-import Layout from "../../components/SharedComp/Layout";
-import AnimeComp from "../../components/SharedComp/AnimeComp";
+import Layout from "../../components/shared/Layout";
+import AnimeComp from "../../components/shared/AnimeComp";
 
 export async function getServerSideProps(context) {
   const keyword = context.query.query;
@@ -66,7 +66,7 @@ const index = ({ firstAnimes, pages, keyword }) => {
       <Head>
         <title>{`Denonime - Search ${query}`}</title>
       </Head>
-      <Layout addonClass="bg-orange sticky-top mb-3">
+      <Layout addonClass="search-nav bg-orange sticky-top mb-3">
         <div className="container-md mt-4">
           <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
             {animes.map((anime) => (

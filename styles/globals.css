@@ -59,6 +59,10 @@ nav.navbar {
   display: none;
 }
 
+nav.navbar.search-nav {
+  display: flex;
+}
+
 .navbar.bg-transparent input, 
 .navbar.bg-transparent button{
   background-color: transparent !important;
@@ -80,8 +84,7 @@ nav.navbar {
 }
 
 .navbar-brand {
-  font-size: 1.5rem !important;
-  font-weight: bold;
+  display: none;
 }
 
 .bg-orange {
@@ -519,6 +522,12 @@ a.btn.btn-error:hover {
   nav.navbar {
     display: flex;
     transition: 0.3s ease-in-out;
+  }
+
+  .navbar-brand {
+    display: block;
+    font-size: 1.5rem !important;
+    font-weight: bold;
   }
 
   .fixed-bottom.mobile-nav{

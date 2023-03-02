@@ -51,7 +51,10 @@ export const getStaticProps = async () => {
       },
     };
   } catch (error) {
-    return { notFound: true };
+    if (process.env.NODE_ENV === "production") {
+      return { notFound: true };
+    }
+    return error;
   }
 };
 

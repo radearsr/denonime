@@ -21,25 +21,25 @@ const Layout = ({ children, addonClass = "" }) => {
                 <Link className={`${router.pathname === "/about" ? "active" : ""} nav-link`} aria-current="page" href="/about">About</Link>
               </li>
             </ul>
-            <form className="col-md-5" action="/search">
-              <div className="row g-0">
-                <div className="col-9 col-md-10">
-                  <input
-                    type="search"
-                    autoComplete="off"
-                    placeholder="Cari Anime..."
-                    name="query"
-                    className={styles.input_search}
-                  />
-                </div>
-                <div className="col-3 col-md-2">
-                  <button type="submit" className={styles.btn_action} title="search">
-                    <i className="bi bi-search">{" "}</i>
-                  </button>
-                </div>
-              </div>
-            </form>
           </div>
+          <form className="col-12 col-md-5" action="/search">
+            <div className="row g-0">
+              <div className="col-10 col-md-10">
+                <input
+                  type="search"
+                  autoComplete="off"
+                  placeholder="Cari Anime..."
+                  name="query"
+                  className={styles.input_search}
+                />
+              </div>
+              <div className="col-2 col-md-2">
+                <button type="submit" className={styles.btn_action} title="search">
+                  <i className="bi bi-search">{" "}</i>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </nav>
       {children}
@@ -47,28 +47,28 @@ const Layout = ({ children, addonClass = "" }) => {
       <div className="container-md py-2 fixed-bottom mobile-nav">
         <div className="row justify-content-center">
           <Link
-            className={`col-3 d-flex flex-column align-items-center nav-mob-item ${router.pathname === "/" ? "active" : ""}`}
+            className={`col-3 d-flex text-decoration-none flex-column align-items-center nav-mob-item ${router.pathname === "/" ? "active" : ""}`}
             href="/"
           >
             <i className="bi bi-house-door">{" "}</i>
             <p className="icon-label">Home</p>
           </Link>
           <Link
-            className={`col-3 d-flex flex-column align-items-center nav-mob-item ${router.pathname === "/search" ? "active" : ""}`}
-            href="/search"
+            className={`col-3 d-flex text-decoration-none flex-column align-items-center nav-mob-item ${router.pathname === "/search" ? "active" : ""}`}
+            href="/search?query="
           >
             <i className="bi bi-search">{" "}</i>
             <p className="icon-label">Search</p>
           </Link>
           <Link
-            className={`col-3 d-flex flex-column align-items-center nav-mob-item ${router.pathname === "/history" ? "active" : ""}`}
+            className={`col-3 d-flex text-decoration-none flex-column align-items-center nav-mob-item ${router.pathname === "/history" ? "active" : ""}`}
             href="/history"
           >
             <i className="bi bi-clock-history">{" "}</i>
             <p className="icon-label">History</p>
           </Link>
           <Link
-            className={`col-3 d-flex flex-column align-items-center nav-mob-item ${router.pathname === "/about" ? "active" : ""}`}
+            className={`col-3 d-flex text-decoration-none flex-column align-items-center nav-mob-item ${router.pathname === "/about" ? "active" : ""}`}
             href="/about"
           >
             <i className="bi bi-info-square">{" "}</i>
