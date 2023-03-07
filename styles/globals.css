@@ -410,7 +410,7 @@ nav.navbar.showmore-nav {
 .toggle-text {
   cursor: pointer;
   border: none;
-  padding: .5rem 0;
+  padding: 0;
   text-decoration: underline;
 }
 

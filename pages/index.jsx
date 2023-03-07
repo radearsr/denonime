@@ -9,7 +9,7 @@ import LatestContent from "../components/home/LatestContent";
 
 export const getStaticProps = async () => {
   try {
-    const endpoint = process.env.NODE_ENV === "development" ? process.env.endpointDev : process.env.endpointDep;
+    const endpoint = process.env.NODE_ENV === "development" ? process.env.API_DEV : process.env.API_PROD;
     const { data: animeCarousel } = await axios.get(`${endpoint}/api/v1/animes`, {
       params: {
         type: "movie",

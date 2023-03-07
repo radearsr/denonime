@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Head from "next/head";
 import Link from "next/link";
-import AnimeComp from "../../../components/SharedComp/AnimeComp";
+import AnimeComp from "../../../components/shared/AnimeComp";
 
 export async function getServerSideProps(context) {
   const type = context.params.category;
-  const response = await fetch(`https://api.deyapro.com/api/v1/animes?type=${type}&currentpage=1&pagesize=36`);
+  const response = await fetch(`https://api.deyapro.com/api/v1/animes?type=${type}&currentPage=1&pageSize=36`);
   const resultJson = await response.json();
 
   return {
@@ -24,40 +24,47 @@ const ShowMore = ({ firstAnimes, type, totalPages }) => {
   const [pageNum, setPageNum] = useState(1);
 
   const callAnime = async (animeType, currentPage, pageSize) => {
-    const response = await fetch(`https://api.deyapro.com/api/v1/animes?type=${animeType}&currentpage=${currentPage}&pagesize=${pageSize}`);
+    const response = await fetch(`https://api.deyapro.com/api/v1/animes?type=${animeType}&currentPage=${currentPage}&pageSize=${pageSize}`);
     console.log(pageNum);
     const result = await response.json();
     setAnimes((prev) => ([...prev, ...result.data]));
   };
 
+  const handleOnScroll = () => {
+    const totalScrollHeight = window.document.documentElement.scrollHeight;
+    const scrollFromTop = window.document.documentElement.scrollTop;
+    const height = window.innerHeight;
+    const currentScroll = scrollFromTop + height;
+
+    if ((currentScroll >= totalScrollHeight) && (isLoading === false)) {
+      console.log("Panggil");
+      setIsLoading(true);
+      if (pageNum < totalPages) {
+        setPageNum((prev) => (prev + 1));
+      } else {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 3000);
+        console.log("selesai");
+      }
+    }
+  };
+
   useEffect(() => {
     if (pageNum !== 1) {
       callAnime(type, pageNum, 36);
-      setIsLoading(false);
     }
-    return () => {};
+    return () => {
+      setIsLoading(false);
+      console.log("fetch selesai");
+    };
   }, [pageNum]);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      const totalScrollHeight = window.document.documentElement.scrollHeight;
-      const scrollFromTop = window.document.documentElement.scrollTop;
-      const height = window.innerHeight;
-      const currentScroll = scrollFromTop + height;
-
-      if ((currentScroll >= totalScrollHeight) && (isLoading === false)) {
-        console.log("Panggil");
-        setIsLoading(true);
-        if (pageNum < totalPages) {
-          setPageNum((prev) => (prev + 1));
-        } else {
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 3000);
-          console.log("selesai");
-        }
-      }
-    });
+    window.addEventListener("scroll", handleOnScroll);
+    return () => {
+      window.removeEventListener("scroll", handleOnScroll);
+    };
   });
 
   return (
@@ -80,7 +87,7 @@ const ShowMore = ({ firstAnimes, type, totalPages }) => {
       <div className="container-md mt-4">
         <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
           {animes.map((anime) => (
-            <div className="showmore col-4 col-md-3 col-lg-3 col-xl-2" key={`${type}-${anime.animeId}`}>
+            <div className="showmore col-4 col-md-3 col-lg-3 col-xl-2" key={`${type}-${anime.id}`}>
               <AnimeComp
                 linkEps={anime.title}
                 poster={anime.poster}
@@ -88,13 +95,14 @@ const ShowMore = ({ firstAnimes, type, totalPages }) => {
                 type={anime.type}
                 totalEps={anime.episodes}
                 slug={anime.slug}
+                status={anime.status}
               />
             </div>
           ))}
           {
             isLoading ? (
-              <div className="w-100 text-center">
-                <Spinner animation="border" variant="secondary" size="md" />
+              <div className="w-100 h-25 py-5 text-center">
+                <Spinner animation="border" variant="secondary" size="lg" />
               </div>
             ) : ("")
           }
