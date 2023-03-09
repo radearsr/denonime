@@ -5,8 +5,9 @@
   font-size: 0;
 }
 
-.player__video {
+.wrapper__player {
   width: 100%;
+  height: 100%;
 }
 
 .video__header {

@@ -114,7 +114,7 @@ const Streaming = ({
               { hasWindow && <VideoPlayer srcVideo={player} autoPlay /> }
             </div>
           </Col>
-          <Col xs={12} lg={3} className="g-0">
+          <Col xs={12} lg={3} className="g-2">
             <TitleEpisodeList text="Daftar Episode" />
             <EpisodeList>
               {episodes.map((episode, idx) => (

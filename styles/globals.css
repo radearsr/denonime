@@ -468,6 +468,25 @@ a.btn.btn-error:hover {
   color: var(--space-hover);
 }
 
+/* Video Player */
+.player__video {
+  object-fit: cover !important;
+}
+
+.player__icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: .2rem;
+  border-radius: 50%;
+}
+
+.player__icon:hover {
+  background-color: var(--orange);
+}
+
 @media (min-width: 576px) {
   .card-about {
     width: 75%;
