@@ -6,7 +6,7 @@ import AnimeComp from "../../../components/shared/AnimeComp";
 
 export async function getServerSideProps(context) {
   const type = context.params.category;
-  const response = await fetch(`https://api.deyapro.com/api/v1/animes?type=${type}&currentPage=1&pageSize=36`);
+  const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes?type=${type}&currentPage=1&pageSize=36`);
   const resultJson = await response.json();
 
   return {
@@ -24,7 +24,7 @@ const ShowMore = ({ firstAnimes, type, totalPages }) => {
   const [pageNum, setPageNum] = useState(1);
 
   const callAnime = async (animeType, currentPage, pageSize) => {
-    const response = await fetch(`https://api.deyapro.com/api/v1/animes?type=${animeType}&currentPage=${currentPage}&pageSize=${pageSize}`);
+    const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes?type=${animeType}&currentPage=${currentPage}&pageSize=${pageSize}`);
     console.log(pageNum);
     const result = await response.json();
     setAnimes((prev) => ([...prev, ...result.data]));

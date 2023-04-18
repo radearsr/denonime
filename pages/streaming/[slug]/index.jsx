@@ -10,7 +10,7 @@ import TitleEpisodeList from "../../../components/streaming/TitleEpisodeList";
 
 export const getServerSideProps = async (context) => {
   try {
-    const endpoint = process.env.NODE_ENV === "development" ? process.env.API_DEV : process.env.API_PROD;
+    const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
     const { slug } = context.params;
     console.log(slug);
     const numEpisodeFromSlug = (fullText) => {

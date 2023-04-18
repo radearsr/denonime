@@ -27,7 +27,7 @@ const index = ({ firstAnimes, pages, keyword }) => {
   const { query } = router.query;
 
   const callAnime = async (currentPage, keywordSearch) => {
-    const response = await fetch(`https://api.deyapro.com/api/v1/animes/search?querySearch=${keywordSearch}&currentPage=${currentPage}&pageSize=100`);
+    const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes/search?querySearch=${keywordSearch}&currentPage=${currentPage}&pageSize=100`);
     const resultJson = await response.json();
     setAnimes((prev) => [...prev, ...resultJson.data]);
     setIsLoading(false);
