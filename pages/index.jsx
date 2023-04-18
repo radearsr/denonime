@@ -18,6 +18,8 @@ export const getStaticProps = async () => {
       },
     });
 
+    // console.log(animeCarousel);
+
     const { data: animePopuler } = await axios.get(`${endpoint}/api/v1/animes/list/finished`, {
       params: {
         currentPage: 1,
@@ -40,7 +42,6 @@ export const getStaticProps = async () => {
         pageSize: 10,
       },
     });
-
     return {
       props: {
         endpoint,
@@ -54,7 +55,11 @@ export const getStaticProps = async () => {
     if (process.env.NODE_ENV === "production") {
       return { notFound: true };
     }
-    return error;
+    return {
+      props: {
+        error: JSON.stringify(error),
+      },
+    };
   }
 };
 
@@ -82,7 +87,7 @@ const Home = ({
     try {
       const { data: animeOngoing } = await axios.get(`${endpoint}/api/v1/animes/list/latest`, {
         params: {
-          take: 12,
+          size: 12,
         },
       });
       setOngoing(animeOngoing.data);
@@ -115,6 +120,7 @@ const Home = ({
       </Head>
       <Layout addonClass={`fixed-top ${navbarClass}`}>
         <Carousel animes={carousel} key="home-1" />
+
         { isLoading ? (<SkeletonLatestContent count={12} />)
           : (<LatestContent animes={ongoing} key="home-2" />) }
         <SliderContent title="Completed" animes={populer} category="completed" key="home-3" />

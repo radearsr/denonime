@@ -38,7 +38,7 @@ const SliderContent = ({
                   status={anime.status}
                   poster={anime.poster}
                   title={anime.title}
-                  totalEps={anime.episodes}
+                  totalEps={anime.totalEps}
                   type={anime.type}
                 />
               </SwiperSlide>

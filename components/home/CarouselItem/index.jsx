@@ -6,6 +6,7 @@ const CarouselItem = ({
   title,
   rating,
   releaseDate,
+  genres,
   poster,
   slug,
   type,
@@ -15,7 +16,7 @@ const CarouselItem = ({
     const date = new Date(timestamp);
     const options = {
       day: "numeric",
-      month: "short",
+      month: "long",
       year: "numeric",
     };
     return date.toLocaleString("in-ID", options);
@@ -44,14 +45,18 @@ const CarouselItem = ({
           />
         </div>
         <div className="col-8 col-lg-9 details">
-          <h1 className="title-detail text">{title}</h1>
-          <p className="text-detail fw-bold text m-0">
+          <h1 className="fs-1 fw-bold text-white text">{title}</h1>
+          <p className="fs-6 fw-bold text-white m-0">
             Rating :
             <span className="fw-normal">{` ${rating} / 10`}</span>
           </p>
-          <p className="text-detail fw-bold m-0">
+          <p className="text-white fw-bold m-0">
             Release :
             <span className="fw-normal">{` ${dateToString(new Date(releaseDate).getTime())}`}</span>
+          </p>
+          <p className="d-none d-md-block fs-6 text-white fw-bold m-0">
+            Genres :
+            <span className="fw-normal">{` ${genres.join(", ")}`}</span>
           </p>
           <Link href={`streaming/${slugGenerator(slug, type)}`} className={style.btn_watch}>Watch</Link>
         </div>

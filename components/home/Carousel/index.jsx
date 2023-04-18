@@ -11,8 +11,9 @@ const Carousel = ({ animes }) => (
           poster={anime.poster}
           slug={anime.slug}
           type={anime.type}
+          genres={anime.anime_genres}
           isActive={idx === 0 ? "active" : ""}
-          key={`carouselItem-${anime.id}`}
+          key={`carouselItem-${anime.animeId}`}
         />
       ))}
     </div>
