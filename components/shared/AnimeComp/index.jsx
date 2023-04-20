@@ -25,9 +25,9 @@ const SliderContentItem = ({
           src={poster}
           alt={title}
           className={styles.img_poster}
-          width="100"
-          height="100"
-          quality="100"
+          width="90"
+          height="90"
+          quality="70"
         />
         <span className={styles.hov_effect}>
           <i className="bi bi-play-fill icon-play">{" "}</i>
