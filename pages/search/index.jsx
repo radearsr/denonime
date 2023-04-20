@@ -7,7 +7,7 @@ import AnimeComp from "../../components/shared/AnimeComp";
 
 export async function getServerSideProps(context) {
   const keyword = context.query.query;
-  const response = await fetch(`https://api.deyapro.com/api/v1/animes/search?querySearch=${keyword}&currentPage=1&pageSize=100`);
+  const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes/search?querySearch=${keyword}&currentPage=1&pageSize=100`);
   const resultJson = await response.json();
   return {
     props: {

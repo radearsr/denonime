@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Layout from "../components/shared/Layout";
 import Carousel from "../components/home/Carousel";
-import SliderContent from "../components/home/SliderContent";
-import SkeletonLatestContent from "../components/home/SkeletonLatestContent";
-import LatestContent from "../components/home/LatestContent";
+import SkeletonAnimeContent from "../components/home/SkeletonAnimeContent";
+import AnimesContent from "../components/home/AnimesContent";
 
 export const getStaticProps = async () => {
   try {
-    const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
+    // const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
+    const endpoint = "http://localhost:5000";
     const { data: animeCarousel } = await axios.get(`${endpoint}/api/v1/animes`, {
       params: {
         type: "movie",
@@ -18,37 +18,10 @@ export const getStaticProps = async () => {
       },
     });
 
-    // console.log(animeCarousel);
-
-    const { data: animePopuler } = await axios.get(`${endpoint}/api/v1/animes/list/finished`, {
-      params: {
-        currentPage: 1,
-        pageSize: 10,
-      },
-    });
-
-    const { data: animeSeries } = await axios.get(`${endpoint}/api/v1/animes`, {
-      params: {
-        type: "series",
-        currentPage: 1,
-        pageSize: 10,
-      },
-    });
-
-    const { data: animeMovie } = await axios.get(`${endpoint}/api/v1/animes`, {
-      params: {
-        type: "movie",
-        currentPage: 1,
-        pageSize: 10,
-      },
-    });
     return {
       props: {
         endpoint,
         carousel: animeCarousel.data,
-        populer: animePopuler.data,
-        series: animeSeries.data,
-        movies: animeMovie.data,
       },
     };
   } catch (error) {
@@ -66,14 +39,17 @@ export const getStaticProps = async () => {
 
 const Home = ({
   endpoint,
-  populer,
-  series,
-  movies,
   carousel,
 }) => {
   const [navbarClass, setNavbarClass] = useState("bg-transparent");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingOngoingList, setIsLoadingOngoingList] = useState(true);
+  const [isLoadingCompletedList, setIsLoadingCompletedList] = useState(true);
+  const [isLoadingSeriesList, setIsLoadingSeriesList] = useState(true);
+  const [isLoadingMoviesList, setIsLoadingMoviesList] = useState(true);
   const [ongoing, setOngoing] = useState([]);
+  const [completed, setCompleted] = useState([]);
+  const [series, setSeries] = useState([]);
+  const [movie, setMovie] = useState([]);
 
   const handleNavbar = (e) => {
     const window = e.currentTarget;
@@ -84,6 +60,7 @@ const Home = ({
     }
   };
 
+  // Function Get All Animes Ongoing
   const getOngoingAnimes = async () => {
     try {
       const { data: animeOngoing } = await axios.get(`${endpoint}/api/v1/animes/list/latest`, {
@@ -92,16 +69,53 @@ const Home = ({
         },
       });
       setOngoing(animeOngoing.data);
-      setIsLoading(false);
+      setIsLoadingOngoingList(false);
     } catch (error) {
       console.log("Gagal Menampilakan data anime ongoing");
-      setIsLoading(false);
+      setIsLoadingOngoingList(false);
     }
   };
 
-  useEffect(() => {
-    setIsLoading(true);
+  // Function Get All Animes Completed
+  const getLastCompletedAnimes = async () => {
+    try {
+      const { data: animePopuler } = await axios.get(`${endpoint}/api/v1/animes/list/finished`, {
+        params: {
+          currentPage: 1,
+          pageSize: 6,
+        },
+      });
+      setCompleted(animePopuler.data);
+      setIsLoadingCompletedList(false);
+    } catch (error) {
+      console.log("Gagal Menampilakan data anime completed");
+      setIsLoadingCompletedList(false);
+    }
+  };
+
+  // Function Get All Animes Series
+  const getTypesAnimes = async (type, currentPage, pageSize, dataStore, loadingState) => {
+    try {
+      const { data: animeTypes } = await axios.get(`${endpoint}/api/v1/animes`, {
+        params: {
+          type,
+          currentPage,
+          pageSize,
+        },
+      });
+      dataStore(animeTypes.data);
+      loadingState(false);
+    } catch (error) {
+      console.log("Gagal Menampilakan data anime series");
+      loadingState(false);
+    }
+  };
+
+  useEffect(async () => {
     getOngoingAnimes();
+    getLastCompletedAnimes();
+    getTypesAnimes("series", 1, 6, setSeries, setIsLoadingSeriesList);
+    getTypesAnimes("movie", 1, 6, setMovie, setIsLoadingMoviesList);
   }, []);
 
   useEffect(() => {
@@ -121,12 +135,14 @@ const Home = ({
       </Head>
       <Layout addonClass={`fixed-top ${navbarClass}`}>
         <Carousel animes={carousel} key="home-1" />
-
-        { isLoading ? (<SkeletonLatestContent count={12} />)
-          : (<LatestContent animes={ongoing} key="home-2" />) }
-        <SliderContent title="Completed" animes={populer} category="completed" key="home-3" />
-        <SliderContent title="Series" animes={series} category="series" key="home-4" />
-        <SliderContent title="Movie" animes={movies} category="movie" key="home-5" />
+        { isLoadingOngoingList ? (<SkeletonAnimeContent count={12} labelTitle="ongoing" />)
+          : (<AnimesContent animes={ongoing} labelTitle="Ongoing" key="home-2" />) }
+        { isLoadingCompletedList ? (<SkeletonAnimeContent count={6} labelTitle="completed" />)
+          : (<AnimesContent animes={completed} labelTitle="Completed" isShowMore key="home-3" />) }
+        { isLoadingSeriesList ? (<SkeletonAnimeContent count={6} labelTitle="series" />)
+          : (<AnimesContent animes={series} labelTitle="Series" isShowMore key="home-4" />) }
+        { isLoadingMoviesList ? (<SkeletonAnimeContent count={6} labelTitle="movie" />)
+          : (<AnimesContent animes={movie} labelTitle="Movie" isShowMore key="home-5" />) }
       </Layout>
     </>
   );

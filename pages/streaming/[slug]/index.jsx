@@ -105,7 +105,7 @@ const Streaming = ({
             <div className="col">
               <Link href="/" className="showmore-back d-flex rounded p-1 text-decoration-none">
                 <i className="bi bi-arrow-left showmore-back">{" "}</i>
-                <p className="showmore-title fw-bold ms-3">Streaming</p>
+                <p className="showmore-title p-0 fw-bold ms-3">Streaming</p>
               </Link>
             </div>
           </div>
@@ -124,7 +124,7 @@ const Streaming = ({
               {episodes.map((episode, idx) => (
                 <EpisodeItem
                   number={idx + 1}
-                  label={episode.numEpisode === 0 ? "OVA" : "Episode"}
+                  label={episode.episodeType === "Ova" ? "OVA" : "Episode"}
                   labelNumber={episode.numEpisode}
                   isActive={currentEpisode === episode.numEpisode ? 1 : 0}
                   fullSlug={slugGenerator(animes.slug, animes.type, episode.numEpisode)}
