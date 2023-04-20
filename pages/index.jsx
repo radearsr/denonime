@@ -8,8 +8,8 @@ import AnimesContent from "../components/home/AnimesContent";
 
 export const getStaticProps = async () => {
   try {
-    // const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
-    const endpoint = "http://localhost:5000";
+    const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
+    // const endpoint = "http://localhost:5000";
     const { data: animeCarousel } = await axios.get(`${endpoint}/api/v1/animes`, {
       params: {
         type: "movie",
