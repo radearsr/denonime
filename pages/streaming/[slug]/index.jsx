@@ -72,7 +72,6 @@ const Streaming = ({
   const slugGenerator = (genSlug, genType, genEpisode) => {
     const episode = `${genEpisode >= 10 ? genEpisode : `0${genEpisode}`}`;
     if (genType === "Series") {
-      // console.log(`${genSlug}-episode-${episode}`);
       return `${genSlug}-episode-${episode}`;
     }
     return genSlug;
@@ -92,6 +91,9 @@ const Streaming = ({
     if (typeof window !== "undefined") {
       setHasWindow(true);
     }
+    return () => {
+      setHasWindow(true);
+    };
   });
 
   return (
@@ -105,7 +107,7 @@ const Streaming = ({
             <div className="col">
               <Link href="/" className="showmore-back d-flex rounded p-1 text-decoration-none">
                 <i className="bi bi-arrow-left showmore-back">{" "}</i>
-                <p className="showmore-title p-0 fw-bold ms-3">Streaming</p>
+                <p className="showmore-title m-0 fw-bold ms-3">Streaming</p>
               </Link>
             </div>
           </div>

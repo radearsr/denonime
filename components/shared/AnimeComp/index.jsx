@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./animeComp.module.css";
 
-const SliderContentItem = ({
+const AnimeComp = ({
   slug,
   poster,
   title,
@@ -41,4 +41,4 @@ const SliderContentItem = ({
   );
 };
 
-export default SliderContentItem;
+export default AnimeComp;

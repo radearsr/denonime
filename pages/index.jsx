@@ -111,7 +111,7 @@ const Home = ({
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     getOngoingAnimes();
     getLastCompletedAnimes();
     getTypesAnimes("series", 1, 6, setSeries, setIsLoadingSeriesList);
