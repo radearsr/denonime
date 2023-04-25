@@ -28,6 +28,7 @@ const AnimeComp = ({
           width="90"
           height="90"
           quality="70"
+          priority
         />
         <span className={styles.hov_effect}>
           <i className="bi bi-play-fill icon-play">{" "}</i>

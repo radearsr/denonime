@@ -1,76 +1,89 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Head from "next/head";
 import Link from "next/link";
+import axios from "axios";
+import SkeletonAnimeComp from "../../../components/shared/SkeletonAnimeComp";
 import AnimeComp from "../../../components/shared/AnimeComp";
 
-export async function getServerSideProps(context) {
-  const type = context.params.category;
-  const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes?type=${type}&currentPage=1&pageSize=36`);
-  const resultJson = await response.json();
+export const getServerSideProps = ({ params }) => ({
+  props: {
+    category: params.category,
+  },
+});
 
-  return {
-    props: {
-      firstAnimes: resultJson.data,
-      totalPages: resultJson.pages.totalPage,
-      type,
-    },
-  };
-}
-
-const ShowMore = ({ firstAnimes, type, totalPages }) => {
+const ShowMore = ({ category }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [animes, setAnimes] = useState([...firstAnimes]);
+  const [animes, setAnimes] = useState([]);
   const [pageNum, setPageNum] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalLoad, setTotalLoad] = useState(0);
+  const loadingElement = useRef(null);
 
-  const callAnime = async (animeType, currentPage, pageSize) => {
-    const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes?type=${animeType}&currentPage=${currentPage}&pageSize=${pageSize}`);
-    console.log(pageNum);
-    const result = await response.json();
-    setAnimes((prev) => ([...prev, ...result.data]));
+  const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
+  const callAnime = async (currentPage, type, pageSize) => {
+    setIsLoading(true);
+    let resultData;
+    if (type === "completed") {
+      const { data } = await axios.get(`${endpoint}/api/v1/animes/list/finished`, {
+        params: {
+          currentPage,
+          pageSize,
+        },
+      });
+      resultData = data;
+    } else {
+      const { data } = await axios.get(`${endpoint}/api/v1/animes`, {
+        params: {
+          type,
+          currentPage,
+          pageSize,
+        },
+      });
+      resultData = data;
+    }
+    setAnimes((prev) => [...prev, ...resultData.data]);
+    setTotalPages(resultData.pages.totalPage);
+    setIsLoading(false);
+    setTotalLoad(0);
   };
 
-  const handleOnScroll = () => {
-    const totalScrollHeight = window.document.documentElement.scrollHeight;
-    const scrollFromTop = window.document.documentElement.scrollTop;
-    const height = window.innerHeight;
-    const currentScroll = scrollFromTop + height;
-
-    if ((currentScroll >= totalScrollHeight) && (isLoading === false)) {
-      console.log("Panggil");
-      setIsLoading(true);
-      if (pageNum < totalPages) {
-        setPageNum((prev) => (prev + 1));
-      } else {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 3000);
-        console.log("selesai");
-      }
+  const handleObserver = (entries) => {
+    const [entry] = entries;
+    if (totalLoad < 1 && entry.isIntersecting) {
+      setTotalLoad(1);
+      setPageNum((num) => num + 1);
     }
   };
+
+  useEffect(() => {
+    callAnime(1, category, 36);
+  }, []);
 
   useEffect(() => {
     if (pageNum !== 1) {
-      callAnime(type, pageNum, 36);
+      callAnime(pageNum, category, 36);
     }
-    return () => {
-      setIsLoading(false);
-      console.log("fetch selesai");
-    };
+    return () => {};
   }, [pageNum]);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleOnScroll);
+    const observer = new IntersectionObserver(handleObserver);
+    const currentTarget = loadingElement.current;
+    if (currentTarget) {
+      observer.observe(currentTarget);
+    }
     return () => {
-      window.removeEventListener("scroll", handleOnScroll);
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
+      }
     };
   });
 
   return (
     <>
       <Head>
-        <title>Show More</title>
+        <title>{`Show More ${category}`}</title>
       </Head>
       <nav className="navbar bg-lighter showmore-nav shadow-sm sticky-top">
         <div className="container">
@@ -78,7 +91,7 @@ const ShowMore = ({ firstAnimes, type, totalPages }) => {
             <div className="col">
               <Link href="/" className="showmore-back d-flex rounded p-1">
                 <i className="bi bi-arrow-left showmore-back">{" "}</i>
-                <p className="showmore-title fw-bold ms-3">Anime Lastest</p>
+                <p className="showmore-title fw-bold ms-3 m-0">{`Anime ${category}`}</p>
               </Link>
             </div>
           </div>
@@ -87,26 +100,30 @@ const ShowMore = ({ firstAnimes, type, totalPages }) => {
       <div className="container-md mt-4">
         <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
           {animes.map((anime) => (
-            <div className="showmore col-4 col-md-3 col-lg-3 col-xl-2" key={`${type}-${anime.id}`}>
+            <div className="showmore col-4 col-md-3 col-lg-3 col-xl-2" key={`showmore-${anime.animeId}`}>
               <AnimeComp
-                linkEps={anime.title}
-                poster={anime.poster}
-                title={anime.title}
-                type={anime.type}
-                totalEps={anime.episodes}
                 slug={anime.slug}
                 status={anime.status}
+                poster={anime.poster}
+                title={anime.title}
+                totalEps={anime.totalEps}
+                type={anime.type}
               />
             </div>
           ))}
-          {
-            isLoading ? (
-              <div className="w-100 h-25 py-5 text-center">
-                <Spinner animation="border" variant="secondary" size="lg" />
-              </div>
-            ) : ("")
-          }
+          {isLoading ? (Array.from(Array(36)).map((val, idx) => (
+            <div className="showmore col-4 col-md-3 col-lg-3 col-xl-2" key={`skeleton-showmore-${idx.toFixed(2)}`}>
+              <SkeletonAnimeComp />
+            </div>
+          ))) : ("")}
         </div>
+        {
+          pageNum < totalPages ? (
+            <div className="text-center" ref={loadingElement} style={{ height: "4rem" }}>
+              <Spinner animation="border" style={{ color: "var(--orange)" }} />
+            </div>
+          ) : ("")
+        }
       </div>
     </>
   );

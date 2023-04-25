@@ -5,7 +5,7 @@ const AnimesContent = ({ animes, labelTitle = "Ongoing", isShowMore = false }) =
   <div className="container-md mt-4">
     <header className="d-flex justify-content-between align-items-center">
       <h2 className="fs-2 fw-bold mb-3">{labelTitle}</h2>
-      { isShowMore ? <Link href={`/showmore/${labelTitle}`} className="fs-6 text-dark text-decoration-none">Lebih Banyak</Link> : "" }
+      { isShowMore ? <Link href={`/showmore/${labelTitle.toLowerCase()}`} className="fs-6 text-dark text-decoration-none">Lebih Banyak</Link> : "" }
     </header>
     <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
       {animes.map((anime) => (
