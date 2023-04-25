@@ -1,73 +1,101 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import axios from "axios";
 import Spinner from "react-bootstrap/Spinner";
 import Layout from "../../components/shared/Layout";
+import SkeletonAnimeComp from "../../components/shared/SkeletonAnimeComp";
 import AnimeComp from "../../components/shared/AnimeComp";
 
-export async function getServerSideProps(context) {
-  const keyword = context.query.query;
-  const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes/search?querySearch=${keyword}&currentPage=1&pageSize=100`);
-  const resultJson = await response.json();
-  return {
-    props: {
-      firstAnimes: resultJson.data,
-      pages: resultJson.pages,
-      keyword,
-    },
-  };
-}
+export const getServerSideProps = ({ req, query, resolvedUrl }) => ({
+  props: {
+    liveKeyword: query.query,
+    title: "Denonime",
+    host: req.headers.host,
+    path: resolvedUrl.split("?")[0],
+  },
+});
 
-const index = ({ firstAnimes, pages, keyword }) => {
-  const [animes, setAnimes] = useState([...firstAnimes]);
-  const [isLoading, setIsLoading] = useState(false);
-  const totalPages = pages.totalPage;
-  const [pageNum, setPageNum] = useState(1);
+const Search = ({
+  liveKeyword,
+  title,
+  host,
+  path,
+}) => {
   const router = useRouter();
-  const { query } = router.query;
+  const { query: keyword = "" } = router.query;
+  const [animes, setAnimes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [pageNum, setPageNum] = useState(1);
+  const [totalLoad, setTotalLoad] = useState(0);
+  const loadingElement = useRef(null);
 
-  const callAnime = async (currentPage, keywordSearch) => {
-    const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes/search?querySearch=${keywordSearch}&currentPage=${currentPage}&pageSize=100`);
-    const resultJson = await response.json();
-    setAnimes((prev) => [...prev, ...resultJson.data]);
+  const callAnime = async (currentPage, querySearch, pageSize) => {
+    setIsLoading(true);
+    const { data: resultSearch } = await axios.get("https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes/search", {
+      params: {
+        querySearch,
+        currentPage,
+        pageSize,
+      },
+    });
+    setAnimes((prev) => [...prev, ...resultSearch.data]);
+    setTotalPages(resultSearch.pages.totalPage);
     setIsLoading(false);
+    setTotalLoad(0);
+  };
+
+  const handleObserver = (entries) => {
+    const [entry] = entries;
+    if (totalLoad < 1 && entry.isIntersecting) {
+      setTotalLoad(1);
+      setPageNum((num) => num + 1);
+    }
   };
 
   useEffect(() => {
+    callAnime(1, keyword, 100);
+  }, [keyword]);
+
+  useEffect(() => {
     if (pageNum !== 1) {
-      callAnime(pageNum, keyword);
+      callAnime(pageNum, keyword, 100);
     }
     return () => {};
   }, [pageNum]);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      const totalScrollHeight = window.document.documentElement.scrollHeight;
-      const scrollFromTop = window.document.documentElement.scrollTop;
-      const height = window.innerHeight;
-      const currentScroll = scrollFromTop + height;
-
-      if (currentScroll >= totalScrollHeight) {
-        setIsLoading(true);
-        if (pageNum < totalPages) {
-          setPageNum((prev) => (prev + 1));
-        } else {
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 3000);
-          console.log("selesai");
-        }
+    const observer = new IntersectionObserver(handleObserver);
+    const currentTarget = loadingElement.current;
+    if (currentTarget) {
+      observer.observe(currentTarget);
+    }
+    return () => {
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
       }
-    });
+    };
   });
 
   return (
     <>
       <Head>
-        <title>{`Denonime - Search ${query}`}</title>
+        <title>{`${title} - Search ${keyword}`}</title>
+        <meta name="description" content={`Hasil pencarian ${liveKeyword}`} />
+        <meta name="keywords" content={`${title.toLowerCase()} ${liveKeyword}`} />
+        <meta name="author" content={`${title}`} />
+        <meta name="DC.title" content={`${liveKeyword} - ${title}`} />
+        <meta property="og:title" content={`${liveKeyword} - ${title}`} />
+        <meta property="og:description" content={`Hasil pencarian ${liveKeyword}`} />
+        <meta property="og:url" content={`${host}${path}`} />
+        <meta property="og:site_name" content={`${title}`} />
+        <meta name="geo.placename" content="Indonesia" />
+        <meta name="geo.region" content="ID" />
+        <link rel="canonical" href={`${host}${path}`} />
       </Head>
       <Layout addonClass="search-nav bg-orange sticky-top mb-3">
-        <div className="container-md mt-4">
+        <div className="container-md mt-4 position-relative">
           <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
             {animes.map((anime) => (
               <div className="col-4 col-md-3 col-lg-3 col-xl-2" key={`search-${anime.animeId}`}>
@@ -81,18 +109,23 @@ const index = ({ firstAnimes, pages, keyword }) => {
                 />
               </div>
             ))}
-            {
-              isLoading ? (
-                <div className="w-100 text-center h-25">
-                  <Spinner animation="border" variant="secondary" />
-                </div>
-              ) : ("")
-            }
+            {isLoading ? (Array.from(Array(100)).map((val, idx) => (
+              <div className="showmore col-4 col-md-3 col-lg-3 col-xl-2" key={`skeleton-search-${idx.toFixed(2)}`}>
+                <SkeletonAnimeComp />
+              </div>
+            ))) : ("")}
           </div>
+          {
+            pageNum < totalPages ? (
+              <div className="text-center" ref={loadingElement} style={{ height: "4rem" }}>
+                <Spinner animation="border" style={{ color: "var(--orange)" }} />
+              </div>
+            ) : ("")
+          }
         </div>
       </Layout>
     </>
   );
 };
 
-export default index;
+export default Search;
