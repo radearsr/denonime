@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "swiper/swiper-bundle.min.css";
 import "../styles/globals.css";
 import NextNProgress from "nextjs-progressbar";
 import { useEffect } from "react";

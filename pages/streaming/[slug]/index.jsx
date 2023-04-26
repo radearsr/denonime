@@ -12,7 +12,6 @@ export const getServerSideProps = async (context) => {
   try {
     const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
     const { slug } = context.params;
-    console.log(slug);
     const numEpisodeFromSlug = (fullText) => {
       if (!fullText.includes("-episode-")) return 1;
       const [, episode] = fullText.split("-episode-");

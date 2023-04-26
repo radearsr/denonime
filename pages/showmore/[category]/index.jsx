@@ -5,6 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 import SkeletonAnimeComp from "../../../components/shared/SkeletonAnimeComp";
 import AnimeComp from "../../../components/shared/AnimeComp";
+import toCapitalize from "../../../utils";
 
 export const getServerSideProps = ({ params }) => ({
   props: {
@@ -83,7 +84,7 @@ const ShowMore = ({ category }) => {
   return (
     <>
       <Head>
-        <title>{`Show More ${category}`}</title>
+        <title>{`Show More ${toCapitalize(category)}`}</title>
       </Head>
       <nav className="navbar bg-lighter showmore-nav shadow-sm sticky-top">
         <div className="container">
@@ -91,7 +92,7 @@ const ShowMore = ({ category }) => {
             <div className="col">
               <Link href="/" className="showmore-back d-flex rounded p-1">
                 <i className="bi bi-arrow-left showmore-back">{" "}</i>
-                <p className="showmore-title fw-bold ms-3 m-0">{`Anime ${category}`}</p>
+                <p className="showmore-title fw-bold ms-3 m-0">{`Anime ${toCapitalize(category)}`}</p>
               </Link>
             </div>
           </div>
@@ -119,7 +120,7 @@ const ShowMore = ({ category }) => {
         </div>
         {
           pageNum < totalPages ? (
-            <div className="text-center" ref={loadingElement} style={{ height: "4rem" }}>
+            <div className="text-center" ref={loadingElement} style={{ height: "4rem", backgroundColor: "var(--space)" }}>
               <Spinner animation="border" style={{ color: "var(--orange)" }} />
             </div>
           ) : ("")
