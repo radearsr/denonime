@@ -9,9 +9,13 @@ import AnimesContent from "../components/home/AnimesContent";
 export const getStaticProps = async () => {
   try {
     const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
+    // const endpoint = "http://localhost:5000";
     const { data: animeCarousel } = await axios.get(`${endpoint}/api/v1/animes`, {
       params: {
-        type: "movie",
+        type: "Movie",
+        status: "Completed",
+        orderBy: "title",
+        sort: "asc",
         currentPage: 1,
         pageSize: 10,
       },
@@ -62,9 +66,14 @@ const Home = ({
   // Function Get All Animes Ongoing
   const getOngoingAnimes = async () => {
     try {
-      const { data: animeOngoing } = await axios.get(`${endpoint}/api/v1/animes/list/latest`, {
+      const { data: animeOngoing } = await axios.get(`${endpoint}/api/v1/animes`, {
         params: {
-          size: 12,
+          status: "Ongoing",
+          type: "Series",
+          orderBy: "lastUpdateEpisode",
+          sort: "desc",
+          currentPage: 1,
+          pageSize: 12,
         },
       });
       setOngoing(animeOngoing.data);
@@ -78,8 +87,12 @@ const Home = ({
   // Function Get All Animes Completed
   const getLastCompletedAnimes = async () => {
     try {
-      const { data: animePopuler } = await axios.get(`${endpoint}/api/v1/animes/list/finished`, {
+      const { data: animePopuler } = await axios.get(`${endpoint}/api/v1/animes`, {
         params: {
+          type: "Series",
+          status: "Completed",
+          orderBy: "releaseDate",
+          sort: "desc",
           currentPage: 1,
           pageSize: 6,
         },
@@ -98,6 +111,9 @@ const Home = ({
       const { data: animeTypes } = await axios.get(`${endpoint}/api/v1/animes`, {
         params: {
           type,
+          status: "Completed",
+          orderBy: "title",
+          sort: "asc",
           currentPage,
           pageSize,
         },
@@ -113,8 +129,8 @@ const Home = ({
   useEffect(() => {
     getOngoingAnimes();
     getLastCompletedAnimes();
-    getTypesAnimes("series", 1, 6, setSeries, setIsLoadingSeriesList);
-    getTypesAnimes("movie", 1, 6, setMovie, setIsLoadingMoviesList);
+    getTypesAnimes("Series", 1, 6, setSeries, setIsLoadingSeriesList);
+    getTypesAnimes("Movie", 1, 6, setMovie, setIsLoadingMoviesList);
   }, []);
 
   useEffect(() => {
