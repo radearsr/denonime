@@ -22,29 +22,37 @@ const ShowMore = ({ category }) => {
   const loadingElement = useRef(null);
 
   const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
-  const callAnime = async (currentPage, type, pageSize) => {
+
+  const callAnime = async (currentPage, typeParams, pageSize) => {
     setIsLoading(true);
-    let resultData;
-    if (type === "completed") {
-      const { data } = await axios.get(`${endpoint}/api/v1/animes/list/finished`, {
-        params: {
-          currentPage,
-          pageSize,
-        },
-      });
-      resultData = data;
-    } else {
-      const { data } = await axios.get(`${endpoint}/api/v1/animes`, {
-        params: {
-          type,
-          currentPage,
-          pageSize,
-        },
-      });
-      resultData = data;
-    }
-    setAnimes((prev) => [...prev, ...resultData.data]);
-    setTotalPages(resultData.pages.totalPage);
+
+    const type = typeParams === "completed" || typeParams === "series" ? "Series" : "Movie";
+    const status = "Completed";
+    const orderBy = typeParams === "completed" ? "releaseDate" : "title";
+    const sort = typeParams === "completed" ? "desc" : "asc";
+
+    console.log({
+      type,
+      status,
+      orderBy,
+      sort,
+      currentPage,
+      pageSize,
+    });
+
+    const { data: resultFetch } = await axios.get(`${endpoint}/api/v1/animes`, {
+      params: {
+        type,
+        status,
+        orderBy,
+        sort,
+        currentPage,
+        pageSize,
+      },
+    });
+
+    setAnimes((prev) => [...prev, ...resultFetch.data]);
+    setTotalPages(resultFetch.pages.totalPage);
     setIsLoading(false);
     setTotalLoad(0);
   };

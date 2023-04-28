@@ -96,6 +96,14 @@ const Search = ({
       </Head>
       <Layout addonClass="search-nav bg-orange sticky-top mb-3">
         <div className="container-md mt-4 position-relative">
+          {!isLoading && animes.length > 1 ? (
+            <p className="fs-4 mb-2 fw-bolder color-black">
+              Result for keyword
+              &lsquo;
+              <span className="color-orange">{keyword}</span>
+              &rsquo;
+            </p>
+          ) : ("")}
           <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
             {animes.map((anime) => (
               <div className="col-4 col-md-3 col-lg-3 col-xl-2" key={`search-${anime.animeId}`}>
@@ -114,6 +122,14 @@ const Search = ({
                 <SkeletonAnimeComp />
               </div>
             ))) : ("")}
+            {!isLoading && animes.length < 1 ? (
+              <p className="fs-4 mb-2 text-center fw-bolder color-black">
+                anime not found keyword
+                &lsquo;
+                <span className="color-orange">{keyword}</span>
+                &rsquo;
+              </p>
+            ) : ("")}
           </div>
           {
             pageNum < totalPages ? (

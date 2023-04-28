@@ -487,6 +487,18 @@ a.btn.btn-error:hover {
   background-color: var(--orange);
 }
 
+.color-black {
+  color: rgba(6, 17, 60, 0.74);
+}
+
+.color-orange {
+  color: var(--orange);
+}
+
+.color-grey {
+  color: var(--grey);
+}
+
 @media (min-width: 576px) {
   .card-about {
     width: 75%;
