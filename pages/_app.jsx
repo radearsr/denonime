@@ -9,28 +9,21 @@ const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min");
   });
-  const isProduction = process.env.NODE_ENV === "production" ? true : false;  
   return (
     <>
-      {
-        isProduction ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){window.dataLayer.push(arguments);}
-                gtag('js', new Date());
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-                gtag('config', ${process.env.GOOGLE_ANALYTICS});
-              `}
-            </Script>
-          </>
-        ) : ("")
-      }
+          gtag('config', ${process.env.GOOGLE_ANALYTICS});
+        `}
+      </Script>
       <NextNProgress
         color="#FFFFFF"
         options={{ showSpinner: false }}
