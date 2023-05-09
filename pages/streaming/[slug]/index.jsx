@@ -129,6 +129,7 @@ const Streaming = ({
                   labelNumber={episode.numEpisode}
                   isActive={currentEpisode === episode.numEpisode ? 1 : 0}
                   fullSlug={slugGenerator(animes.slug, animes.type, episode.numEpisode)}
+                  key={episode.numEpisode}
                 />
               ))}
             </EpisodeList>
