@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/globals.css";
 import NextNProgress from "nextjs-progressbar";
+import Head from "next/head";
 import Script from "next/script";
 import { useEffect } from "react";
 
@@ -12,6 +13,9 @@ const MyApp = ({ Component, pageProps }) => {
   const isProduction = process.env.NODE_ENV === "production";
   return (
     <>
+      <Head>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+      </Head>
       {
         isProduction ? (
           <>
@@ -25,7 +29,7 @@ const MyApp = ({ Component, pageProps }) => {
                 function gtag(){window.dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', '${process.env.GOOGLE_ANALYTICS}');
+                gtag('config', "${process.env.GOOGLE_ANALYTICS}");
               `}
             </Script>
           </>
