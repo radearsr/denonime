@@ -25,7 +25,7 @@ const MyApp = ({ Component, pageProps }) => {
                 function gtag(){window.dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', ${process.env.GOOGLE_ANALYTICS});
+                gtag('config', '${process.env.GOOGLE_ANALYTICS}');
               `}
             </Script>
           </>
