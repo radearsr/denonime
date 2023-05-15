@@ -29,7 +29,7 @@ export const getServerSideProps = async (context) => {
     // console.log({ sourceStreaming });
     const { data: playersData } = await axios.post(`https://addon.deyapro.com/api/player`, {
       link: sourceStreaming[0].sourceDefault,
-      strategy: "otakudesu",
+      strategy: sourceStreaming[0].streamStrategy,
     }, {
       headers: {
         "Content-Type": "application/json",
