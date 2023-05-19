@@ -19,7 +19,7 @@ const AnimeComp = ({
   };
 
   return (
-    <Link href={`streaming/${slugGenerator(slug, type)}`} className={styles.anime_comp_wrapper} title={title}>
+    <Link href={`/streaming/${slugGenerator(slug, type)}`} className={styles.anime_comp_wrapper} title={title}>
       <div className={styles.poster_content_item}>
         <Image
           src={poster}

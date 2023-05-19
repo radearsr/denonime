@@ -7,20 +7,28 @@ import Layout from "../../components/shared/Layout";
 import SkeletonAnimeComp from "../../components/shared/SkeletonAnimeComp";
 import AnimeComp from "../../components/shared/AnimeComp";
 
-export const getServerSideProps = ({ req, query, resolvedUrl }) => ({
-  props: {
-    liveKeyword: query.query,
-    title: "Denonime",
-    host: req.headers.host,
-    path: resolvedUrl.split("?")[0],
-  },
-});
+export const getServerSideProps = ({ req, query, resolvedUrl }) => {
+  const isMobileDevice = (userAgent) => (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)
+  );
+  const countFetchData = isMobileDevice(req.headers["user-agent"]) ? 48 : 96;
+  return {
+    props: {
+      liveKeyword: query.query,
+      title: "Denonime",
+      host: req.headers.host,
+      path: resolvedUrl.split("?")[0],
+      countFetchData,
+    },
+  };
+};
 
 const Search = ({
   liveKeyword,
   title,
   host,
   path,
+  countFetchData,
 }) => {
   const router = useRouter();
   const { query: keyword = "" } = router.query;
@@ -55,12 +63,12 @@ const Search = ({
   };
 
   useEffect(() => {
-    callAnime(1, keyword, 100);
+    callAnime(1, keyword, countFetchData);
   }, [keyword]);
 
   useEffect(() => {
     if (pageNum !== 1) {
-      callAnime(pageNum, keyword, 100);
+      callAnime(pageNum, keyword, countFetchData);
     }
     return () => {};
   }, [pageNum]);
@@ -96,7 +104,7 @@ const Search = ({
       </Head>
       <Layout addonClass="search-nav bg-orange sticky-top mb-3">
         <div className="container-md mt-4 position-relative">
-          {!isLoading && animes.length > 1 ? (
+          {!isLoading && animes.length && keyword > 1 ? (
             <p className="fs-4 mb-2 fw-bolder color-black">
               Result for keyword
               &lsquo;

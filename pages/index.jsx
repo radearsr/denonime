@@ -63,8 +63,12 @@ const Home = ({
     }
   };
 
+  const isMobileDevice = () => (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  );
+
   // Function Get All Animes Ongoing
-  const getOngoingAnimes = async () => {
+  const getOngoingAnimes = async (currentPage, pageSize) => {
     try {
       const { data: animeOngoing } = await axios.get(`${endpoint}/api/v1/animes`, {
         params: {
@@ -72,8 +76,8 @@ const Home = ({
           type: "Series",
           orderBy: "lastUpdateEpisode",
           sort: "desc",
-          currentPage: 1,
-          pageSize: 12,
+          currentPage,
+          pageSize,
         },
       });
       setOngoing(animeOngoing.data);
@@ -85,7 +89,7 @@ const Home = ({
   };
 
   // Function Get All Animes Completed
-  const getLastCompletedAnimes = async () => {
+  const getLastCompletedAnimes = async (currentPage, pageSize) => {
     try {
       const { data: animePopuler } = await axios.get(`${endpoint}/api/v1/animes`, {
         params: {
@@ -93,8 +97,8 @@ const Home = ({
           status: "Completed",
           orderBy: "releaseDate",
           sort: "desc",
-          currentPage: 1,
-          pageSize: 6,
+          currentPage,
+          pageSize,
         },
       });
       setCompleted(animePopuler.data);
@@ -127,10 +131,11 @@ const Home = ({
   };
 
   useEffect(() => {
-    getOngoingAnimes();
-    getLastCompletedAnimes();
-    getTypesAnimes("Series", 1, 6, setSeries, setIsLoadingSeriesList);
-    getTypesAnimes("Movie", 1, 6, setMovie, setIsLoadingMoviesList);
+    const countFetchData = isMobileDevice() ? 3 : 6;
+    getOngoingAnimes(1, countFetchData * 2);
+    getLastCompletedAnimes(1, countFetchData);
+    getTypesAnimes("Series", 1, countFetchData, setSeries, setIsLoadingSeriesList);
+    getTypesAnimes("Movie", 1, countFetchData, setMovie, setIsLoadingMoviesList);
   }, []);
 
   useEffect(() => {

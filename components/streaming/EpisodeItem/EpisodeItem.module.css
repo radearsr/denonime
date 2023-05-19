@@ -18,7 +18,7 @@
 .episode_item_number,
 .group_label {
   transition: .3s;
-  padding: 1.4rem;
+  padding: 1.2rem;
 }
 
 .episode_item_number,
@@ -50,6 +50,14 @@
 .episode_item.active .group_label {
   background-color: var(--orange);
   color: var(--space);
+}
+
+@media (min-width: 768px) {
+  .episode_item_number,
+  .group_label {
+    transition: .3s;
+    padding: 1.4rem;
+  }
 }
 
 @media (min-width: 992px) {
