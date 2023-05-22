@@ -5,6 +5,7 @@ import Layout from "../components/shared/Layout";
 import Carousel from "../components/home/Carousel";
 import SkeletonAnimeContent from "../components/home/SkeletonAnimeContent";
 import AnimesContent from "../components/home/AnimesContent";
+import AnimeGenres from "../components/home/AnimeGenres";
 
 export const getStaticProps = async () => {
   try {
@@ -21,9 +22,12 @@ export const getStaticProps = async () => {
       },
     });
 
+    const { data: animeGenres } = await axios.get(`${endpoint}/api/v1/animes/list/genres`);
+
     return {
       props: {
         endpoint,
+        genres: animeGenres.data,
         carousel: animeCarousel.data,
       },
     };
@@ -43,6 +47,7 @@ export const getStaticProps = async () => {
 const Home = ({
   endpoint,
   carousel,
+  genres,
 }) => {
   const [navbarClass, setNavbarClass] = useState("bg-transparent");
   const [isLoadingOngoingList, setIsLoadingOngoingList] = useState(true);
@@ -155,14 +160,15 @@ const Home = ({
       </Head>
       <Layout addonClass={`fixed-top ${navbarClass}`}>
         <Carousel animes={carousel} key="home-1" />
+        <AnimeGenres genres={genres} key="home-2" />
         { isLoadingOngoingList ? (<SkeletonAnimeContent count={12} labelTitle="ongoing" />)
-          : (<AnimesContent animes={ongoing} labelTitle="Ongoing" key="home-2" />) }
+          : (<AnimesContent animes={ongoing} labelTitle="Ongoing" key="home-3" />) }
         { isLoadingCompletedList ? (<SkeletonAnimeContent count={6} labelTitle="completed" />)
-          : (<AnimesContent animes={completed} labelTitle="Completed" isShowMore key="home-3" />) }
+          : (<AnimesContent animes={completed} labelTitle="Completed" isShowMore key="home-4" />) }
         { isLoadingSeriesList ? (<SkeletonAnimeContent count={6} labelTitle="series" />)
-          : (<AnimesContent animes={series} labelTitle="Series" isShowMore key="home-4" />) }
+          : (<AnimesContent animes={series} labelTitle="Series" isShowMore key="home-5" />) }
         { isLoadingMoviesList ? (<SkeletonAnimeContent count={6} labelTitle="movie" />)
-          : (<AnimesContent animes={movie} labelTitle="Movie" isShowMore key="home-5" />) }
+          : (<AnimesContent animes={movie} labelTitle="Movie" isShowMore key="home-6" />) }
       </Layout>
     </>
   );

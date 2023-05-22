@@ -1,6 +1,6 @@
 {
   "name": "denonime",
-  "version": "1.4.16",
+  "version": "1.5.16",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -1,0 +1,46 @@
+.slider_inner {
+  display: flex !important;
+  overflow: hidden !important;
+  scroll-behavior: smooth !important;
+  white-space: nowrap !important;
+}
+
+.slider_item {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--orange);
+  color: var(--space);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.slider_item:hover {
+  background-color: var(--orange-hover);
+  color: var(--space-hover);
+}
+
+.slider_btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  outline: none;
+  border: none;
+  background-color: var(--black);
+  color: var(--space);
+  opacity: .8;
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+
+.slider_btn:hover {
+  opacity: 1;
+}
+
+.btn_prev {
+  left: 0.75rem;
+}
+
+.btn_next {
+  right: 0.75rem;
+}

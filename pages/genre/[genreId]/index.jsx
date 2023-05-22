@@ -7,9 +7,9 @@ import SkeletonAnimeComp from "../../../components/shared/SkeletonAnimeComp";
 import AnimeComp from "../../../components/shared/AnimeComp";
 import toCapitalize from "../../../utils";
 
-export const getServerSideProps = ({ params }) => ({
+export const getServerSideProps = () => ({
   props: {
-    category: params.category,
+    category: "series",
   },
 });
 
