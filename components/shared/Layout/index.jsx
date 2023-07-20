@@ -1,9 +1,25 @@
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { initFirebase } from "../../../firebase/firebaseApp";
 import styles from "./Layout.module.css";
 
 const Layout = ({ children, addonClass = "" }) => {
+  initFirebase();
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
+  const [isLogin, setIsLogin] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      return setIsLogin(true);
+    }
+    return setIsLogin(false);
+  }, [user, loading]);
+
   return (
     <>
       <nav className={`navbar navbar-expand-lg navbar-dark ${addonClass}`}>
@@ -20,6 +36,11 @@ const Layout = ({ children, addonClass = "" }) => {
               <li className="nav-item">
                 <Link className={`${router.pathname === "/about" ? "active" : ""} nav-link`} aria-current="page" href="/about">About</Link>
               </li>
+              {isLogin ? (
+                <li className="nav-item">
+                  <button className="nav-link" onClick={() => auth.signOut()}>Logout</button>
+                </li>
+              ) : ("")}
             </ul>
           </div>
           <form className="col-12 col-md-5" action="/search">

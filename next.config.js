@@ -7,12 +7,16 @@ const nextConfig = {
         protocol: "https",
         hostname: "assets.deyapro.com",
       },
+      {
+        protocol: "https",
+        hostname: "otakudesu.lol",
+      },
     ],
   },
   env: {
     API_DEV: "http://127.0.0.1:5000",
     API_PROD: "https://fuzzy-gold-dolphin.cyclic.app",
-    GOOGLE_ANALYTICS: "G-Y5GYHJD7YN"
+    GOOGLE_ANALYTICS: "G-Y5GYHJD7YN",
   },
 };
 

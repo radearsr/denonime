@@ -21,9 +21,7 @@ export const getStaticProps = async () => {
         pageSize: 10,
       },
     });
-
     const { data: animeGenres } = await axios.get(`${endpoint}/api/v1/animes/list/genres`);
-
     return {
       props: {
         endpoint,

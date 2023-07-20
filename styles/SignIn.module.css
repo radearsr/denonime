@@ -1,0 +1,17 @@
+.wrapper__signin {
+  background-color:var(--orange);
+  min-height: 100vh;
+}
+
+.btn_login_google {
+  border: 1px solid  rgba(6, 17, 60, 0.6);
+  width: 90%;
+  padding: 0.75rem 0.5rem;
+  color: rgba(6, 17, 60, 0.8);
+  transition: .2s;
+}
+
+.btn_login_google:hover {
+  border: 1px solid  rgba(6, 17, 60, 0.6);
+  background-color: rgba(6, 17, 60, 0.2);
+}

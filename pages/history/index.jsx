@@ -3,9 +3,9 @@ import Layout from "../../components/shared/Layout";
 import AnimeHistoryComp from "../../components/shared/AnimeHistoryComp";
 
 export async function getServerSideProps() {
-  const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes?type=series&currentPage=2&pageSize=10`);
+  const response = await fetch(`https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes?type=Series&currentPage=2&pageSize=10`);
   const resultJson = await response.json();
-
+  console.log(resultJson);
   return {
     props: {
       animes: resultJson.data,

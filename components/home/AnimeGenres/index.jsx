@@ -1,8 +1,16 @@
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth } from "firebase/auth";
+import { initFirebase } from "../../../firebase/firebaseApp";
 import styles from "./animeGenres.module.css";
 
 const AnimeGenres = ({ genres }) => {
+  initFirebase();
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
+
+  const [isLogin, setIsLogin] = useState(false);
   const sliderContentRef = useRef(null);
 
   const handleSliderNext = (event) => {
@@ -16,6 +24,7 @@ const AnimeGenres = ({ genres }) => {
     }
     if ((sliderContentRef.current.scrollLeft + 155) >= totalScrollMax) event.target.classList.add("d-none");
   };
+
   const handleSliderPrev = (event) => {
     const { scrollWidth, clientWidth } = sliderContentRef.current;
     let { scrollLeft } = sliderContentRef.current;
@@ -30,15 +39,25 @@ const AnimeGenres = ({ genres }) => {
       event.target.classList.add("d-none");
     }
   };
+
   const sliderItems = genres.map((genre) => (
     <Link
       key={genre.genreId}
-      href={`/genre/${genre.slug}`}
+      href={genre.restricted && !isLogin ? (`/signIn?reffer=/genre/${genre.slug}`) : (`/genre/${genre.slug}`)}
       className={`${styles.slider_item} rounded-pill`}
     >
       {genre.name}
+      {genre.restricted && !isLogin ? (<i className="bi bi-lock-fill">{" "}</i>) : ("")}
     </Link>
   ));
+
+  useEffect(() => {
+    if (user) {
+      return setIsLogin(true);
+    }
+    return setIsLogin(false);
+  }, [user, loading]);
+
   return (
     <div className="container-md mt-4">
       <header className="d-flex justify-content-between align-items-center">
