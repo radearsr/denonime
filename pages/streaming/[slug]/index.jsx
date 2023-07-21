@@ -8,47 +8,36 @@ import EpisodeList from "../../../components/streaming/EpisodeList";
 import EpisodeItem from "../../../components/streaming/EpisodeItem";
 import TitleEpisodeList from "../../../components/streaming/TitleEpisodeList";
 
+const endpoint = process.env.NODE_ENV === "dev" ? process.env.API_DEV : process.env.API_DEV;
+
 export const getServerSideProps = async (context) => {
   try {
-    const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
-    const { slug } = context.params;
-    const numEpisodeFromSlug = (fullText) => {
-      if (!fullText.includes("-episode-")) return 1;
-      const [, episode] = fullText.split("-episode-");
-      return parseFloat(episode);
-    };
-    const { data: animesWithEpisode } = await axios.get(`${endpoint}/api/v1/episodes/${slug}`);
-    const { data: result } = await axios.get(`${endpoint}/api/v1/episodes/${animesWithEpisode.data.animeId}/animes`, {
-      params: {
-        sortBy: "asc",
+    let { slug } = context.params;
+    let currentNumEpisode;
+
+    if (slug.includes("-tv-")) {
+      [slug, currentNumEpisode] = slug.split("-tv-");
+    }
+
+    const {
+      data: {
+        data: details,
       },
-    });
-    const sourceStreaming = result.data.episodes.filter((episode) => (
-      episode.numEpisode === numEpisodeFromSlug(slug)
-    ));
-    // console.log({ sourceStreaming });
-    const { data: playersData } = await axios.post(`https://addon.deyapro.com/api/player`, {
-      link: sourceStreaming[0].sourceDefault,
-      strategy: sourceStreaming[0].streamStrategy,
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        "sec-ch-ua": `${context.req.headers["sec-ch-ua"]}`,
-        "user-agent": `${context.req.headers["user-agent"]}`,
-      },
-    });
-    const animes = {
-      title: animesWithEpisode.data.title,
-      slug: animesWithEpisode.data.slug,
-      type: animesWithEpisode.data.type,
-      description: animesWithEpisode.data.description,
-    };
+    } = await axios.get(`${endpoint}/api/v2/animes/details/${slug}`);
+    console.log(details);
+
+    if (!currentNumEpisode) {
+      return ({
+        props: {
+          details,
+          currentNumEpisode: 1,
+        },
+      });
+    }
     return {
       props: {
-        animes,
-        currentEpisode: numEpisodeFromSlug(slug),
-        episodes: result.data.episodes,
-        player: playersData.data,
+        details,
+        currentNumEpisode: parseInt(currentNumEpisode),
       },
     };
   } catch (error) {
@@ -58,23 +47,15 @@ export const getServerSideProps = async (context) => {
   }
 };
 
-const Streaming = ({
-  animes,
-  currentEpisode,
-  episodes,
-  player,
-}) => {
+const Streaming = ({ details, currentNumEpisode }) => {
   const [hasWindow, setHasWindow] = useState(false);
   const [seeMore, setSeeMore] = useState("");
-  const textReadmore = useRef();
 
-  const slugGenerator = (genSlug, genType, genEpisode) => {
-    const episode = `${genEpisode >= 10 ? genEpisode : `0${genEpisode}`}`;
-    if (genType === "Series") {
-      return `${genSlug}-episode-${episode}`;
-    }
-    return genSlug;
-  };
+  const [episodes, setEpisodes] = useState([]);
+  const [sources, setSources] = useState([]);
+  const [player, setPlayer] = useState("");
+
+  const textReadmore = useRef();
 
   const handleReadMore = () => {
     if (textReadmore.current.textContent === "Baca selengkapnya") {
@@ -85,6 +66,57 @@ const Streaming = ({
       textReadmore.current.textContent = "Baca selengkapnya";
     }
   };
+
+  const getEpisodeHandler = async (animeId) => {
+    const {
+      data: {
+        data: episodeLists,
+      },
+    } = await axios.get(`${endpoint}/api/v2/episodes/anime/${animeId}`);
+    setEpisodes(episodeLists);
+  };
+
+  const getEpisodeSourceHandler = async (episodeId) => {
+    const {
+      data: {
+        data: episodeSource,
+      },
+    } = await axios.get(`${endpoint}/api/v2/episodes/sources/details/${episodeId}`);
+    setSources(episodeSource);
+  };
+
+  const getSourceVideoPlayerHandler = async (link, strategy) => {
+    const { data: playersData } = await axios.post(`http://localhost:4000/api/player`, {
+      link,
+      strategy,
+    }, {
+      headers: {
+        "Content-Type": "application/json",
+        "user-agent": `${navigator.userAgent}`,
+      },
+    });
+    setPlayer(playersData.data);
+  };
+
+  useEffect(() => {
+    getEpisodeHandler(details.id);
+  }, [details]);
+
+  useEffect(() => {
+    if (episodes.length > 0) {
+      const currentEpisode = episodes.find((episode) => (
+        episode.number_episode === parseInt(currentNumEpisode)
+      ));
+      getEpisodeSourceHandler(currentEpisode.id);
+    }
+  }, [episodes, currentNumEpisode]);
+
+  useEffect(() => {
+    if (sources.length > 0) {
+      console.log(sources);
+      getSourceVideoPlayerHandler(sources[0].url_source, sources[0].scraping_strategy);
+    }
+  }, [sources]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -98,7 +130,7 @@ const Streaming = ({
   return (
     <>
       <Head>
-        <title>{`${animes.title} Episode ${currentEpisode}`}</title>
+        <title>{`${details.title} Episode ${currentNumEpisode}`}</title>
       </Head>
       <nav className="navbar bg-lighter showmore-nav shadow-sm sticky-top">
         <div className="container">
@@ -125,22 +157,22 @@ const Streaming = ({
               {episodes.map((episode, idx) => (
                 <EpisodeItem
                   number={idx + 1}
-                  label={episode.episodeType === "Ova" ? "OVA" : "Episode"}
-                  labelNumber={episode.numEpisode}
-                  isActive={currentEpisode === episode.numEpisode ? 1 : 0}
-                  fullSlug={slugGenerator(animes.slug, animes.type, episode.numEpisode)}
-                  key={episode.numEpisode}
+                  label={episode.episode_type}
+                  labelNumber={episode.number_episode}
+                  isActive={currentNumEpisode === episode.number_episode ? 1 : 0}
+                  fullSlug={episode.episode_slug}
+                  key={episode.id}
                 />
               ))}
             </EpisodeList>
           </Col>
         </Row>
         <Container className="py-2">
-          <h2 className="fw-bold fs-4 mb-1">{animes.title}</h2>
-          <h3 className="fw-ligter fs-5 mb-1">{animes.type === "Series" ? `Episode ${currentEpisode}` : "Movie"}</h3>
+          <h2 className="fw-bold fs-4 mb-1">{details.title}</h2>
+          <h3 className="fw-ligter fs-5 mb-1">{details.anime_type === "SERIES" ? `Episode ${currentNumEpisode}` : "Movie"}</h3>
           <Row>
             <Col xs={12} lg={10} xl={8}>
-              <p className={`text-sinopsis fs-6 ${seeMore}`}>{animes.description}</p>
+              <p className={`text-sinopsis fs-6 ${seeMore}`}>{details.synopsis}</p>
               <button className="toggle-text fw-bold" onClick={handleReadMore} ref={textReadmore}>Baca selengkapnya</button>
             </Col>
           </Row>

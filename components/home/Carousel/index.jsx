@@ -7,13 +7,13 @@ const Carousel = ({ animes }) => (
         <CarouselItem
           title={anime.title}
           rating={anime.rating}
-          releaseDate={anime.releaseDate}
+          releaseDate={anime.release_date}
           poster={anime.poster}
           slug={anime.slug}
           type={anime.type}
           genres={anime.anime_genres}
           isActive={idx === 0 ? "active" : ""}
-          key={`carouselItem-${anime.animeId}`}
+          key={`carouselItem-${anime.id}`}
         />
       ))}
     </div>
