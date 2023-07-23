@@ -39,19 +39,27 @@ const Search = ({
   const [totalLoad, setTotalLoad] = useState(0);
   const loadingElement = useRef(null);
 
+  const endpoint = process.env.NODE_ENV === "dev" ? process.env.API_DEV : process.env.API_DEV;
+
   const callAnime = async (currentPage, querySearch, pageSize) => {
-    setIsLoading(true);
-    const { data: resultSearch } = await axios.get("https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes/search", {
-      params: {
-        querySearch,
-        currentPage,
-        pageSize,
-      },
-    });
-    setAnimes((prev) => [...prev, ...resultSearch.data]);
-    setTotalPages(resultSearch.pages.totalPage);
-    setIsLoading(false);
-    setTotalLoad(0);
+    try {
+      setIsLoading(true);
+      const { data: resultSearch } = await axios.get(`${endpoint}/api/v2/animes/search`, {
+        params: {
+          keyword: querySearch,
+          current_page: currentPage,
+          page_size: pageSize,
+        },
+      });
+      setAnimes((prev) => [...prev, ...resultSearch.data]);
+      setTotalPages(resultSearch.pages.totalPage);
+      setIsLoading(false);
+      setTotalLoad(0);
+    } catch (error) {
+      setAnimes([]);
+      setIsLoading(false);
+      setTotalLoad(0);
+    }
   };
 
   const handleObserver = (entries) => {
@@ -116,11 +124,11 @@ const Search = ({
             {animes.map((anime) => (
               <div className="col-4 col-md-3 col-lg-3 col-xl-2" key={`search-${anime.animeId}`}>
                 <AnimeComp
-                  slug={anime.slug}
+                  slug={anime.anime_slug}
                   status={anime.status}
                   poster={anime.poster}
                   title={anime.title}
-                  totalEps={anime.episodes}
+                  totalEps={anime._count.episodes}
                   type={anime.type}
                 />
               </div>

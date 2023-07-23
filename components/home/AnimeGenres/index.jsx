@@ -42,8 +42,8 @@ const AnimeGenres = ({ genres }) => {
 
   const sliderItems = genres.map((genre) => (
     <Link
-      key={genre.genreId}
-      href={genre.restricted && !isLogin ? (`/signIn?reffer=/genre/${genre.slug}`) : (`/genre/${genre.slug}`)}
+      key={genre.id}
+      href={genre.restricted && !isLogin ? (`/signIn?reffer=/genre/${genre.genre_slug}`) : (`/genre/${genre.genre_slug}`)}
       className={`${styles.slider_item} rounded-pill`}
     >
       {genre.name}

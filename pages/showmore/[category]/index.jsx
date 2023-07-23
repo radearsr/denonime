@@ -21,29 +21,28 @@ const ShowMore = ({ category }) => {
   const [totalLoad, setTotalLoad] = useState(0);
   const loadingElement = useRef(null);
 
-  const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
+  const endpoint = process.env.NODE_ENV === "dev" ? process.env.API_DEV : process.env.API_DEV;
 
   const callAnime = async (currentPage, typeParams, pageSize) => {
     setIsLoading(true);
 
-    const type = typeParams === "completed" || typeParams === "series" ? "Series" : "Movie";
-    const status = "Completed";
-    const orderBy = typeParams === "completed" ? "releaseDate" : "title";
+    const type = typeParams === "completed" ? "*" : typeParams.toUpperCase();
+    const orderBy = typeParams === "completed" ? "release_date" : "title";
     const sort = typeParams === "completed" ? "desc" : "asc";
 
-    const { data: resultFetch } = await axios.get(`${endpoint}/api/v1/animes`, {
+    const { data: responseData } = await axios.get(`${endpoint}/api/v2/animes/sorting`, {
       params: {
         type,
-        status,
-        orderBy,
+        status: "COMPLETED",
         sort,
-        currentPage,
-        pageSize,
+        order_by: orderBy,
+        current_page: currentPage,
+        page_size: pageSize,
       },
     });
 
-    setAnimes((prev) => [...prev, ...resultFetch.data]);
-    setTotalPages(resultFetch.pages.totalPage);
+    setAnimes((prev) => [...prev, ...responseData.data]);
+    setTotalPages(responseData.pages.total_page);
     setIsLoading(false);
     setTotalLoad(0);
   };
@@ -100,13 +99,13 @@ const ShowMore = ({ category }) => {
       <div className="container-md mt-4">
         <div className="row justify-content-start gy-xl-3 g-2 g-lg-3">
           {animes.map((anime) => (
-            <div className="showmore col-4 col-md-3 col-lg-3 col-xl-2" key={`showmore-${anime.animeId}`}>
+            <div className="showmore col-4 col-md-3 col-lg-3 col-xl-2" key={`showmore-${anime.id}`}>
               <AnimeComp
-                slug={anime.slug}
+                slug={anime.anime_slug}
                 status={anime.status}
                 poster={anime.poster}
                 title={anime.title}
-                totalEps={anime.totalEps}
+                totalEps={anime._count.episodes}
                 type={anime.type}
               />
             </div>

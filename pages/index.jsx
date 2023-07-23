@@ -168,15 +168,15 @@ const Home = ({
       </Head>
       <Layout addonClass={`fixed-top ${navbarClass}`}>
         <Carousel animes={carousel} key="home-1" />
-        {/* <AnimeGenres genres={genres} key="home-2" /> */}
+        <AnimeGenres genres={genres} key="home-2" />
         { isLoadingOngoingList ? (<SkeletonAnimeContent count={12} labelTitle="ongoing" />)
           : (<AnimesContent animes={ongoing} labelTitle="Ongoing" key="home-3" />) }
         { isLoadingCompletedList ? (<SkeletonAnimeContent count={6} labelTitle="completed" />)
           : (<AnimesContent animes={completed} labelTitle="Completed" isShowMore key="home-4" />) }
         { isLoadingSeriesList ? (<SkeletonAnimeContent count={6} labelTitle="series" />)
           : (<AnimesContent animes={series} labelTitle="Series" isShowMore key="home-5" />) }
-        { isLoadingMoviesList ? (<SkeletonAnimeContent count={6} labelTitle="movie" />)
-          : (<AnimesContent animes={movie} labelTitle="Movie" isShowMore key="home-6" />) }
+        { isLoadingMoviesList ? (<SkeletonAnimeContent count={6} labelTitle="movies" />)
+          : (<AnimesContent animes={movie} labelTitle="Movies" isShowMore key="home-6" />) }
       </Layout>
     </>
   );
