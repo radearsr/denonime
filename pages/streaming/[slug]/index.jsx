@@ -10,7 +10,7 @@ import TitleEpisodeList from "../../../components/streaming/TitleEpisodeList";
 
 export const getServerSideProps = async (context) => {
   try {
-    const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
+    const endpoint = "https://denonime-api.vercel.app";
     const { slug } = context.params;
     const numEpisodeFromSlug = (fullText) => {
       if (!fullText.includes("-episode-")) return 1;

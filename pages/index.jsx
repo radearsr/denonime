@@ -9,7 +9,7 @@ import AnimeGenres from "../components/home/AnimeGenres";
 
 export const getStaticProps = async () => {
   try {
-    const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
+    const endpoint = "https://denonime-api.vercel.app";
     // const endpoint = "http://localhost:5000";
     const { data: animeCarousel } = await axios.get(`${endpoint}/api/v1/animes`, {
       params: {

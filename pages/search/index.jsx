@@ -41,7 +41,7 @@ const Search = ({
 
   const callAnime = async (currentPage, querySearch, pageSize) => {
     setIsLoading(true);
-    const { data: resultSearch } = await axios.get("https://fuzzy-gold-dolphin.cyclic.app/api/v1/animes/search", {
+    const { data: resultSearch } = await axios.get("https://denonime-api.vercel.app/api/v1/animes/search", {
       params: {
         querySearch,
         currentPage,
