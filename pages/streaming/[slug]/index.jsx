@@ -15,8 +15,8 @@ export const getServerSideProps = async (context) => {
     let { slug } = context.params;
     let currentNumEpisode;
 
-    if (slug.includes("-tv-")) {
-      [slug, currentNumEpisode] = slug.split("-tv-");
+    if (slug.includes("-episode-")) {
+      [slug, currentNumEpisode] = slug.split("-episode-");
     }
 
     const {

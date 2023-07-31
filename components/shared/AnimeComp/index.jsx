@@ -33,7 +33,7 @@ const AnimeComp = ({
         <span className={styles.hov_effect}>
           <i className="bi bi-play-fill icon-play">{" "}</i>
         </span>
-        <span className={status === "Completed" ? styles.anime_eps_muted : styles.anime_eps}>
+        <span className={status === "COMPLETED" ? styles.anime_eps_muted : styles.anime_eps}>
           { type === "Movie" ? "Movie" : `Eps ${totalEps}` }
         </span>
       </div>
