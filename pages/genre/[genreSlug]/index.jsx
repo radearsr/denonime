@@ -23,7 +23,7 @@ const ShowMore = ({ genre }) => {
   const [totalLoad, setTotalLoad] = useState(0);
   const loadingElement = useRef(null);
 
-  const endpoint = "https://fuzzy-gold-dolphin.cyclic.app";
+  const endpoint = process.env.NODE_ENV === "development" ? process.env.API_DEV : process.env.API_PROD;
 
   const callAnime = async (currentPage, genreParams, pageSize) => {
     try {

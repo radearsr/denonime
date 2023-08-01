@@ -21,7 +21,7 @@ const ShowMore = ({ category }) => {
   const [totalLoad, setTotalLoad] = useState(0);
   const loadingElement = useRef(null);
 
-  const endpoint = process.env.NODE_ENV === "dev" ? process.env.API_DEV : process.env.API_DEV;
+  const endpoint = process.env.NODE_ENV === "development" ? process.env.API_DEV : process.env.API_PROD;
 
   const callAnime = async (currentPage, typeParams, pageSize) => {
     setIsLoading(true);

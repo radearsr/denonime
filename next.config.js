@@ -18,9 +18,8 @@ const nextConfig = {
     ],
   },
   env: {
-    API_ENDPOINT: process.env.NODE_ENV === "dev" ? "http://127.0.0.1:5000" : "https://fuzzy-gold-dolphin.cyclic.app",
     API_DEV: "http://127.0.0.1:5000",
-    API_PROD: "https://fuzzy-gold-dolphin.cyclic.app",
+    API_PROD: "http://8.219.109.148:3000",
     GOOGLE_ANALYTICS: "G-Y5GYHJD7YN",
   },
 };

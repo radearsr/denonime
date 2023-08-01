@@ -8,7 +8,7 @@ import EpisodeList from "../../../components/streaming/EpisodeList";
 import EpisodeItem from "../../../components/streaming/EpisodeItem";
 import TitleEpisodeList from "../../../components/streaming/TitleEpisodeList";
 
-const endpoint = process.env.NODE_ENV === "dev" ? process.env.API_DEV : process.env.API_DEV;
+const endpoint = process.env.NODE_ENV === "development" ? process.env.API_DEV : process.env.API_PROD;
 
 export const getServerSideProps = async (context) => {
   try {

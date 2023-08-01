@@ -39,7 +39,7 @@ const Search = ({
   const [totalLoad, setTotalLoad] = useState(0);
   const loadingElement = useRef(null);
 
-  const endpoint = process.env.NODE_ENV === "dev" ? process.env.API_DEV : process.env.API_DEV;
+  const endpoint = process.env.NODE_ENV === "development" ? process.env.API_DEV : process.env.API_PROD;
 
   const callAnime = async (currentPage, querySearch, pageSize) => {
     try {
@@ -52,7 +52,7 @@ const Search = ({
         },
       });
       setAnimes((prev) => [...prev, ...resultSearch.data]);
-      setTotalPages(resultSearch.pages.totalPage);
+      setTotalPages(resultSearch.pages.total_page);
       setIsLoading(false);
       setTotalLoad(0);
     } catch (error) {

@@ -8,7 +8,7 @@ import AnimesContent from "../components/home/AnimesContent";
 import AnimeGenres from "../components/home/AnimeGenres";
 
 export const getStaticProps = async () => {
-  const endpoint = process.env.NODE_ENV === "dev" ? process.env.API_DEV : process.env.API_DEV;
+  const endpoint = process.env.NODE_ENV === "development" ? process.env.API_DEV : process.env.API_PROD;
   try {
     const { data: animeCarousel } = await axios.get(`${endpoint}/api/v2/animes/sorting`, {
       params: {
