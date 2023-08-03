@@ -86,17 +86,28 @@ const Streaming = ({ details, currentNumEpisode }) => {
   };
 
   const getSourceVideoPlayerHandler = async (link, strategy) => {
-    const { data: playersData } = await axios.post(`http://localhost:4000/api/player`, {
-      link,
-      strategy,
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        "user-agent": `${navigator.userAgent}`,
-      },
-    });
-    setPlayer(playersData.data);
+    try {
+      const { data: playersData } = await axios.post(`http://localhost:4000/api/player`, {
+        link,
+        strategy,
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+      if (!playersData.data) {
+        console.log("PLAYER_ERROR_AFTER_REQ");
+      }
+      setPlayer(playersData.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const playerErrorHandling = () => {
+    console.log("PLAYER_ERROR_ONERROR");
+  }
 
   useEffect(() => {
     getEpisodeHandler(details.id);
@@ -148,7 +159,7 @@ const Streaming = ({ details, currentNumEpisode }) => {
         <Row className="g-2 justify-content-between mb-1 overflow-hidden">
           <Col xs={12} lg={9}>
             <div className="video-wrapper">
-              { hasWindow && <ReactPlayer url={player} width="100%" height="100%" controls />}
+              { hasWindow && <ReactPlayer url={player} onError={playerErrorHandling} width="100%" height="100%" controls />}
             </div>
           </Col>
           <Col xs={12} lg={3} className="g-2">

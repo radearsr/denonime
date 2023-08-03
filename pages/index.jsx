@@ -12,7 +12,7 @@ export const getStaticProps = async () => {
   try {
     const { data: animeCarousel } = await axios.get(`${endpoint}/api/v2/animes/sorting`, {
       params: {
-        type: "SERIES",
+        type: "MOVIES",
         status: "COMPLETED",
         order_by: "title",
         sort: "asc",
@@ -130,8 +130,8 @@ const Home = ({
     getAnimes(
       "SERIES",
       "COMPLETED",
-      "release_date",
-      "desc",
+      "title",
+      "asc",
       1,
       countFetchData,
       setSeries,

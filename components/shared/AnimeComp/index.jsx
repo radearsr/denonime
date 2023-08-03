@@ -10,14 +10,6 @@ const AnimeComp = ({
   status,
   totalEps,
 }) => {
-  const slugGenerator = (genSlug, genType) => {
-    const resultEpisode = 1;
-    if (genType === "Series" || genType === "series") {
-      return `${genSlug}-episode-${resultEpisode.length > 1 ? resultEpisode : `0${resultEpisode}`}`;
-    }
-    return genSlug;
-  };
-
   return (
     <Link href={`/streaming/${slug}`} className={styles.anime_comp_wrapper} title={title}>
       <div className={styles.poster_content_item}>
@@ -34,7 +26,7 @@ const AnimeComp = ({
           <i className="bi bi-play-fill icon-play">{" "}</i>
         </span>
         <span className={status === "COMPLETED" ? styles.anime_eps_muted : styles.anime_eps}>
-          { type === "Movie" ? "Movie" : `Eps ${totalEps}` }
+          { type === "MOVIES" ? "MOVIE" : `EPS ${totalEps}` }
         </span>
       </div>
       <p className={styles.anime_title} title={title}>{title}</p>

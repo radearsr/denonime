@@ -29,11 +29,11 @@ const ShowMore = ({ genre }) => {
     try {
       setIsLoading(true);
 
-      const type = "Series";
-      const status = "Completed";
+      const type = "*";
+      const status = "*";
       const orderBy = "title";
       const sort = "asc";
-      const { data: resultFetch } = await axios.get(`${endpoint}/api/v1/animes/genres/${genreParams}`, {
+      const { data: resultFetch } = await axios.get(`${endpoint}/api/v2/animes/genres/${genreParams}`, {
         params: {
           type,
           status,

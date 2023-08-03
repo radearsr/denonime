@@ -14,7 +14,7 @@ const AnimesContent = ({ animes, labelTitle = "Ongoing", isShowMore = false }) =
             linkEps={anime.title}
             poster={anime.poster}
             title={anime.title}
-            type={anime.type}
+            type={anime.anime_type}
             totalEps={anime._count.episodes}
             slug={anime.anime_slug}
             status={anime.status}
